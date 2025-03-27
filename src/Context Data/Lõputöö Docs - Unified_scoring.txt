@@ -1,0 +1,89 @@
+﻿Unified Cyber Hygiene Score Calculation
+Step 1: Calculate Individual Scores
+Each questionnaire generates a separate score:
+1. Organizational Cyber Hygiene Score (OCHS) → Based on the organizational questionnaire.
+2. Employee Cyber Hygiene Score (ECHS) → Based on the employee questionnaire (average of all employee responses).
+Both are rated on a 0-100 scale.
+________________
+
+
+Step 2: Weighting the Scores
+We need to determine how much weight to give each score. Possible approaches:
+Option
+	Organizational Score Weight
+	Employee Score Weight
+	Best Use Case
+	Equal Weighting
+	50%
+	50%
+	Balanced view of both technical and human factors.
+	Heavier Org Focus
+	70%
+	30%
+	If technical security is prioritized over behavior.
+	Heavier Employee Focus
+	40%
+	60%
+	If human risk is the main concern.
+	Recommended Default: 50% Organizational / 50% Employee for a balanced perspective.
+Formula:
+Unified Cyber Hygiene Score (UCHS)=(OCHS×0.5)+(ECHS×0.5)\text{Unified Cyber Hygiene Score (UCHS)} = (OCHS \times 0.5) + (ECHS \times 0.5)Unified Cyber Hygiene Score (UCHS)=(OCHS×0.5)+(ECHS×0.5)
+________________
+Step 3: Interpreting the Final Score
+Final Score (%)
+	Cyber Hygiene Level
+	90 – 100
+	Excellent (Highly secure and aware organization)
+	75 – 89
+	Strong (Good security policies and employee awareness)
+	50 – 74
+	Moderate (Some security gaps or behavioral risks)
+	25 – 49
+	Weak (Significant cybersecurity weaknesses, urgent improvements needed)
+	0 – 24
+	Critical (Severe risks from both technical and human factors)
+	________________
+
+
+Step 4: Cyber Hygiene Report & Insights
+Each organization would receive a report that includes:
+1. Overall Cyber Hygiene Score (Unified Score)
+2. Breakdown of Scores:
+   * Organizational Cyber Hygiene Score (OCHS)
+   * Employee Cyber Hygiene Score (ECHS)
+3. Category-Specific Strengths & Weaknesses
+4. Risk-Based Recommendations (Technical improvements & training needs)
+5. Comparison to Industry/National Averages
+
+
+3. Unified Cyber Hygiene Score (Organization + Employees)
+To get a holistic view of an organization’s cyber hygiene, the organization-level and employee-level scores can be combined.
+Component
+	Weight (%)
+	Organization Cyber Hygiene Score
+	60%
+	Employee Cyber Hygiene Score (Average of all employees)
+	40%
+	Example Calculation
+* Organization Score = 74.4%
+* Average Employee Score = 67.3%
+Unified Cyber Hygiene Score
+= (74.4% × 60%) + (67.3% × 40%)
+= 71.7% (Moderate to Strong Cyber Hygiene - Some Improvements Needed)
+Estonia Level
+3. Unified Cyber Hygiene Score (Organization + Employees)
+To provide a holistic view of an organization's cybersecurity hygiene:
+Component
+	Weight (%)
+	Rationale
+	Organization Cyber Hygiene Score
+	65%
+	Organizational security is more impactful than individual awareness.
+	Employee Cyber Hygiene Score (Avg.)
+	35%
+	Employees remain a major vulnerability but are secondary to infrastructure security.
+	Final Calculation (Example)
+* Organization Score = 74%
+* Employee Score = 67.5%
+Unified Cyber Hygiene Score = (74 × 65%) + (67.5 × 35%)
+= 71.7% (Moderate to Strong - Needs Some Improvements)

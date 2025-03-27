@@ -1,0 +1,220 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "category": "Identity & Access Management",
+      "question": "Do you enforce multi-factor authentication (MFA) for all critical systems?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Only for administrators" },
+        { "value": 2, "text": "For some employees" },
+        { "value": 3, "text": "For most employees" },
+        { "value": 4, "text": "Mandatory for all employees" }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "Identity & Access Management",
+      "question": "How often are user access privileges reviewed?",
+      "answers": [
+        { "value": 0, "text": "Never" },
+        { "value": 1, "text": "Annually" },
+        { "value": 2, "text": "Semi-annually" },
+        { "value": 3, "text": "Quarterly" },
+        { "value": 4, "text": "Monthly or continuously monitored" }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "Identity & Access Management",
+      "question": "Are strong password policies enforced (length, complexity, expiration, reuse restrictions)?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Basic enforcement, but not monitored" },
+        { "value": 2, "text": "Enforced for administrators only" },
+        { "value": 3, "text": "Enforced for most employees" },
+        { "value": 4, "text": "Strictly enforced for all employees" }
+      ]
+    },
+    {
+      "id": 4,
+      "category": "Identity & Access Management",
+      "question": "Are inactive or terminated employee accounts deactivated immediately?",
+      "answers": [
+        { "value": 0, "text": "No formal process" },
+        { "value": 1, "text": "Deactivated within a month" },
+        { "value": 2, "text": "Deactivated within a week" },
+        { "value": 3, "text": "Deactivated within 48 hours" },
+        { "value": 4, "text": "Deactivated immediately upon termination" }
+      ]
+    },
+    {
+      "id": 5,
+      "category": "Identity & Access Management",
+      "question": "Do employees have access only to the data and systems required for their job roles (least privilege principle)?",
+      "answers": [
+        { "value": 0, "text": "No restrictions" },
+        { "value": 1, "text": "Limited restrictions" },
+        { "value": 2, "text": "Some departments follow least privilege" },
+        { "value": 3, "text": "Most departments follow least privilege" },
+        { "value": 4, "text": "Strict least privilege policy enforced across the organization" }
+      ]
+    },
+    {
+      "id": 6,
+      "category": "Identity & Access Management",
+      "question": "Does your organization provide and require the use of password managers?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Available but not required" },
+        { "value": 2, "text": "Required for administrators" },
+        { "value": 3, "text": "Required for most employees" },
+        { "value": 4, "text": "Required for all employees" }
+      ]
+    },
+    {
+      "id": 7,
+      "category": "Software & Patch Management",
+      "question": "Does your organization have a centralized system for managing software updates?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Updates are done manually by users" },
+        { "value": 2, "text": "IT manages updates but not automatically" },
+        { "value": 3, "text": "Centralized automatic updates for some systems" },
+        { "value": 4, "text": "Fully automated patch management" }
+      ]
+    },
+    {
+      "id": 8,
+      "category": "Software & Patch Management",
+      "question": "Do you perform regular vulnerability scans?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Annually" },
+        { "value": 2, "text": "Semi-annually" },
+        { "value": 3, "text": "Quarterly" },
+        { "value": 4, "text": "Monthly or continuously monitored" }
+      ]
+    },
+    {
+      "id": 9,
+      "category": "Software & Patch Management",
+      "question": "Are antivirus and endpoint protection solutions installed and updated?",
+      "answers": [
+        { "value": 0, "text": "No protection in place" },
+        { "value": 1, "text": "Installed but not updated regularly" },
+        { "value": 2, "text": "Installed and updated semi-regularly" },
+        { "value": 3, "text": "Installed and updated regularly" },
+        { "value": 4, "text": "Installed, updated, and centrally monitored" }
+      ]
+    },
+    {
+      "id": 10,
+      "category": "Software & Patch Management",
+      "question": "How often are operating systems, software, and applications updated?",
+      "answers": [
+        { "value": 0, "text": "Never or rarely" },
+        { "value": 1, "text": "Only critical updates applied manually" },
+        { "value": 2, "text": "Updates applied within 3 months of release" },
+        { "value": 3, "text": "Updates applied within 1 month of release" },
+        { "value": 4, "text": "Automated patching system in place" }
+      ]
+    },
+    {
+      "id": 11,
+      "category": "Data Classification & Protection",
+      "question": "Does your organization have a formal data classification policy?",
+      "answers": [
+        { "value": 0, "text": "No classification policy" },
+        { "value": 1, "text": "Basic classification exists" },
+        { "value": 2, "text": "Classified data has access restrictions" },
+        { "value": 3, "text": "Classified data is encrypted" },
+        { "value": 4, "text": "Data is encrypted and regularly audited" }
+      ]
+    },
+    {
+      "id": 12,
+      "category": "Data Classification & Protection",
+      "question": "Are sensitive files and communications encrypted at rest and in transit?",
+      "answers": [
+        { "value": 0, "text": "No encryption" },
+        { "value": 1, "text": "Basic encryption but not enforced" },
+        { "value": 2, "text": "Encryption applied to some systems" },
+        { "value": 3, "text": "Encryption applied to most systems" },
+        { "value": 4, "text": "Full encryption for all sensitive data" }
+      ]
+    },
+    {
+      "id": 13,
+      "category": "Backup & Recovery",
+      "question": "Do you have a data backup and recovery process?",
+      "answers": [
+        { "value": 0, "text": "No backup system in place" },
+        { "value": 1, "text": "Backups exist but are not performed regularly" },
+        { "value": 2, "text": "Backups are performed regularly but not tested for recovery" },
+        { "value": 3, "text": "Backups are performed regularly and tested occasionally" },
+        { "value": 4, "text": "Backups are performed regularly, encrypted, stored securely, and tested frequently" }
+      ]
+    },
+    {
+      "id": 14,
+      "category": "Backup & Recovery",
+      "question": "How frequently are data backups performed?",
+      "answers": [
+        { "value": 0, "text": "No backup system in place" },
+        { "value": 1, "text": "Monthly" },
+        { "value": 2, "text": "Weekly" },
+        { "value": 3, "text": "Daily" },
+        { "value": 4, "text": "Continuous real-time backups" }
+      ]
+    },
+    {
+      "id": 15,
+      "category": "Security Awareness & Training",
+      "question": "How often do employees receive cybersecurity awareness training?",
+      "answers": [
+        { "value": 0, "text": "Never" },
+        { "value": 1, "text": "Once during onboarding" },
+        { "value": 2, "text": "Annually" },
+        { "value": 3, "text": "Semi-annually" },
+        { "value": 4, "text": "Regular ongoing training with simulations" }
+      ]
+    },
+    {
+      "id": 16,
+      "category": "Security Awareness & Training",
+      "question": "Are simulated phishing attacks conducted to test employee awareness?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Once per year" },
+        { "value": 2, "text": "Semi-annually" },
+        { "value": 3, "text": "Quarterly" },
+        { "value": 4, "text": "Monthly with detailed reporting" }
+      ]
+    },
+    {
+      "id": 17,
+      "category": "Security Awareness & Training",
+      "question": "Do employees receive role-specific cybersecurity training?",
+      "answers": [
+        { "value": 0, "text": "No" },
+        { "value": 1, "text": "Basic training for all" },
+        { "value": 2, "text": "Role-specific training for some" },
+        { "value": 3, "text": "Role-specific training for most" },
+        { "value": 4, "text": "Continuous training tailored to roles" }
+      ]
+    },
+    {
+      "id": 18,
+      "category": "Security Awareness & Training",
+      "question": "Do employees know how to report security incidents and suspicious activity?",
+      "answers": [
+        { "value": 0, "text": "No awareness" },
+        { "value": 1, "text": "Some employees know" },
+        { "value": 2, "text": "A formal reporting system exists but is not well known" },
+        { "value": 3, "text": "A formal system exists and most employees are aware" },
+        { "value": 4, "text": "A well-established system exists with clear reporting procedures" }
+      ]
+    }
+  ]
+}
