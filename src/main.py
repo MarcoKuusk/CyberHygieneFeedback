@@ -35,34 +35,34 @@ def get_user_responses(questionnaire):
     return responses
 
 def save_feedback_to_pdf(feedback_list, title, file_path):
+    """
+    Saves the feedback to a PDF file with basic formatting.
+    """
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+
     c = canvas.Canvas(file_path, pagesize=letter)
     width, height = letter
     margin = 40
-    line_height = 20
-    max_width = width - 2 * margin
     y = height - margin
 
-    styles = getSampleStyleSheet()
-    title_style = styles['Heading1']
-    title_style.alignment = TA_LEFT
-    text_style = styles['BodyText']
+    # Draw the title
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(margin, y, title)
+    y -= 20  # Space after the title
 
-    def draw_feedback(feedback_list, title):
-        nonlocal y
-        title_paragraph = Paragraph(title, title_style)
-        title_paragraph.wrapOn(c, max_width, line_height)
-        title_paragraph.drawOn(c, margin, y)
-        y -= line_height * 2
-        for feedback in feedback_list:
-            wrapped_text = simpleSplit(feedback, c._fontname, c._fontsize, max_width)
-            for line in wrapped_text:
-                if y < margin:
-                    c.showPage()
-                    y = height - margin
-                c.drawString(margin, y, line)
-                y -= line_height
+    # Draw the feedback
+    c.setFont("Helvetica", 12)
+    for feedback in feedback_list:
+        lines = feedback.split("\n")  # Split feedback into lines if needed
+        for line in lines:
+            if y < margin:  # Check if we need a new page
+                c.showPage()
+                y = height - margin
+                c.setFont("Helvetica", 12)
+            c.drawString(margin, y, line)
+            y -= 15  # Line spacing
 
-    draw_feedback(feedback_list, title)
     c.save()
 
 def main():
@@ -89,8 +89,7 @@ def main():
     # Generate feedback for organization questionnaire
     organization_feedback = organization_feedback_generator.generate_feedback()
     print("\nOrganization Feedback:")
-    for feedback in organization_feedback:
-        print(feedback)
+    print(organization_feedback)
 
     # Calculate scores for unified feedback
     org_score = calculate_organization_score(organization_responses)
