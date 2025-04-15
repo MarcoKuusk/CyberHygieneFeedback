@@ -5,10 +5,11 @@ import json
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import simpleSplit
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import Paragraph
 from reportlab.lib.enums import TA_LEFT
 from utils.scoring import calculate_employee_score, calculate_organization_score
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 
 def load_questionnaire(file_path):
     with open(file_path, 'r') as file:
@@ -36,34 +37,38 @@ def get_user_responses(questionnaire):
 
 def save_feedback_to_pdf(feedback_list, title, file_path):
     """
-    Saves the feedback to a PDF file with basic formatting.
+    Saves the feedback to a PDF file using Platypus for proper formatting.
+    Accepts either a list of strings or a single string.
     """
-    from reportlab.lib.pagesizes import letter
-    from reportlab.pdfgen import canvas
+    # Normalize to list if input is a single string
+    if isinstance(feedback_list, str):
+        feedback_list = [feedback_list]
 
-    c = canvas.Canvas(file_path, pagesize=letter)
-    width, height = letter
-    margin = 40
-    y = height - margin
+    # Set up PDF document
+    doc = SimpleDocTemplate(file_path, pagesize=letter,
+                            rightMargin=40, leftMargin=40,
+                            topMargin=60, bottomMargin=40)
 
-    # Draw the title
-    c.setFont("Helvetica-Bold", 14)
-    c.drawString(margin, y, title)
-    y -= 20  # Space after the title
+    styles = getSampleStyleSheet()
+    normal_style = styles["Normal"]
+    title_style = styles["Title"]
 
-    # Draw the feedback
-    c.setFont("Helvetica", 12)
+    flowables = []
+
+    # Add title
+    flowables.append(Paragraph(title, title_style))
+    flowables.append(Spacer(1, 20))
+
+    # Add feedback content
     for feedback in feedback_list:
-        lines = feedback.split("\n")  # Split feedback into lines if needed
-        for line in lines:
-            if y < margin:  # Check if we need a new page
-                c.showPage()
-                y = height - margin
-                c.setFont("Helvetica", 12)
-            c.drawString(margin, y, line)
-            y -= 15  # Line spacing
+        # Support multi-paragraph feedback (split by double newlines)
+        paragraphs = feedback.strip().split("\n\n")
+        for para in paragraphs:
+            flowables.append(Paragraph(para.strip(), normal_style))
+            flowables.append(Spacer(1, 12))  # space between paragraphs
 
-    c.save()
+    # Build the PDF
+    doc.build(flowables)
 
 def main():
     # Load the questionnaires
@@ -106,9 +111,9 @@ def main():
             print(value)
 
     # Save feedback to separate PDFs
-    save_feedback_to_pdf(employee_feedback, "<b>Employee Feedback:</b>", "employee_feedback_report.pdf")
-    save_feedback_to_pdf(organization_feedback, "<b>Organization Feedback:</b>", "organization_feedback_report.pdf")
-    save_feedback_to_pdf([unified_feedback["Feedback"]], "<b>Unified Feedback:</b>", "unified_feedback_report.pdf")
+    save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
+    save_feedback_to_pdf(organization_feedback, "Organization Feedback", "organization_feedback_report.pdf")
+    save_feedback_to_pdf([unified_feedback["Feedback"]], "Unified Feedback", "unified_feedback_report.pdf")
 
 if __name__ == "__main__":
     main()
