@@ -88,8 +88,7 @@ def main():
     # Generate feedback for employee questionnaire
     employee_feedback = employee_feedback_generator.generate_feedback()
     print("\nEmployee Feedback:")
-    for feedback in employee_feedback:
-        print(feedback)
+    print(employee_feedback)
 
     # Generate feedback for organization questionnaire
     organization_feedback = organization_feedback_generator.generate_feedback()
@@ -104,16 +103,12 @@ def main():
     # Generate unified feedback
     unified_feedback = unified_feedback_generator.generate_feedback()
     print("\nUnified Feedback:")
-    for key, value in unified_feedback.items():
-        if key != "Feedback":
-            print(f"{key}: {value}")
-        else:
-            print(value)
+    print(unified_feedback)
 
     # Save feedback to separate PDFs
     save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
     save_feedback_to_pdf(organization_feedback, "Organization Feedback", "organization_feedback_report.pdf")
-    save_feedback_to_pdf([unified_feedback["Feedback"]], "Unified Feedback", "unified_feedback_report.pdf")
+    save_feedback_to_pdf(unified_feedback, "Unified Feedback", "unified_feedback_report.pdf")
 
 if __name__ == "__main__":
     main()
