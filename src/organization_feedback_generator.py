@@ -50,9 +50,9 @@ class OrganizationFeedbackGenerator:
         return grouped_findings, strengths
 
     def _build_feedback_prompt(self, findings, strengths, total_score):
-        findings_text = "\n".join(
-            [f"### {domain}\n" + "\n".join(f"- {item}" for item in items) 
-             for domain, items in findings.items() if items]
+        findings_text = "\n\n".join(
+            [f"**{domain}**\n" + "\n".join(f"- {item}" for item in items) 
+            for domain, items in findings.items() if items]
         )
 
         strengths_text = (
@@ -62,36 +62,36 @@ class OrganizationFeedbackGenerator:
 
         # Tailor urgency message
         if total_score < 30:
-            urgency = "🔴 **Critical:** Your cyber hygiene posture is weak and urgent action is needed."
+            urgency = "**Critical:** Your cyber hygiene posture is weak and urgent action is needed."
         elif total_score < 60:
-            urgency = "🟠 **Needs Improvement:** You have made some progress but key gaps remain."
+            urgency = "**Needs Improvement:** You have made some progress but key gaps remain."
         else:
-            urgency = "🟢 **Moderate:** You're on the right track but should continue strengthening security."
+            urgency = "**Moderate:** You're on the right track but should continue strengthening security."
 
         return (
             f"You are a cybersecurity advisor for small and medium-sized enterprises (SMEs).\n"
             f"Based on the cyber hygiene self-assessment, generate friendly, well-structured, and professional feedback.\n\n"
             f"**Score:** {total_score:.2f}%\n"
             f"{urgency}\n\n"
-            f"## ✅ What You're Doing Well\n{strengths_text}\n\n"
-            f"## ⚠️ Areas to Improve\n{findings_text}\n\n"
-            f"## 🔍 Potential Risks\n"
+            f"**What You're Doing Well**\n{strengths_text}\n\n"
+            f"**Areas to Improve**\n{findings_text}\n\n"
+            f"**Potential Risks**\n"
             f"- Credential theft due to weak access controls\n"
             f"- Data loss if backups are unreliable\n"
             f"- Phishing attacks targeting untrained staff\n"
             f"- System compromise from unpatched vulnerabilities\n\n"
-            f"## 🛠️ Action Plan\n"
-            f"### 🔴 Immediate (0–30 Days)\n"
+            f"**Action Plan**\n"
+            f"**Immediate (0–30 Days)**\n"
             f"- Implement MFA for all critical systems\n"
             f"- Start cybersecurity awareness training\n"
             f"- Enforce strong password policies\n\n"
-            f"### 🟠 Short-Term (60–90 Days)\n"
+            f"**Short-Term (60–90 Days)**\n"
             f"- Set up automated backups and test recovery\n"
             f"- Patch outdated systems and software\n\n"
-            f"### 🟢 Medium-Term (3–6 Months)\n"
+            f"**Medium-Term (3–6 Months)**\n"
             f"- Review user access privileges regularly\n"
             f"- Encrypt sensitive data at rest and in transit\n\n"
-            f"Keep your language clear and accessible. Use headers, bullets, and emojis to aid readability."
+            f"Keep your language clear and accessible. Use headers and bullets to aid readability."
         )
 
     def _generate_ai_feedback(self, prompt):

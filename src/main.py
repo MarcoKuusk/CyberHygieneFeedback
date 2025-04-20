@@ -51,6 +51,19 @@ def save_feedback_to_pdf(feedback_list, title, file_path):
 
     styles = getSampleStyleSheet()
     normal_style = styles["Normal"]
+
+    # Define a custom style for headers
+    header_style = ParagraphStyle(
+        name="Header",
+        parent=styles["Normal"],
+        fontSize=14,  # Slightly larger font size
+        leading=16,   # Line spacing
+        spaceAfter=10,  # Space after the header
+        textColor="black",
+        alignment=TA_LEFT,
+        fontName="Helvetica-Bold"  # Bold font
+    )
+
     title_style = styles["Title"]
 
     flowables = []
@@ -64,8 +77,13 @@ def save_feedback_to_pdf(feedback_list, title, file_path):
         # Support multi-paragraph feedback (split by double newlines)
         paragraphs = feedback.strip().split("\n\n")
         for para in paragraphs:
-            flowables.append(Paragraph(para.strip(), normal_style))
-            flowables.append(Spacer(1, 12))  # space between paragraphs
+            # Check if the paragraph is a header (starts and ends with **)
+            if para.startswith("**") and para.endswith("**"):
+                header_text = para.strip("**").strip()  # Remove the ** markers
+                flowables.append(Paragraph(header_text, header_style))
+            else:
+                flowables.append(Paragraph(para.strip(), normal_style))
+            flowables.append(Spacer(1, 12))  # Space between paragraphs
 
     # Build the PDF
     doc.build(flowables)
