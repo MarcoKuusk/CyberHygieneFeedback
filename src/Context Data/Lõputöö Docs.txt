@@ -1,0 +1,120 @@
+﻿Cyber Hygiene Scorecard for Estonian Organizations
+
+
+
+
+
+
+Research Problem:
+
+
+Background & Context
+Estonia is one of the most digitally advanced nations in the world, with a strong emphasis on e-governance, digital identity, and cybersecurity. However, despite its advanced digital infrastructure, many Estonian organizations—particularly small and medium-sized enterprises (SMEs)—struggle to maintain a strong cybersecurity posture.
+Cyber threats, such as phishing, ransomware, and data breaches, continue to target businesses, public institutions, and critical infrastructure. While large enterprises may have dedicated cybersecurity teams, smaller organizations often lack the resources, expertise, or awareness to assess and improve their cyber hygiene practices.
+Several cybersecurity frameworks exist, such as ISO 27001, NIST Cybersecurity Framework, and CIS Controls, but they are often too complex, costly, or resource-intensive for SMEs to implement effectively. Moreover, Estonia lacks a unified, easy-to-use cyber hygiene assessment tool tailored to the needs of local businesses and public organizations.
+Problem Statement
+There is no standardized and practical method for Estonian organizations to self-assess their cyber hygiene maturity, identify weaknesses, and receive actionable recommendations. Current cybersecurity frameworks are either too broad, complex, or not directly applicable to Estonia’s regulatory landscape.
+Without a clear and structured cyber hygiene assessment tool, organizations may:
+1. Underestimate cybersecurity risks, leading to weak defenses.
+2. Fail to comply with cybersecurity regulations (e.g., NIS2 Directive, Estonian Cybersecurity Act).
+3. Lack a benchmark to compare their security posture with industry best practices.
+Why is this a Problem?
+* Cybersecurity threats are increasing: Phishing attacks, ransomware, and insider threats are on the rise in Estonia.
+* SMEs and public institutions often lack cybersecurity expertise, making them easy targets.
+* Compliance is becoming stricter with NIS2 and Estonian regulations, requiring businesses to improve their cybersecurity posture.
+* Existing cybersecurity frameworks are difficult to implement without dedicated cybersecurity teams or external consultants.
+Research Aim
+This research aims to develop a Cyber Hygiene Scorecard that enables Estonian organizations to:
+1. Assess their current cyber hygiene practices in a structured and practical manner.
+2. Identify areas of improvement and receive recommendations tailored to Estonia’s cybersecurity landscape.
+3. Benchmark themselves against cybersecurity best practices and regulatory requirements.
+4. Encourage a proactive cybersecurity culture in organizations of all sizes.
+Research Objectives
+1. Identify the key factors that define good cyber hygiene for Estonian organizations.
+2. Analyze existing cybersecurity frameworks (ISO 27001, NIST, CIS Controls) and assess their relevance for Estonian businesses.
+3. Develop a structured Cyber Hygiene Scorecard with clear scoring criteria.
+4. Validate the scorecard through surveys, expert interviews, and testing with real organizations.
+5. Provide recommendations on how Estonian businesses can improve their cyber hygiene based on scorecard results.
+Research Questions
+1. What are the most critical cyber hygiene factors for Estonian organizations?
+2. How do existing cybersecurity frameworks align with Estonia’s cybersecurity needs?
+3. How can a Cyber Hygiene Scorecard be developed and validated for Estonian organizations?
+4. What are the most common weaknesses and gaps in cyber hygiene among Estonian SMEs and public organizations?
+5. How can organizations use the scorecard to enhance their cybersecurity posture?
+Benchmarking the Cyber Hygiene Scorecard against Estonian cybersecurity maturity models ensures that the framework is aligned with national and international best practices. Below is a comparative analysis with NIST CSF, CIS Controls, and ISKE, along with necessary adjustments to strengthen our scoring model.
+________________
+
+
+1. Benchmarking Against Key Cybersecurity Maturity Models
+Cyber Hygiene Category
+	NIST CSF (US Standard)
+	CIS Controls (International Best Practice)
+	ISKE (Estonian Security Standard)
+	Cyber Hygiene Scorecard Alignment
+	Identity & Access Management
+	"Protect" (PR.AC) - Access Control, Authentication
+	CIS Control 5, 6 - Account & Access Management
+	ISKE K1, K2 - User Access & Authentication
+	Strongly aligned (Weights adjusted for Estonia’s reliance on e-ID)
+	Incident Response & Business Continuity
+	"Respond" (RS) & "Recover" (RC) - Incident Planning
+	CIS Control 17 - Incident Response
+	ISKE K4, K5 - Incident Management
+	Aligned (Emphasis increased for Estonia’s history of cyberattacks)
+	Endpoint & Network Security
+	"Protect" (PR.PT & PR.IP) - Endpoint Protection, Network Defense
+	CIS Control 7, 8 - Malware Defenses, Logging
+	ISKE K3 - Network & Endpoint Security
+	Aligned (Weights fine-tuned for different industries)
+	Employee Awareness & Training
+	"Protect" (PR.AT) - Security Awareness Training
+	CIS Control 14 - Security Awareness
+	ISKE K6 - Awareness & Training
+	Strongly aligned (Weights increased for high-risk industries like NGOs, education)
+	Data Protection & Compliance
+	"Protect" (PR.DS) - Data Security & Encryption
+	CIS Control 13 - Data Protection
+	ISKE K7, GDPR, NIS2 - Data Security & Compliance
+	Aligned (Adjusted for Estonian regulatory requirements)
+	Key Findings:
+* NIST CSF & CIS Controls match well with our organizational security measures.
+* ISKE (Estonian Security Standard) provides the most relevant compliance benchmarks.
+* Our model is well aligned, but weights for Employee Awareness & Incident Response were increased based on Estonian cyber risks.
+________________
+
+
+2. Cybersecurity Maturity Levels for Benchmarking
+To classify organizations into maturity levels, we propose a tiered ranking system inspired by NIST, CIS, and ISKE.
+Score Range (%)
+	Cyber Hygiene Maturity Level
+	Description
+	0-40%
+	High Risk (Critical)
+	Major vulnerabilities, minimal protections. Immediate action required.
+	41-60%
+	Moderate Risk (Developing)
+	Basic security practices exist but many gaps remain.
+	61-75%
+	Managed (Intermediate)
+	Security controls are implemented but not fully optimized.
+	76-90%
+	Resilient (Advanced)
+	Strong security posture, meets ISKE & CIS standards.
+	91-100%
+	Cyber Secure (Optimal)
+	Fully mature security model, aligned with Estonian & EU best practices.
+	This maturity model allows organizations to track progress over time and benchmark against industry standards.
+________________
+
+
+3. Adjustments Based on Benchmarking
+Enhancements to the Cyber Hygiene Scorecard
+1. Increased Emphasis on Incident Response (ISKE K4, NIST RS, CIS 17)
+   * Government & Finance get higher weights (30%) for response preparedness.
+   * Education & NGOs get higher employee reporting scores to reflect social engineering risks.
+2. Employee Awareness & Training (ISKE K6, NIST PR.AT, CIS 14)
+   * Phishing awareness is raised to 40% weight in high-risk industries.
+   * Cybersecurity culture & reporting are weighted higher in NGOs & Cleaning sectors.
+3. Better Risk Categorization Based on NIST Maturity Model
+   * Organizations can compare themselves against industry averages.
+   * Maturity levels give a clear roadmap for improvement.
