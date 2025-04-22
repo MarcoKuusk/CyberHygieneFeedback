@@ -175,23 +175,23 @@ def save_feedback_to_pdf(feedback_text, title, filename):
 
 def main():
     # Load the questionnaires
-    #employee_questionnaire = load_questionnaire('src/data/employee_questionnaire.json')
+    employee_questionnaire = load_questionnaire('src/data/employee_questionnaire.json')
     organization_questionnaire = load_questionnaire('src/data/organization_questionnaire.json')
 
     # Get user responses
-    #print("Employee Questionnaire:")
-    #employee_responses = get_user_responses(employee_questionnaire)
+    print("Employee Questionnaire:")
+    employee_responses = get_user_responses(employee_questionnaire)
     print("\nOrganization Questionnaire:")
     organization_responses = get_user_responses(organization_questionnaire)
 
     # Initialize the feedback generators
-    #employee_feedback_generator = EmployeeFeedbackGenerator(employee_responses)
+    employee_feedback_generator = EmployeeFeedbackGenerator(employee_responses)
     organization_feedback_generator = OrganizationFeedbackGenerator(organization_responses)
 
     # Generate feedback for employee questionnaire
-    #employee_feedback = employee_feedback_generator.generate_feedback()
-    #print("\nEmployee Feedback:")
-    #print(employee_feedback)
+    employee_feedback = employee_feedback_generator.generate_feedback()
+    print("\nEmployee Feedback:")
+    print(employee_feedback)
 
     # Generate feedback for organization questionnaire
     organization_feedback = organization_feedback_generator.generate_feedback()
@@ -200,18 +200,18 @@ def main():
 
     # Calculate scores for unified feedback
     org_score = calculate_organization_score(organization_responses)
-    #emp_score = calculate_employee_score(employee_responses)
-    #unified_feedback_generator = UnifiedFeedbackGenerator(org_score, emp_score)
+    emp_score = calculate_employee_score(employee_responses)
+    unified_feedback_generator = UnifiedFeedbackGenerator(org_score, emp_score)
 
     # Generate unified feedback
-    #unified_feedback = unified_feedback_generator.generate_feedback()
-    #print("\nUnified Feedback:")
-    #print(unified_feedback)
+    unified_feedback = unified_feedback_generator.generate_feedback()
+    print("\nUnified Feedback:")
+    print(unified_feedback)
 
     # Save feedback to separate PDFs
-    #save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
+    save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
     save_feedback_to_pdf(organization_feedback, "Organization Feedback", "organization_feedback_report.pdf")
-    #save_feedback_to_pdf(unified_feedback, "Unified Feedback", "unified_feedback_report.pdf")
+    save_feedback_to_pdf(unified_feedback, "Unified Feedback", "unified_feedback_report.pdf")
 
 if __name__ == "__main__":
     main()
