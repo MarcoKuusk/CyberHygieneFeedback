@@ -4,3 +4,4 @@ pandas
 jsonschema
 numpy
 reportlab
+pymupdf
