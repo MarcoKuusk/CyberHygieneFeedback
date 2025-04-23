@@ -1,10 +1,11 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import messagebox
 from main import load_questionnaire, save_feedback_to_pdf
 from employee_feedback_generator import EmployeeFeedbackGenerator
 from organization_feedback_generator import OrganizationFeedbackGenerator
 from unified_feedback_generator import UnifiedFeedbackGenerator
 from utils.scoring import calculate_employee_score, calculate_organization_score
+import os
 
 class FeedbackApp:
     def __init__(self, root):
@@ -16,61 +17,129 @@ class FeedbackApp:
         self.label = tk.Label(root, text="Cyber Hygiene Feedback Generator", font=("Arial", 16))
         self.label.pack(pady=10)
 
-        self.load_employee_btn = tk.Button(root, text="Load Employee Questionnaire", command=self.load_employee_questionnaire)
-        self.load_employee_btn.pack(pady=5)
+        self.employee_feedback_btn = tk.Button(root, text="Take Employee Feedback Questionnaire", command=self.take_employee_feedback)
+        self.employee_feedback_btn.pack(pady=5)
 
-        self.load_organization_btn = tk.Button(root, text="Load Organization Questionnaire", command=self.load_organization_questionnaire)
-        self.load_organization_btn.pack(pady=5)
+        self.organization_feedback_btn = tk.Button(root, text="Take Organization Feedback Questionnaire", command=self.take_organization_feedback)
+        self.organization_feedback_btn.pack(pady=5)
 
-        self.generate_feedback_btn = tk.Button(root, text="Generate Feedback", command=self.generate_feedback, state=tk.DISABLED)
-        self.generate_feedback_btn.pack(pady=20)
+        self.unified_feedback_btn = tk.Button(root, text="Take Unified Feedback Questionnaire", command=self.take_unified_feedback)
+        self.unified_feedback_btn.pack(pady=20)
 
         self.employee_questionnaire = None
         self.organization_questionnaire = None
-        self.employee_responses = {}
-        self.organization_responses = {}
+        self.current_question_index = 0
+        self.responses = {}
+        self.current_questionnaire = None
 
-    def load_employee_questionnaire(self):
-        file_path = filedialog.askopenfilename(title="Select Employee Questionnaire", filetypes=[("JSON Files", "*.json")])
-        if file_path:
-            self.employee_questionnaire = load_questionnaire(file_path)
-            messagebox.showinfo("Success", "Employee Questionnaire Loaded Successfully!")
-            self.check_ready_state()
+    def load_questionnaires(self):
+        # Automatically load questionnaires from the src/data folder
+        base_path = os.path.join(os.path.dirname(__file__), "data")
+        employee_file = os.path.join(base_path, "employee_questionnaire.json")
+        organization_file = os.path.join(base_path, "organization_questionnaire.json")
 
-    def load_organization_questionnaire(self):
-        file_path = filedialog.askopenfilename(title="Select Organization Questionnaire", filetypes=[("JSON Files", "*.json")])
-        if file_path:
-            self.organization_questionnaire = load_questionnaire(file_path)
-            messagebox.showinfo("Success", "Organization Questionnaire Loaded Successfully!")
-            self.check_ready_state()
+        try:
+            self.employee_questionnaire = load_questionnaire(employee_file)
+            self.organization_questionnaire = load_questionnaire(organization_file)
+        except FileNotFoundError as e:
+            messagebox.showerror("Error", f"Failed to load questionnaires: {e}")
+        except Exception as e:
+            messagebox.showerror("Error", f"An unexpected error occurred: {e}")
 
-    def check_ready_state(self):
+    def start_questionnaire(self, questionnaire):
+        # Flatten the nested structure of categories and questions
+        self.current_questionnaire = []
+        for category in questionnaire['questions']:
+            if 'questions' in category:
+                self.current_questionnaire.extend(category['questions'])
+            else:
+                self.current_questionnaire.append(category)
+
+        self.current_question_index = 0
+        self.responses = {}
+        self.show_question()
+
+    def show_question(self):
+        if self.current_question_index < len(self.current_questionnaire):
+            question_data = self.current_questionnaire[self.current_question_index]
+            self.display_question(question_data)
+        else:
+            self.finish_questionnaire()
+
+    def display_question(self, question_data):
+        # Clear the window
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        # Display the question
+        question_label = tk.Label(self.root, text=question_data['question'], font=("Arial", 14))
+        question_label.pack(pady=10)
+
+        # Display the multiple-choice options
+        selected_answer = tk.StringVar()
+        for answer in question_data['answers']:
+            # Handle both 'option' and 'text' keys
+            answer_text = answer.get('option') or answer.get('text')
+            tk.Radiobutton(self.root, text=answer_text, variable=selected_answer, value=answer_text, font=("Arial", 12)).pack(anchor="w")
+
+        # Next button
+        next_button = tk.Button(self.root, text="Next", command=lambda: self.save_response_and_next(question_data['question'], selected_answer))
+        next_button.pack(pady=20)
+
+    def save_response_and_next(self, question, selected_answer):
+        answer = selected_answer.get()
+        if not answer:
+            messagebox.showwarning("Warning", "Please select an answer before proceeding.")
+            return
+
+        self.responses[question] = answer
+        self.current_question_index += 1
+        self.show_question()
+
+    def finish_questionnaire(self):
+        # Clear the window
+        for widget in self.root.winfo_children():
+            widget.destroy()
+
+        # Display completion message
+        tk.Label(self.root, text="Thank you for completing the questionnaire!", font=("Arial", 16)).pack(pady=20)
+
+        # Generate feedback
+        if self.current_questionnaire == self.employee_questionnaire:
+            feedback_generator = EmployeeFeedbackGenerator(self.responses)
+            feedback = feedback_generator.generate_feedback()
+            save_feedback_to_pdf(feedback, "Employee Feedback", "employee_feedback_report.pdf")
+        elif self.current_questionnaire == self.organization_questionnaire:
+            feedback_generator = OrganizationFeedbackGenerator(self.responses)
+            feedback = feedback_generator.generate_feedback()
+            save_feedback_to_pdf(feedback, "Organization Feedback", "organization_feedback_report.pdf")
+
+        # Back to main menu button
+        tk.Button(self.root, text="Back to Main Menu", command=self.reset_ui).pack(pady=20)
+
+    def reset_ui(self):
+        # Reset the UI to the main menu
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        self.__init__(self.root)
+
+    def take_employee_feedback(self):
+        self.load_questionnaires()
+        if self.employee_questionnaire:
+            self.start_questionnaire(self.employee_questionnaire)
+
+    def take_organization_feedback(self):
+        self.load_questionnaires()
+        if self.organization_questionnaire:
+            self.start_questionnaire(self.organization_questionnaire)
+
+    def take_unified_feedback(self):
+        self.load_questionnaires()
         if self.employee_questionnaire and self.organization_questionnaire:
-            self.generate_feedback_btn.config(state=tk.NORMAL)
-
-    def generate_feedback(self):
-        # Generate feedback for employee questionnaire
-        employee_feedback_generator = EmployeeFeedbackGenerator(self.employee_responses)
-        employee_feedback = employee_feedback_generator.generate_feedback()
-
-        # Generate feedback for organization questionnaire
-        organization_feedback_generator = OrganizationFeedbackGenerator(self.organization_responses)
-        organization_feedback = organization_feedback_generator.generate_feedback()
-
-        # Calculate scores for unified feedback
-        org_score = calculate_organization_score(self.organization_responses)
-        emp_score = calculate_employee_score(self.employee_responses)
-        unified_feedback_generator = UnifiedFeedbackGenerator(org_score, emp_score)
-
-        # Generate unified feedback
-        unified_feedback = unified_feedback_generator.generate_feedback()
-
-        # Save feedback to PDFs
-        save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
-        save_feedback_to_pdf(organization_feedback, "Organization Feedback", "organization_feedback_report.pdf")
-        save_feedback_to_pdf(unified_feedback, "Unified Feedback", "unified_feedback_report.pdf")
-
-        messagebox.showinfo("Success", "Feedback Generated and Saved as PDFs!")
+            # Combine both questionnaires for unified feedback
+            unified_questions = self.employee_questionnaire['questions'] + self.organization_questionnaire['questions']
+            unified_questionnaire = {'questions': unified_questions}
+            self.start_questionnaire(unified_questionnaire)
 
 if __name__ == "__main__":
     root = tk.Tk()
