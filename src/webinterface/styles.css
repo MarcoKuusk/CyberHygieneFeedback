@@ -1,0 +1,74 @@
+.cyber-border {
+    border: 1px solid #64ffda;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+}
+.cyber-glow:hover {
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+}
+.progress-bar {
+    transition: width 0.3s ease-in-out;
+}
+.gauge {
+    width: 100%;
+    height: 20px;
+    background: #172a45;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.gauge-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #64ffda, #1e90ff);
+    transition: width 0.5s ease;
+}
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.card-button {
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+.perspective-item {
+    display: flex;
+    align-items: flex-start;
+    min-height: 60px;
+}
+
+/* Add animation styles */
+.animate-shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
+
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.fade-out {
+    animation: fadeOut 0.3s;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

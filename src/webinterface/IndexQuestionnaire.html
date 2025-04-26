@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Hygiene Feedback Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0a192f',
+                        secondary: '#172a45',
+                        accent: '#64ffda',
+                        text: '#ccd6f6',
+                        textlight: '#8892b0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .cyber-border {
+            border: 1px solid #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+        .cyber-glow:hover {
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+        }
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #64ffda 0%, #0a192f 100%);
+        }
+        .gauge {
+            width: 100%;
+            height: 20px;
+            background: #172a45;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .gauge-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #1e90ff);
+            transition: width 0.5s ease;
+        }
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .card-button {
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+        .perspective-item {
+            display: flex;
+            align-items: flex-start;
+            min-height: 60px;
+        }
+        .error-message {
+            color: #f87171;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-primary text-text min-h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <nav class="bg-secondary py-4 px-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-shield-alt text-accent text-2xl"></i>
+                <span class="text-xl font-bold">CyberHygiene</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#employee" class="nav-link">Employee</a>
+                <a href="#organization" class="nav-link">Organization</a>
+                <a href="#unified" class="nav-link">Unified Report</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <button class="md:hidden text-accent">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Homepage -->
+        <section id="home" class="text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-accent">Cyber Hygiene Feedback Tool</h1>
+            <p class="text-xl mb-10 text-textlight">
+                Assess and improve cybersecurity practices for employees and organizations. 
+                Identify strengths, weaknesses, and actionable insights to enhance your digital defenses.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
+                    <div class="card-content">
+                        <i class="fas fa-user-shield text-4xl mb-4 text-accent"></i>
+                        <h3 class="text-xl font-semibold mb-3">Employee Assessment</h3>
+                        <p class="mb-4 text-textlight">Evaluate individual cybersecurity awareness and practices.</p>
+                    </div>
+                    <div class="card-button">
+                        <button id="startEmployee" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Start Assessment</button>
+                    </div>
+                </div>
+                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
+                    <div class="card-content">
+                        <i class="fas fa-building text-4xl mb-4 text-accent"></i>
+                        <h3 class="text-xl font-semibold mb-3">Organization Assessment</h3>
+                        <p class="mb-4 text-textlight">Assess your organization's cybersecurity policies and infrastructure.</p>
+                    </div>
+                    <div class="card-button">
+                        <button id="startOrganization" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Start Assessment</button>
+                    </div>
+                </div>
+                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
+                    <div class="card-content">
+                        <i class="fas fa-chart-pie text-4xl mb-4 text-accent"></i>
+                        <h3 class="text-xl font-semibold mb-3">Unified Report</h3>
+                        <p class="mb-4 text-textlight">Combine employee and organization data for comprehensive insights.</p>
+                    </div>
+                    <div class="card-button">
+                        <button id="generateReport" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Generate Report</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border text-left">
+                <h2 class="text-2xl font-bold mb-6 text-accent text-center">Why Cyber Hygiene Matters</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Employee Perspective -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-accent border-b border-accent pb-2 flex items-center">
+                            <i class="fas fa-user-shield mr-3"></i> Employee Perspective
+                        </h3>
+                        <ul class="space-y-3 text-textlight">
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Protects your personal and professional data from unauthorized access</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Reduces risk of identity theft and financial fraud</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Ensures compliance with company policies and industry regulations</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Maintains productivity by preventing security incidents</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Builds trust with customers and colleagues</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Organizational Perspective -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-accent border-b border-accent pb-2 flex items-center">
+                            <i class="fas fa-building mr-3"></i> Organizational Perspective
+                        </h3>
+                        <ul class="space-y-3 text-textlight">
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Prevents data breaches that can cost millions in damages and reputation loss</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Protects sensitive customer and employee information from theft</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Reduces vulnerability to ransomware and other cyber attacks</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Ensures compliance with industry regulations and standards</span>
+                            </li>
+                            <li class="perspective-item">
+                                <i class="fas fa-check-circle text-accent mr-3 mt-1"></i>
+                                <span>Creates a security-aware culture that benefits the entire organization</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Employee Assessment -->
+        <section id="employeeAssessment" class="hidden max-w-3xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-accent">Employee Cyber Hygiene Assessment</h2>
+                <span id="employeeProgressText" class="text-textlight">Question 1 of 15</span>
+            </div>
+            
+            <div class="mb-4 bg-secondary rounded-full h-2">
+                <div id="employeeProgressBar" class="progress-bar rounded-full" style="width: 6.66%"></div>
+            </div>
+            
+            <div id="employeeQuestionContainer" class="bg-secondary p-8 rounded-lg cyber-border mb-6">
+                <!-- Questions will be inserted here dynamically -->
+            </div>
+            
+            <div class="flex justify-between">
+                <button id="employeeBack" class="bg-secondary text-accent px-6 py-2 rounded-md border border-accent hover:bg-accent hover:text-primary transition disabled:opacity-50" disabled>
+                    <i class="fas fa-arrow-left mr-2"></i> Back
+                </button>
+                <button id="employeeNext" class="bg-accent text-primary px-6 py-2 rounded-md hover:bg-opacity-90 transition">
+                    Next <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Organization Assessment -->
+        <section id="organizationAssessment" class="hidden max-w-3xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-accent">Organization Cyber Hygiene Assessment</h2>
+                <span id="orgProgressText" class="text-textlight">Question 1 of 20</span>
+            </div>
+            
+            <div class="mb-4 bg-secondary rounded-full h-2">
+                <div id="orgProgressBar" class="progress-bar rounded-full" style="width: 5%"></div>
+            </div>
+            
+            <div id="orgQuestionContainer" class="bg-secondary p-8 rounded-lg cyber-border mb-6">
+                <!-- Questions will be inserted here dynamically -->
+            </div>
+            
+            <div class="flex justify-between">
+                <button id="orgBack" class="bg-secondary text-accent px-6 py-2 rounded-md border border-accent hover:bg-accent hover:text-primary transition disabled:opacity-50" disabled>
+                    <i class="fas fa-arrow-left mr-2"></i> Back
+                </button>
+                <button id="orgNext" class="bg-accent text-primary px-6 py-2 rounded-md hover:bg-opacity-90 transition">
+                    Next <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Employee Feedback -->
+        <section id="employeeFeedback" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">Employee Cyber Hygiene Feedback</h2>
+                <p class="text-xl text-textlight">Based on your assessment responses</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-check-circle mr-3"></i> Strengths
+                    </h3>
+                    <ul class="space-y-3 text-textlight">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                            <span>You consistently recognize phishing attempts (scored 92%)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                            <span>You use strong, unique passwords for different accounts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                            <span>You lock your workstation when stepping away</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
+                    </h3>
+                    <ul class="space-y-3 text-textlight">
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>You rarely update software promptly (scored 35%)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>You don't always use VPN when working remotely</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>You sometimes share credentials for convenience</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-clipboard-list mr-3"></i> Action Plan
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-primary bg-opacity-50 p-4 rounded">
+                        <h4 class="font-medium mb-2 text-accent">Enable Automatic Updates</h4>
+                        <p class="text-sm text-textlight">Configure all devices to install security updates automatically.</p>
+                    </div>
+                    <div class="bg-primary bg-opacity-50 p-4 rounded">
+                        <h4 class="font-medium mb-2 text-accent">VPN Usage Policy</h4>
+                        <p class="text-sm text-textlight">Always connect to VPN when accessing company resources remotely.</p>
+                    </div>
+                    <div class="bg-primary bg-opacity-50 p-4 rounded">
+                        <h4 class="font-medium mb-2 text-accent">Credential Management</h4>
+                        <p class="text-sm text-textlight">Never share passwords - use approved sharing methods instead.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-textlight">Phishing Awareness</span>
+                            <span class="font-medium">92%</span>
+                        </div>
+                        <div class="gauge">
+                            <div class="gauge-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-textlight">Password Security</span>
+                            <span class="font-medium">85%</span>
+                        </div>
+                        <div class="gauge">
+                            <div class="gauge-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-textlight">Software Updates</span>
+                            <span class="font-medium">35%</span>
+                        </div>
+                        <div class="gauge">
+                            <div class="gauge-fill" style="width: 35%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-textlight">Secure Remote Work</span>
+                            <span class="font-medium">58%</span>
+                        </div>
+                        <div class="gauge">
+                            <div class="gauge-fill" style="width: 58%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-medium">Overall Score</span>
+                        <span class="text-2xl font-bold text-accent">72%</span>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                        <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                    </button>
+                </div>
+        </section>
+
+        <!-- Organization Feedback -->
+        <section id="organizationFeedback" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">Organizational Cyber Hygiene Feedback</h2>
+                <p class="text-xl text-textlight">Based on your assessment responses</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-check-circle mr-3"></i> Strengths
+                </h3>
+                <ul class="space-y-3 text-textlight">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Strong incident response plan (scored 88%)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Regular security awareness training for employees</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Comprehensive backup strategy in place</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
+                </h3>
+                <ul class="space-y-3 text-textlight">
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                        <span>Patch management process needs improvement (scored 42%)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                        <span>Inconsistent MFA implementation across systems</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                        <span>No formal vendor security assessment process</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+            <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                <i class="fas fa-clipboard-list mr-3"></i> Action Plan
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-primary bg-opacity-50 p-4 rounded">
+                    <h4 class="font-medium mb-2 text-accent">Automated Patch Management</h4>
+                    <p class="text-sm text-textlight">Implement system to automatically deploy critical security patches.</p>
+                </div>
+                <div class="bg-primary bg-opacity-50 p-4 rounded">
+                    <h4 class="font-medium mb-2 text-accent">MFA Enforcement</h4>
+                    <p class="text-sm text-textlight">Require MFA for all systems, especially those with sensitive data.</p>
+                </div>
+                <div class="bg-primary bg-opacity-50 p-4 rounded">
+                    <h4 class="font-medium mb-2 text-accent">Vendor Security</h4>
+                    <p class="text-sm text-textlight">Develop process to assess third-party vendor security practices.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-textlight">Incident Response</span>
+                        <span class="font-medium">88%</span>
+                    </div>
+                    <div class="gauge">
+                        <div class="gauge-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-textlight">Employee Training</span>
+                        <span class="font-medium">75%</span>
+                    </div>
+                    <div class="gauge">
+                        <div class="gauge-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-textlight">Patch Management</span>
+                        <span class="font-medium">42%</span>
+                    </div>
+                    <div class="gauge">
+                        <div class="gauge-fill" style="width: 42%"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1">
+                        <span class="text-textlight">Access Control</span>
+                        <span class="font-medium">65%</span>
+                    </div>
+                    <div class="gauge">
+                        <div class="gauge-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-700">
+                <div class="flex justify-between items-center">
+                    <span class="text-lg font-medium">Overall Score</span>
+                    <span class="text-2xl font-bold text-accent">68%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-accent">Risk Insights</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-red-900 bg-opacity-30 p-4 rounded border border-red-700">
+                    <h4 class="font-medium mb-2 text-red-300">High Risk</h4>
+                    <p class="text-sm text-textlight">Delayed patching leaves systems vulnerable to known exploits.</p>
+                </div>
+                <div class="bg-yellow-900 bg-opacity-30 p-4 rounded border border-yellow-700">
+                    <h4 class="font-medium mb-2 text-yellow-300">Medium Risk</h4>
+                    <p class="text-sm text-textlight">Inconsistent MFA increases risk of credential compromise.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+            </button>
+        </div>
+        </section>
+
+        <!-- Unified Feedback -->
+        <section id="unifiedFeedback" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">Unified Cyber Hygiene Feedback</h2>
+                <p class="text-xl text-textlight">Combining employee and organizational assessments</p>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border mb-10">
+                <h3 class="text-xl font-semibold mb-6 text-accent text-center">Unified Score</h3>
+                <div class="flex justify-center mb-6">
+                    <div class="relative w-48 h-48">
+                        <svg class="w-full h-full" viewBox="0 0 36 36">
+                            <path
+                                d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none"
+                                stroke="#172a45"
+                                stroke-width="3"
+                            />
+                            <path
+                                d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none"
+                                stroke="#64ffda"
+                                stroke-width="3"
+                                stroke-dasharray="70, 100"
+                            />
+                            <text x="18" y="20.5" text-anchor="middle" fill="#ccd6f6" font-size="8" font-weight="bold">70%</text>
+                            <text x="18" y="24.5" text-anchor="middle" fill="#8892b0" font-size="4">Overall</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="text-center text-textlight">
+                    Your combined cyber hygiene score indicates moderate security posture with significant room for improvement.
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+                <h3 class="text-xl font-semibold mb-6 text-accent text-center">Comparison</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-medium mb-3 text-center">Employee Score</h4>
+                        <div class="flex justify-center mb-2">
+                            <div class="text-4xl font-bold text-accent">72%</div>
+                        </div>
+                        <div class="gauge mx-auto">
+                            <div class="gauge-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-medium mb-3 text-center">Organization Score</h4>
+                        <div class="flex justify-center mb-2">
+                            <div class="text-4xl font-bold text-accent">68%</div>
+                        </div>
+                        <div class="gauge mx-auto">
+                            <div class="gauge-fill" style="width: 68%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-700 text-textlight">
+                    <p class="text-center">
+                        The 4% gap between employee practices and organizational policies suggests relatively good alignment, 
+                        though both need improvement to reach optimal security levels.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Unified Action Plan</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium mb-2 text-accent">For Employees</h4>
+                        <ul class="space-y-2 text-textlight">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                                <span>Attend quarterly security awareness refreshers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                                <span>Enable automatic updates on all devices</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                                <span>Always use VPN when working remotely</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-medium mb-2 text-accent">For Organization</h4>
+                        <ul class="space-y-2 text-textlight">
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                                <span>Implement automated patch management system</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                                <span>Enforce MFA across all systems uniformly</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                                <span>Develop vendor security assessment process</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <h4 class="font-medium mb-2 text-accent">Joint Recommendations</h4>
+                    <ul class="space-y-2 text-textlight">
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                            <span>Conduct biannual security drills combining policy and practice</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                            <span>Establish security champions program to bridge gaps</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
+                            <span>Implement feedback loop between employees and security team</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                    <i class="fas fa-file-pdf mr-2"></i> Download Unified PDF Report
+                </button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">About Cyber Hygiene Feedback Tool</h2>
+                <p class="text-xl text-textlight">Enhancing organizational cybersecurity through assessment and feedback</p>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Our Mission</h3>
+                <p class="mb-4 text-textlight">
+                    The Cyber Hygiene Feedback Tool was developed to bridge the gap between cybersecurity policies and actual 
+                    employee practices. Our mission is to help organizations identify vulnerabilities in their human firewall 
+                    and provide actionable insights to strengthen their overall security posture.
+                </p>
+                <p class="text-textlight">
+                    By combining employee behavior assessment with organizational policy evaluation, we provide a comprehensive 
+                    view of your cyber hygiene that goes beyond traditional security audits.
+                </p>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">How It Works</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-primary bg-opacity-50 p-4 rounded">
+                        <div class="text-accent text-2xl mb-3">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">Assessment</h4>
+                        <p class="text-sm text-textlight">
+                            Employees and administrators complete tailored questionnaires about security practices and policies.
+                        </p>
+                    </div>
+                    <div class="bg-primary bg-opacity-50 p-4 rounded">
+                        <div class="text-accent text-2xl mb-3">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">Analysis</h4>
+                        <p class="text-sm text-textlight">
+                            Our system evaluates responses against security benchmarks and identifies strengths and weaknesses.
+                        </p>
+                    </div>
+                    <div class="bg-primary bg-opacity-50 p-4 rounded">
+                        <div class="text-accent text-2xl mb-3">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4 class="font-medium mb-2">Feedback</h4>
+                        <p class="text-sm text-textlight">
+                            Detailed reports provide actionable recommendations for both individuals and the organization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Key Benefits</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <div class="text-accent mr-4 mt-1">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium mb-1">Risk Reduction</h4>
+                            <p class="text-sm text-textlight">
+                                Identify and address vulnerabilities before they're exploited by attackers.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-accent mr-4 mt-1">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium mb-1">Employee Awareness</h4>
+                            <p class="text-sm text-textlight">
+                                Personalized feedback helps employees understand their security role.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-accent mr-4 mt-1">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium mb-1">Policy Alignment</h4>
+                            <p class="text-sm text-textlight">
+                                Reveal gaps between security policies and actual employee practices.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-accent mr-4 mt-1">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-medium mb-1">Progress Tracking</h4>
+                            <p class="text-sm text-textlight">
+                                Measure improvements over time with periodic assessments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary py-8 px-6">
+        <div class="container mx-auto">
+            <div class="text-center">
+                <div class="flex items-center space-x-2 mb-4 justify-center">
+                    <i class="fas fa-shield-alt text-accent text-2xl"></i>
+                    <span class="text-xl font-bold">CyberHygiene</span>
+                </div>
+                <p class="text-textlight text-sm max-w-2xl mx-auto">
+                    Empowering organizations to strengthen their cybersecurity through comprehensive assessment and actionable feedback.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Question data
+        const employeeQuestions = {
+            categories: [
+                {
+                    category: "Password & Access Management",
+                    questions: [
+                        {
+                            question: "Do you use unique passwords for different accounts (work and personal)?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "I reuse passwords across many accounts", score: 1 },
+                                { option: "I use different passwords but sometimes reuse old ones", score: 2 },
+                                { option: "I use different passwords and change them occasionally", score: 3 },
+                                { option: "I use different, strong passwords and a password manager", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you store your passwords securely?",
+                            answers: [
+                                { option: "No, I write them down or save them in unprotected files", score: 0 },
+                                { option: "I use a simple password-protected document", score: 1 },
+                                { option: "I memorize most but reuse some weak passwords", score: 2 },
+                                { option: "I use a password manager but sometimes write down passwords", score: 3 },
+                                { option: "I exclusively use a password manager or secure method", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you use multi-factor authentication (MFA) when available?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Only for highly sensitive accounts", score: 1 },
+                                { option: "I enable MFA for some work accounts", score: 2 },
+                                { option: "I enable MFA for most work accounts", score: 3 },
+                                { option: "I enable MFA for all possible accounts", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you lock your computer and devices when leaving them unattended?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Sometimes, but I often forget", score: 1 },
+                                { option: "I lock them when in public spaces", score: 2 },
+                                { option: "I lock them in most situations", score: 3 },
+                                { option: "I always lock them, even at home", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Phishing Awareness & Email Security",
+                    questions: [
+                        {
+                            question: "Would you recognize a phishing email?",
+                            answers: [
+                                { option: "No, I am not familiar with phishing attacks", score: 0 },
+                                { option: "I have heard of phishing but wouldn't always recognize it", score: 1 },
+                                { option: "I recognize some phishing attempts but have fallen for them before", score: 2 },
+                                { option: "I can recognize most phishing emails and verify links before clicking", score: 3 },
+                                { option: "I always verify sender details, URLs, and report phishing attempts", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Have you received cybersecurity training on phishing attacks?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Once, but I do not remember much", score: 1 },
+                                { option: "Occasionally, but not regularly", score: 2 },
+                                { option: "I receive training at least once a year", score: 3 },
+                                { option: "I regularly receive training and participate in phishing tests", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you verify sender addresses before clicking on links or opening attachments?",
+                            answers: [
+                                { option: "Never", score: 0 },
+                                { option: "Rarely", score: 1 },
+                                { option: "Sometimes, if an email looks suspicious", score: 2 },
+                                { option: "Often, but I have clicked on a suspicious link before", score: 3 },
+                                { option: "Always, I verify senders and links before clicking", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you report suspicious emails to IT/security?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "I delete them but don't report them", score: 1 },
+                                { option: "I report some emails but not consistently", score: 2 },
+                                { option: "I usually report them", score: 3 },
+                                { option: "I always report phishing attempts", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Device & Data Security",
+                    questions: [
+                        {
+                            question: "Do you regularly update your work device (OS, apps, security patches)?",
+                            answers: [
+                                { option: "No, I ignore updates", score: 0 },
+                                { option: "Sometimes, but I delay updates", score: 1 },
+                                { option: "I update most things within a few weeks", score: 2 },
+                                { option: "I update devices promptly when notified", score: 3 },
+                                { option: "I always update immediately or have auto-updates enabled", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you use personal USB drives or unauthorized software on work devices?",
+                            answers: [
+                                { option: "Yes, regularly", score: 0 },
+                                { option: "Sometimes, if necessary", score: 1 },
+                                { option: "Rarely, only when required", score: 2 },
+                                { option: "Almost never, and only after IT approval", score: 3 },
+                                { option: "Never, I follow IT policies strictly", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you use encrypted communication channels for sensitive work discussions?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Sometimes, but not always", score: 1 },
+                                { option: "I use encrypted channels when instructed", score: 2 },
+                                { option: "I use them for most sensitive communications", score: 3 },
+                                { option: "I always use encrypted channels", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Remote Work & Public Network Security",
+                    questions: [
+                        {
+                            question: "Do you use a VPN or secured connection when working remotely?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Only for highly sensitive work", score: 1 },
+                                { option: "Sometimes, but not consistently", score: 2 },
+                                { option: "Mostly, unless I forget", score: 3 },
+                                { option: "Always, I never work remotely without a VPN", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you avoid using public Wi-Fi for work tasks?",
+                            answers: [
+                                { option: "No, I use public Wi-Fi without precautions", score: 0 },
+                                { option: "Sometimes, but I don't take security measures", score: 1 },
+                                { option: "I use public Wi-Fi but with some security precautions", score: 2 },
+                                { option: "I avoid public Wi-Fi when possible", score: 3 },
+                                { option: "I never use public Wi-Fi for work tasks", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you ensure that family members or friends do not use your work devices?",
+                            answers: [
+                                { option: "No, I share my work device", score: 0 },
+                                { option: "Sometimes, but only for non-work purposes", score: 1 },
+                                { option: "Rarely, but they have accessed it before", score: 2 },
+                                { option: "Almost never, except in emergencies", score: 3 },
+                                { option: "Never, I strictly keep work devices private", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Incident Reporting & Cybersecurity Culture",
+                    questions: [
+                        {
+                            question: "Do you know how to report a cybersecurity incident?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "I think I know, but I'm not sure", score: 1 },
+                                { option: "I know where to report but have never done it", score: 2 },
+                                { option: "I know how to report and have done it before", score: 3 },
+                                { option: "I actively report security incidents and encourage others to do so", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you feel your organization provides adequate cybersecurity training?",
+                            answers: [
+                                { option: "No, I have never received training", score: 0 },
+                                { option: "Some training, but not enough", score: 1 },
+                                { option: "Training is provided, but it could be better", score: 2 },
+                                { option: "Training is good, but I'd like more practical exercises", score: 3 },
+                                { option: "Training is excellent and prepares me well for threats", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Have you participated in simulated cybersecurity exercises (e.g., phishing tests)?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Once, but not recently", score: 1 },
+                                { option: "Occasionally, but not regularly", score: 2 },
+                                { option: "Frequently, at least once per year", score: 3 },
+                                { option: "Regularly, with multiple tests and feedback", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you think your organization prioritizes cybersecurity?",
+                            answers: [
+                                { option: "No, it is not a priority", score: 0 },
+                                { option: "There are some efforts, but they are weak", score: 1 },
+                                { option: "Cybersecurity is important but not enforced well", score: 2 },
+                                { option: "Cybersecurity is taken seriously", score: 3 },
+                                { option: "Cybersecurity is a top priority and well-integrated", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Would you feel comfortable reporting a mistake or security issue to IT/security?",
+                            answers: [
+                                { option: "No, I am afraid of consequences", score: 0 },
+                                { option: "I am unsure if I should report mistakes", score: 1 },
+                                { option: "I would report it, but I worry about judgment", score: 2 },
+                                { option: "I would report it without hesitation", score: 3 },
+                                { option: "I actively encourage others to report issues", score: 4 }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const organizationQuestions = {
+            categories: [
+                {
+                    category: "Identity & Access Management",
+                    questions: [
+                        {
+                            question: "Do you enforce multi-factor authentication (MFA) for all critical systems?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Only for administrators", score: 1 },
+                                { option: "For some employees", score: 2 },
+                                { option: "For most employees", score: 3 },
+                                { option: "Mandatory for all employees", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "How often are user access privileges reviewed?",
+                            answers: [
+                                { option: "Never", score: 0 },
+                                { option: "Annually", score: 1 },
+                                { option: "Semi-annually", score: 2 },
+                                { option: "Quarterly", score: 3 },
+                                { option: "Monthly or continuously monitored", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Are strong password policies enforced (length, complexity, expiration, reuse restrictions)?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Basic enforcement, but not monitored", score: 1 },
+                                { option: "Enforced for administrators only", score: 2 },
+                                { option: "Enforced for most employees", score: 3 },
+                                { option: "Strictly enforced for all employees", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Are inactive or terminated employee accounts deactivated immediately?",
+                            answers: [
+                                { option: "No formal process", score: 0 },
+                                { option: "Deactivated within a month", score: 1 },
+                                { option: "Deactivated within a week", score: 2 },
+                                { option: "Deactivated within 48 hours", score: 3 },
+                                { option: "Deactivated immediately upon termination", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do employees have access only to the data and systems required for their job roles (least privilege principle)?",
+                            answers: [
+                                { option: "No restrictions", score: 0 },
+                                { option: "Limited restrictions", score: 1 },
+                                { option: "Some departments follow least privilege", score: 2 },
+                                { option: "Most departments follow least privilege", score: 3 },
+                                { option: "Strict least privilege policy enforced across the organization", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Does your organization provide and require the use of password managers?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Available but not required", score: 1 },
+                                { option: "Required for administrators", score: 2 },
+                                { option: "Required for most employees", score: 3 },
+                                { option: "Required for all employees", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Software & Patch Management",
+                    questions: [
+                        {
+                            question: "Does your organization have a centralized system for managing software updates?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Updates are done manually by users", score: 1 },
+                                { option: "IT manages updates but not automatically", score: 2 },
+                                { option: "Centralized automatic updates for some systems", score: 3 },
+                                { option: "Fully automated patch management", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do you perform regular vulnerability scans?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Annually", score: 1 },
+                                { option: "Semi-annually", score: 2 },
+                                { option: "Quarterly", score: 3 },
+                                { option: "Monthly or continuously monitored", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Are antivirus and endpoint protection solutions installed and updated?",
+                            answers: [
+                                { option: "No protection in place", score: 0 },
+                                { option: "Installed but not updated regularly", score: 1 },
+                                { option: "Installed and updated semi-regularly", score: 2 },
+                                { option: "Installed and updated regularly", score: 3 },
+                                { option: "Installed, updated, and centrally monitored", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "How often are operating systems, software, and applications updated?",
+                            answers: [
+                                { option: "Never or rarely", score: 0 },
+                                { option: "Only critical updates applied manually", score: 1 },
+                                { option: "Updates applied within 3 months of release", score: 2 },
+                                { option: "Updates applied within 1 month of release", score: 3 },
+                                { option: "Automated patching system in place", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Data Classification & Protection",
+                    questions: [
+                        {
+                            question: "Does your organization have a formal data classification policy?",
+                            answers: [
+                                { option: "No classification policy", score: 0 },
+                                { option: "Basic classification exists", score: 1 },
+                                { option: "Classified data has access restrictions", score: 2 },
+                                { option: "Classified data is encrypted", score: 3 },
+                                { option: "Data is encrypted and regularly audited", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Are sensitive files and communications encrypted at rest and in transit?",
+                            answers: [
+                                { option: "No encryption", score: 0 },
+                                { option: "Basic encryption but not enforced", score: 1 },
+                                { option: "Encryption applied to some systems", score: 2 },
+                                { option: "Encryption applied to most systems", score: 3 },
+                                { option: "Full encryption for all sensitive data", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Backup & Recovery",
+                    questions: [
+                        {
+                            question: "Do you have a data backup and recovery process?",
+                            answers: [
+                                { option: "No backup system in place", score: 0 },
+                                { option: "Backups exist but are not performed regularly", score: 1 },
+                                { option: "Backups are performed regularly but not tested for recovery", score: 2 },
+                                { option: "Backups are performed regularly and tested occasionally", score: 3 },
+                                { option: "Backups are performed regularly, encrypted, stored securely, and tested frequently", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "How frequently are data backups performed?",
+                            answers: [
+                                { option: "No backup system in place", score: 0 },
+                                { option: "Monthly", score: 1 },
+                                { option: "Weekly", score: 2 },
+                                { option: "Daily", score: 3 },
+                                { option: "Continuous real-time backups", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Security Awareness & Training",
+                    questions: [
+                        {
+                            question: "How often do employees receive cybersecurity awareness training?",
+                            answers: [
+                                { option: "Never", score: 0 },
+                                { option: "Once during onboarding", score: 1 },
+                                { option: "Annually", score: 2 },
+                                { option: "Semi-annually", score: 3 },
+                                { option: "Regular ongoing training with simulations", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Are simulated phishing attacks conducted to test employee awareness?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Once per year", score: 1 },
+                                { option: "Semi-annually", score: 2 },
+                                { option: "Quarterly", score: 3 },
+                                { option: "Monthly with detailed reporting", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do employees receive role-specific cybersecurity training?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Basic training for all", score: 1 },
+                                { option: "Role-specific training for some", score: 2 },
+                                { option: "Role-specific training for most", score: 3 },
+                                { option: "Continuous training tailored to roles", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Do employees know how to report security incidents and suspicious activity?",
+                            answers: [
+                                { option: "No awareness", score: 0 },
+                                { option: "Some employees know", score: 1 },
+                                { option: "A formal reporting system exists but is not well known", score: 2 },
+                                { option: "A formal system exists and most employees are aware", score: 3 },
+                                { option: "A well-established system exists with clear reporting procedures", score: 4 }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Flatten questions into single arrays
+        const flattenedEmployeeQuestions = employeeQuestions.categories.flatMap(category => category.questions);
+        const flattenedOrgQuestions = organizationQuestions.categories.flatMap(category => category.questions);
+
+        // Navigation between sections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home by default
+            document.getElementById('home').classList.remove('hidden');
+            
+            // Button event listeners
+            document.getElementById('startEmployee').addEventListener('click', function() {
+                showSection('employeeAssessment');
+                resetAssessment('employee');
+            });
+            
+            document.getElementById('startOrganization').addEventListener('click', function() {
+                showSection('organizationAssessment');
+                resetAssessment('organization');
+            });
+            
+            document.getElementById('generateReport').addEventListener('click', function() {
+                showSection('unifiedFeedback');
+            });
+            
+            // Navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href').substring(1);
+                    if (target === 'employee') {
+                        showSection('employeeAssessment');
+                        resetAssessment('employee');
+                    } else if (target === 'organization') {
+                        showSection('organizationAssessment');
+                        resetAssessment('organization');
+                    } else if (target === 'unified') {
+                        showSection('unifiedFeedback');
+                    } else if (target === 'about') {
+                        showSection('about');
+                    } else {
+                        showSection('home');
+                    }
+                });
+            });
+            
+            // Assessment navigation
+            let currentEmpQuestion = 0;
+            let currentOrgQuestion = 0;
+            const employeeAnswers = [];
+            const orgAnswers = [];
+
+            function renderQuestion(type, index) {
+                const container = type === 'employee' 
+                    ? document.getElementById('employeeQuestionContainer') 
+                    : document.getElementById('orgQuestionContainer');
+                
+                const questions = type === 'employee' 
+                    ? flattenedEmployeeQuestions 
+                    : flattenedOrgQuestions;
+                
+                const question = questions[index];
+                
+                let html = `
+                    <div class="question" data-index="${index}">
+                        <p class="text-xl mb-6">${question.question}</p>
+                        <div class="space-y-4">
+                `;
+                
+                question.answers.forEach((answer, i) => {
+                    html += `
+                        <div class="flex items-center">
+                            <input type="radio" id="${type}Option${index}_${i}" name="${type}Answer${index}" 
+                                   value="${answer.score}" class="h-4 w-4 text-accent focus:ring-accent border-gray-300">
+                            <label for="${type}Option${index}_${i}" class="ml-3 block text-textlight">${answer.option}</label>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                        <div class="error-message">Please select an answer to continue</div>
+                    </div>
+                `;
+                
+                container.innerHTML = html;
+                
+                // Check if this question was previously answered
+                if (type === 'employee' && employeeAnswers[index] !== undefined) {
+                    document.querySelector(`input[name="employeeAnswer${index}"][value="${employeeAnswers[index]}"]`).checked = true;
+                } else if (type === 'organization' && orgAnswers[index] !== undefined) {
+                    document.querySelector(`input[name="orgAnswer${index}"][value="${orgAnswers[index]}"]`).checked = true;
+                }
+            }
+
+            function validateQuestion(type, index) {
+                const selected = document.querySelector(`input[name="${type}Answer${index}"]:checked`);
+                const error = document.querySelector(`#${type}QuestionContainer .error-message`);
+                
+                if (!selected) {
+                    if (error) error.style.display = 'block';
+                    return false;
+                }
+                
+                if (error) error.style.display = 'none';
+                
+                // Store the answer
+                if (type === 'employee') {
+                    employeeAnswers[index] = parseInt(selected.value);
+                } else {
+                    orgAnswers[index] = parseInt(selected.value);
+                }
+                
+                return true;
+            }
+
+            function resetAssessment(type) {
+                if (type === 'employee') {
+                    currentEmpQuestion = 0;
+                    employeeAnswers.length = 0;
+                    renderQuestion('employee', 0);
+                    updateEmployeeProgress();
+                    document.getElementById('employeeBack').disabled = true;
+                    document.getElementById('employeeNext').textContent = 'Next';
+                } else {
+                    currentOrgQuestion = 0;
+                    orgAnswers.length = 0;
+                    renderQuestion('organization', 0);
+                    updateOrgProgress();
+                    document.getElementById('orgBack').disabled = true;
+                    document.getElementById('orgNext').textContent = 'Next';
+                }
+            }
+
+            // Employee assessment controls
+            document.getElementById('employeeNext').addEventListener('click', function() {
+                if (!validateQuestion('employee', currentEmpQuestion)) return;
+
+                if (currentEmpQuestion < flattenedEmployeeQuestions.length - 1) {
+                    currentEmpQuestion++;
+                    renderQuestion('employee', currentEmpQuestion);
+                    updateEmployeeProgress();
+                    document.getElementById('employeeBack').disabled = false;
+                    
+                    if (currentEmpQuestion === flattenedEmployeeQuestions.length - 1) {
+                        this.textContent = 'Submit';
+                    }
+                } else {
+                    // Calculate score and show feedback
+                    showSection('employeeFeedback');
+                }
+            });
+
+            document.getElementById('employeeBack').addEventListener('click', function() {
+                if (currentEmpQuestion > 0) {
+                    currentEmpQuestion--;
+                    renderQuestion('employee', currentEmpQuestion);
+                    updateEmployeeProgress();
+                    
+                    if (currentEmpQuestion === 0) {
+                        this.disabled = true;
+                    }
+                    
+                    document.getElementById('employeeNext').textContent = 
+                        currentEmpQuestion === flattenedEmployeeQuestions.length - 1 ? 'Submit' : 'Next';
+                }
+            });
+
+            // Organization assessment controls
+            document.getElementById('orgNext').addEventListener('click', function() {
+                if (!validateQuestion('organization', currentOrgQuestion)) return;
+
+                if (currentOrgQuestion < flattenedOrgQuestions.length - 1) {
+                    currentOrgQuestion++;
+                    renderQuestion('organization', currentOrgQuestion);
+                    updateOrgProgress();
+                    document.getElementById('orgBack').disabled = false;
+                    
+                    if (currentOrgQuestion === flattenedOrgQuestions.length - 1) {
+                        this.textContent = 'Submit';
+                    }
+                } else {
+                    // Calculate score and show feedback
+                    showSection('organizationFeedback');
+                }
+            });
+
+            document.getElementById('orgBack').addEventListener('click', function() {
+                if (currentOrgQuestion > 0) {
+                    currentOrgQuestion--;
+                    renderQuestion('organization', currentOrgQuestion);
+                    updateOrgProgress();
+                    
+                    if (currentOrgQuestion === 0) {
+                        this.disabled = true;
+                    }
+                    
+                    document.getElementById('orgNext').textContent = 
+                        currentOrgQuestion === flattenedOrgQuestions.length - 1 ? 'Submit' : 'Next';
+                }
+            });
+
+            function updateEmployeeProgress() {
+                const progress = ((currentEmpQuestion + 1) / flattenedEmployeeQuestions.length) * 100;
+                document.getElementById('employeeProgressBar').style.width = `${progress}%`;
+                document.getElementById('employeeProgressText').textContent = 
+                    `Question ${currentEmpQuestion + 1} of ${flattenedEmployeeQuestions.length}`;
+            }
+            
+            function updateOrgProgress() {
+                const progress = ((currentOrgQuestion + 1) / flattenedOrgQuestions.length) * 100;
+                document.getElementById('orgProgressBar').style.width = `${progress}%`;
+                document.getElementById('orgProgressText').textContent = 
+                    `Question ${currentOrgQuestion + 1} of ${flattenedOrgQuestions.length}`;
+            }
+            
+            function showSection(sectionId) {
+                // Hide all sections
+                document.querySelectorAll('main > section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Show the requested section
+                document.getElementById(sectionId).classList.remove('hidden');
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                if (sectionId === 'home') {
+                    document.querySelector('.nav-link').classList.add('active');
+                } else if (sectionId === 'employeeAssessment' || sectionId === 'employeeFeedback') {
+                    document.querySelectorAll('.nav-link')[1].classList.add('active');
+                } else if (sectionId === 'organizationAssessment' || sectionId === 'organizationFeedback') {
+                    document.querySelectorAll('.nav-link')[2].classList.add('active');
+                } else if (sectionId === 'unifiedFeedback') {
+                    document.querySelectorAll('.nav-link')[3].classList.add('active');
+                } else if (sectionId === 'about') {
+                    document.querySelectorAll('.nav-link')[4].classList.add('active');
+                }
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
+</body>
+</html>
