@@ -1189,6 +1189,96 @@
                             ]
                         }
                     ]
+                },
+                {
+                    category: "Incident Response",
+                    questions: [
+                        {
+                            question: "Does your organization have a documented plan for responding to cybersecurity incidents (e.g., ransomware, data breaches)?",
+                            guidance: "Even a simple 1-page checklist is better than no plan.",
+                            answers: [
+                                { option: "No plan exists", score: 0 },
+                                { option: "Basic outline but not formalized", score: 1 },
+                                { option: "Formal plan exists but not tested", score: 2 },
+                                { option: "Plan tested in the last year", score: 3 },
+                                { option: "Plan tested and updated within last 6 months", score: 4 }
+                            ]
+                        },
+                        {
+                            question: "Are employees aware of how to report suspected security incidents?",
+                            answers: [
+                                { option: "No formal reporting process", score: 0 },
+                                { option: "Process exists but not communicated", score: 1 },
+                                { option: "Some employees know the process", score: 2 },
+                                { option: "Most employees know the process", score: 3 },
+                                { option: "Clear process with regular reminders", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Third-Party Risk",
+                    questions: [
+                        {
+                            question: "Do you assess vendors/partners for cybersecurity practices before sharing data or system access?",
+                            guidance: "Examples: Cloud providers, accounting firms, IT contractors.",
+                            answers: [
+                                { option: "No vendor assessments", score: 0 },
+                                { option: "Informal verbal assurances", score: 1 },
+                                { option: "Basic checklist for critical vendors", score: 2 },
+                                { option: "Formal assessments for all vendors", score: 3 },
+                                { option: "Continuous monitoring of vendor security", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Physical Security",
+                    questions: [
+                        {
+                            question: "Are devices (laptops, servers, etc.) physically secured against unauthorized access?",
+                            guidance: "Consider locks, biometrics, or secure storage for sensitive equipment.",
+                            answers: [
+                                { option: "No physical security measures", score: 0 },
+                                { option: "Basic measures (e.g., office locks)", score: 1 },
+                                { option: "Sensitive devices secured", score: 2 },
+                                { option: "Most devices secured", score: 3 },
+                                { option: "All devices secured and monitored", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Remote Work Security",
+                    questions: [
+                        {
+                            question: "Are employees required to use VPNs or secure networks when accessing company data remotely?",
+                            guidance: "Critical for coffee shop/public Wi-Fi usage.",
+                            answers: [
+                                { option: "No requirements", score: 0 },
+                                { option: "Recommended but not enforced", score: 1 },
+                                { option: "Enforced for administrators", score: 2 },
+                                { option: "Enforced for most employees", score: 3 },
+                                { option: "Mandatory for all remote access", score: 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    category: "Compliance",
+                    questions: [
+                        {
+                            question: "Does your organization follow industry-specific cybersecurity regulations or standards (e.g., ISO 27001, E-ITS, NIS2)?",
+                            guidance: "Even small businesses often have legal obligations.",
+                            answers: [
+                                { option: "No compliance efforts", score: 0 },
+                                { option: "Aware of requirements but not implemented", score: 1 },
+                                { option: "Partially compliant", score: 2 },
+                                { option: "Mostly compliant", score: 3 },
+                                { option: "Fully compliant with audits", score: 4 }
+                            ]
+                        }
+                    ]
                 }
             ]
         };

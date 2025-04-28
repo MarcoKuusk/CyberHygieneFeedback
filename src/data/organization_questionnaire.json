@@ -3,7 +3,7 @@
     {
       "id": 1,
       "category": "Identity & Access Management",
-      "question": "Do you enforce multi-factor authentication (MFA) for all critical systems?",
+      "question": "Do you enforce multi-factor authentication (MFA) for all critical systems(e.g., email, financial systems, customer databases)?",
       "answers": [
         { "value": 0, "text": "No" },
         { "value": 1, "text": "Only for administrators" },
@@ -123,7 +123,7 @@
     {
       "id": 11,
       "category": "Data Classification & Protection",
-      "question": "Does your organization have a formal data classification policy?",
+      "question": "Does your organization have a formal data classification policy(e.g., 'Do you inventory and restrict access to sensitive data?')?",
       "answers": [
         { "value": 0, "text": "No classification policy" },
         { "value": 1, "text": "Basic classification exists" },
@@ -214,6 +214,83 @@
         { "value": 2, "text": "A formal reporting system exists but is not well known" },
         { "value": 3, "text": "A formal system exists and most employees are aware" },
         { "value": 4, "text": "A well-established system exists with clear reporting procedures" }
+      ]
+    },
+    {
+      "id": 19,
+      "category": "Incident Response",
+      "question": "Does your organization have a documented plan for responding to cybersecurity incidents (e.g., ransomware, data breaches)?",
+      "guidance": "Even a simple 1-page checklist is better than no plan.",
+      "answers": [
+        { "value": 0, "text": "No plan exists" },
+        { "value": 1, "text": "Basic outline but not formalized" },
+        { "value": 2, "text": "Formal plan exists but not tested" },
+        { "value": 3, "text": "Plan tested in the last year" },
+        { "value": 4, "text": "Plan tested and updated within last 6 months" }
+      ]
+    },
+    {
+      "id": 20,
+      "category": "Incident Response",
+      "question": "Are employees aware of how to report suspected security incidents?",
+      "answers": [
+        { "value": 0, "text": "No formal reporting process" },
+        { "value": 1, "text": "Process exists but not communicated" },
+        { "value": 2, "text": "Some employees know the process" },
+        { "value": 3, "text": "Most employees know the process" },
+        { "value": 4, "text": "Clear process with regular reminders" }
+      ]
+    },
+    {
+      "id": 21,
+      "category": "Third-Party Risk",
+      "question": "Do you assess vendors/partners for cybersecurity practices before sharing data or system access?",
+      "guidance": "Examples: Cloud providers, accounting firms, IT contractors.",
+      "answers": [
+        { "value": 0, "text": "No vendor assessments" },
+        { "value": 1, "text": "Informal verbal assurances" },
+        { "value": 2, "text": "Basic checklist for critical vendors" },
+        { "value": 3, "text": "Formal assessments for all vendors" },
+        { "value": 4, "text": "Continuous monitoring of vendor security" }
+      ]
+    },
+    {
+      "id": 22,
+      "category": "Physical Security",
+      "question": "Are devices (laptops, servers, etc.) physically secured against unauthorized access?",
+      "guidance": "Consider locks, biometrics, or secure storage for sensitive equipment.",
+      "answers": [
+        { "value": 0, "text": "No physical security measures" },
+        { "value": 1, "text": "Basic measures (e.g., office locks)" },
+        { "value": 2, "text": "Sensitive devices secured" },
+        { "value": 3, "text": "Most devices secured" },
+        { "value": 4, "text": "All devices secured and monitored" }
+      ]
+    },
+    {
+      "id": 23,
+      "category": "Remote Work Security",
+      "question": "Are employees required to use VPNs or secure networks when accessing company data remotely?",
+      "guidance": "Critical for coffee shop/public Wi-Fi usage.",
+      "answers": [
+        { "value": 0, "text": "No requirements" },
+        { "value": 1, "text": "Recommended but not enforced" },
+        { "value": 2, "text": "Enforced for administrators" },
+        { "value": 3, "text": "Enforced for most employees" },
+        { "value": 4, "text": "Mandatory for all remote access" }
+      ]
+    },
+    {
+      "id": 24,
+      "category": "Compliance",
+      "question": "Does your organization follow industry-specific cybersecurity regulations or standards (e.g., ISO 27001, E-ITS, NIS2)?",
+      "guidance": "Even small businesses often have legal obligations.",
+      "answers": [
+        { "value": 0, "text": "No compliance efforts" },
+        { "value": 1, "text": "Aware of requirements but not implemented" },
+        { "value": 2, "text": "Partially compliant" },
+        { "value": 3, "text": "Mostly compliant" },
+        { "value": 4, "text": "Fully compliant with audits" }
       ]
     }
   ]
