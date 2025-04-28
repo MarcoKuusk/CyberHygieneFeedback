@@ -1201,22 +1201,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Show home by default
             document.getElementById('home').classList.remove('hidden');
-            
+
             // Button event listeners
-            document.getElementById('startEmployee').addEventListener('click', function() {
-                showSection('employeeAssessment');
-                resetAssessment('employee');
+            document.getElementById('startEmployee').addEventListener('click', () => {
+                startAssessment('employee');
             });
-            
-            document.getElementById('startOrganization').addEventListener('click', function() {
-                showSection('organizationAssessment');
-                resetAssessment('organization');
+
+            document.getElementById('startOrganization').addEventListener('click', () => {
+                startAssessment('organization');
             });
-            
-            document.getElementById('generateReport').addEventListener('click', function() {
+
+            document.getElementById('generateReport').addEventListener('click', () => {
                 showSection('unifiedFeedback');
             });
-            
+
             // Navigation links
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -1224,218 +1222,189 @@
                     e.preventDefault();
                     const target = this.getAttribute('href').substring(1);
                     if (target === 'employee') {
-                        showSection('employeeAssessment');
-                        resetAssessment('employee');
+                        startAssessment('employee');
                     } else if (target === 'organization') {
-                        showSection('organizationAssessment');
-                        resetAssessment('organization');
-                    } else if (target === 'unified') {
-                        showSection('unifiedFeedback');
-                    } else if (target === 'about') {
-                        showSection('about');
+                        startAssessment('organization');
                     } else {
-                        showSection('home');
+                        showSection(target === 'unified' ? 'unifiedFeedback' : target || 'home');
                     }
                 });
             });
-            
-            // Assessment navigation
-            let currentEmpQuestion = 0;
-            let currentOrgQuestion = 0;
-            const employeeAnswers = [];
-            const orgAnswers = [];
+
+            // Variables to track assessments
+            const state = {
+                employee: { currentQuestion: 0, answers: [] },
+                organization: { currentQuestion: 0, answers: [] }
+            };
+
+            const questionData = {
+                employee: {
+                    questions: flattenedEmployeeQuestions,
+                    containerId: 'employeeQuestionContainer',
+                    backBtnId: 'employeeBack',
+                    nextBtnId: 'employeeNext',
+                    progressBarId: 'employeeProgressBar',
+                    progressTextId: 'employeeProgressText',
+                    feedbackSection: 'employeeFeedback',
+                },
+                organization: {
+                    questions: flattenedOrgQuestions,
+                    containerId: 'orgQuestionContainer',
+                    backBtnId: 'orgBack',
+                    nextBtnId: 'orgNext',
+                    progressBarId: 'orgProgressBar',
+                    progressTextId: 'orgProgressText',
+                    feedbackSection: 'organizationFeedback',
+                }
+            };
+
+            function startAssessment(type) {
+                resetAssessment(type);
+                showSection(`${type}Assessment`);
+            }
+
+            function resetAssessment(type) {
+                const data = state[type];
+                const config = questionData[type];
+
+                data.currentQuestion = 0;
+                data.answers.length = 0;
+
+                renderQuestion(type, 0);
+                updateProgress(type);
+
+                document.getElementById(config.backBtnId).disabled = true;
+                document.getElementById(config.nextBtnId).textContent = 'Next';
+            }
 
             function renderQuestion(type, index) {
-                const container = type === 'employee' 
-                    ? document.getElementById('employeeQuestionContainer') 
-                    : document.getElementById('orgQuestionContainer');
-                
-                const questions = type === 'employee' 
-                    ? flattenedEmployeeQuestions 
-                    : flattenedOrgQuestions;
-                
-                const question = questions[index];
-                
+                const config = questionData[type];
+                const container = document.getElementById(config.containerId);
+                const question = config.questions[index];
+
                 let html = `
                     <div class="question" data-index="${index}">
                         <p class="text-xl mb-6">${question.question}</p>
                         <div class="space-y-4">
                 `;
-                
+
                 question.answers.forEach((answer, i) => {
                     html += `
                         <div class="flex items-center">
                             <input type="radio" id="${type}Option${index}_${i}" name="${type}Answer${index}" 
-                                   value="${answer.score}" class="h-4 w-4 text-accent focus:ring-accent border-gray-300">
+                                value="${answer.score}" class="h-4 w-4 text-accent focus:ring-accent border-gray-300">
                             <label for="${type}Option${index}_${i}" class="ml-3 block text-textlight">${answer.option}</label>
                         </div>
                     `;
                 });
-                
+
                 html += `
                         </div>
                         <div class="error-message">Please select an answer to continue</div>
                     </div>
                 `;
-                
+
                 container.innerHTML = html;
-                
-                // Check if this question was previously answered
-                if (type === 'employee' && employeeAnswers[index] !== undefined) {
-                    document.querySelector(`input[name="employeeAnswer${index}"][value="${employeeAnswers[index]}"]`).checked = true;
-                } else if (type === 'organization' && orgAnswers[index] !== undefined) {
-                    document.querySelector(`input[name="orgAnswer${index}"][value="${orgAnswers[index]}"]`).checked = true;
+
+                const savedAnswer = state[type].answers[index];
+                if (savedAnswer !== undefined) {
+                    document.querySelector(`input[name="${type}Answer${index}"][value="${savedAnswer}"]`).checked = true;
                 }
             }
 
             function validateQuestion(type, index) {
                 const selected = document.querySelector(`input[name="${type}Answer${index}"]:checked`);
-                const error = document.querySelector(`#${type}QuestionContainer .error-message`);
-                
+                const error = document.querySelector(`#${questionData[type].containerId} .error-message`);
+
                 if (!selected) {
                     if (error) error.style.display = 'block';
                     return false;
                 }
-                
+
                 if (error) error.style.display = 'none';
-                
-                // Store the answer
-                if (type === 'employee') {
-                    employeeAnswers[index] = parseInt(selected.value);
-                } else {
-                    orgAnswers[index] = parseInt(selected.value);
-                }
-                
+                state[type].answers[index] = parseInt(selected.value);
                 return true;
             }
 
-            function resetAssessment(type) {
-                if (type === 'employee') {
-                    currentEmpQuestion = 0;
-                    employeeAnswers.length = 0;
-                    renderQuestion('employee', 0);
-                    updateEmployeeProgress();
-                    document.getElementById('employeeBack').disabled = true;
-                    document.getElementById('employeeNext').textContent = 'Next';
+            function updateProgress(type) {
+                const data = state[type];
+                const config = questionData[type];
+                const progress = ((data.currentQuestion + 1) / config.questions.length) * 100;
+
+                document.getElementById(config.progressBarId).style.width = `${progress}%`;
+                document.getElementById(config.progressTextId).textContent = 
+                    `Question ${data.currentQuestion + 1} of ${config.questions.length}`;
+            }
+
+            function handleNext(type) {
+                const data = state[type];
+                const config = questionData[type];
+
+                if (!validateQuestion(type, data.currentQuestion)) return;
+
+                if (data.currentQuestion < config.questions.length - 1) {
+                    data.currentQuestion++;
+                    renderQuestion(type, data.currentQuestion);
+                    updateProgress(type);
+                    document.getElementById(config.backBtnId).disabled = false;
+
+                    if (data.currentQuestion === config.questions.length - 1) {
+                        document.getElementById(config.nextBtnId).textContent = 'Submit';
+                    }
                 } else {
-                    currentOrgQuestion = 0;
-                    orgAnswers.length = 0;
-                    renderQuestion('organization', 0);
-                    updateOrgProgress();
-                    document.getElementById('orgBack').disabled = true;
-                    document.getElementById('orgNext').textContent = 'Next';
+                    showSection(config.feedbackSection);
                 }
             }
 
-            // Employee assessment controls
-            document.getElementById('employeeNext').addEventListener('click', function() {
-                if (!validateQuestion('employee', currentEmpQuestion)) return;
+            function handleBack(type) {
+                const data = state[type];
+                const config = questionData[type];
 
-                if (currentEmpQuestion < flattenedEmployeeQuestions.length - 1) {
-                    currentEmpQuestion++;
-                    renderQuestion('employee', currentEmpQuestion);
-                    updateEmployeeProgress();
-                    document.getElementById('employeeBack').disabled = false;
-                    
-                    if (currentEmpQuestion === flattenedEmployeeQuestions.length - 1) {
-                        this.textContent = 'Submit';
+                if (data.currentQuestion > 0) {
+                    data.currentQuestion--;
+                    renderQuestion(type, data.currentQuestion);
+                    updateProgress(type);
+
+                    if (data.currentQuestion === 0) {
+                        document.getElementById(config.backBtnId).disabled = true;
                     }
-                } else {
-                    // Calculate score and show feedback
-                    showSection('employeeFeedback');
+
+                    document.getElementById(config.nextBtnId).textContent = 
+                        data.currentQuestion === config.questions.length - 1 ? 'Submit' : 'Next';
                 }
-            });
-
-            document.getElementById('employeeBack').addEventListener('click', function() {
-                if (currentEmpQuestion > 0) {
-                    currentEmpQuestion--;
-                    renderQuestion('employee', currentEmpQuestion);
-                    updateEmployeeProgress();
-                    
-                    if (currentEmpQuestion === 0) {
-                        this.disabled = true;
-                    }
-                    
-                    document.getElementById('employeeNext').textContent = 
-                        currentEmpQuestion === flattenedEmployeeQuestions.length - 1 ? 'Submit' : 'Next';
-                }
-            });
-
-            // Organization assessment controls
-            document.getElementById('orgNext').addEventListener('click', function() {
-                if (!validateQuestion('organization', currentOrgQuestion)) return;
-
-                if (currentOrgQuestion < flattenedOrgQuestions.length - 1) {
-                    currentOrgQuestion++;
-                    renderQuestion('organization', currentOrgQuestion);
-                    updateOrgProgress();
-                    document.getElementById('orgBack').disabled = false;
-                    
-                    if (currentOrgQuestion === flattenedOrgQuestions.length - 1) {
-                        this.textContent = 'Submit';
-                    }
-                } else {
-                    // Calculate score and show feedback
-                    showSection('organizationFeedback');
-                }
-            });
-
-            document.getElementById('orgBack').addEventListener('click', function() {
-                if (currentOrgQuestion > 0) {
-                    currentOrgQuestion--;
-                    renderQuestion('organization', currentOrgQuestion);
-                    updateOrgProgress();
-                    
-                    if (currentOrgQuestion === 0) {
-                        this.disabled = true;
-                    }
-                    
-                    document.getElementById('orgNext').textContent = 
-                        currentOrgQuestion === flattenedOrgQuestions.length - 1 ? 'Submit' : 'Next';
-                }
-            });
-
-            function updateEmployeeProgress() {
-                const progress = ((currentEmpQuestion + 1) / flattenedEmployeeQuestions.length) * 100;
-                document.getElementById('employeeProgressBar').style.width = `${progress}%`;
-                document.getElementById('employeeProgressText').textContent = 
-                    `Question ${currentEmpQuestion + 1} of ${flattenedEmployeeQuestions.length}`;
             }
-            
-            function updateOrgProgress() {
-                const progress = ((currentOrgQuestion + 1) / flattenedOrgQuestions.length) * 100;
-                document.getElementById('orgProgressBar').style.width = `${progress}%`;
-                document.getElementById('orgProgressText').textContent = 
-                    `Question ${currentOrgQuestion + 1} of ${flattenedOrgQuestions.length}`;
-            }
-            
+
+            // Attach assessment button handlers
+            ['employee', 'organization'].forEach(type => {
+                document.getElementById(questionData[type].nextBtnId).addEventListener('click', () => handleNext(type));
+                document.getElementById(questionData[type].backBtnId).addEventListener('click', () => handleBack(type));
+            });
+
             function showSection(sectionId) {
-                // Hide all sections
                 document.querySelectorAll('main > section').forEach(section => {
                     section.classList.add('hidden');
                 });
-                
-                // Show the requested section
+
                 document.getElementById(sectionId).classList.remove('hidden');
-                
-                // Update active nav link
+
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
-                
-                if (sectionId === 'home') {
-                    document.querySelector('.nav-link').classList.add('active');
-                } else if (sectionId === 'employeeAssessment' || sectionId === 'employeeFeedback') {
-                    document.querySelectorAll('.nav-link')[1].classList.add('active');
-                } else if (sectionId === 'organizationAssessment' || sectionId === 'organizationFeedback') {
-                    document.querySelectorAll('.nav-link')[2].classList.add('active');
-                } else if (sectionId === 'unifiedFeedback') {
-                    document.querySelectorAll('.nav-link')[3].classList.add('active');
-                } else if (sectionId === 'about') {
-                    document.querySelectorAll('.nav-link')[4].classList.add('active');
+
+                const sectionMap = {
+                    home: 0,
+                    employeeAssessment: 1,
+                    employeeFeedback: 1,
+                    organizationAssessment: 2,
+                    organizationFeedback: 2,
+                    unifiedFeedback: 3,
+                    about: 4
+                };
+
+                if (sectionMap.hasOwnProperty(sectionId)) {
+                    document.querySelectorAll('.nav-link')[sectionMap[sectionId]].classList.add('active');
                 }
-                
-                // Scroll to top
+
                 window.scrollTo(0, 0);
             }
         });
