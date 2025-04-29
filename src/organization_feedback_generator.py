@@ -2,8 +2,9 @@ import openai
 from utils.scoring import calculate_organization_score
 
 class OrganizationFeedbackGenerator:
-    def __init__(self, organization_responses):
+    def __init__(self, organization_responses, organization_name="the organization"):
         self.organization_responses = organization_responses
+        self.organization_name = organization_name
 
     def generate_feedback(self):
         total_score = calculate_organization_score(self.organization_responses)
@@ -31,7 +32,6 @@ class OrganizationFeedbackGenerator:
 
             statement = f"{question}: {level}"
 
-            # Categorize findings (you can customize this logic further)
             if "MFA" in question or "password" in question:
                 domain = "Access Control"
             elif "training" in question or "awareness" in question:
@@ -43,11 +43,53 @@ class OrganizationFeedbackGenerator:
 
             grouped_findings[domain].append(statement)
 
-            # Track strengths (score of 3 or 4)
             if response >= 3:
                 strengths.append(f"{question} ({level})")
 
         return grouped_findings, strengths
+
+    def _extract_risks(self, findings):
+        risks = []
+        if findings["Access Control"]:
+            risks.append("- Unauthorized access and credential theft due to weak access controls.")
+        if findings["Awareness"]:
+            risks.append("- Higher likelihood of phishing attacks due to low cybersecurity awareness.")
+        if findings["Backup and Recovery"]:
+            risks.append("- Risk of permanent data loss from insufficient backups and recovery plans.")
+        if findings["Other"]:
+            risks.append("- Exposure to various cyber threats due to general security weaknesses.")
+        return risks if risks else ["- No major risks identified at this time. Maintain current efforts."]
+
+    def _build_action_plan(self, findings):
+        immediate = []
+        short_term = []
+        medium_term = []
+
+        if findings["Access Control"]:
+            immediate.append("Implement multi-factor authentication (MFA) on all critical accounts.")
+            immediate.append("Enforce strong password policies (complexity, rotation, minimum length).")
+        if findings["Awareness"]:
+            immediate.append("Launch mandatory cybersecurity awareness training for all employees.")
+        if findings["Backup and Recovery"]:
+            short_term.append("Establish regular automated backups and test data recovery processes.")
+        if findings["Other"]:
+            medium_term.append("Conduct a comprehensive cybersecurity assessment and patch known vulnerabilities.")
+
+        return immediate, short_term, medium_term
+
+    def _determine_urgency_tone(self, total_score):
+        if total_score < 20:
+            return "**Severe:** Immediate and decisive cybersecurity action is required."
+        elif total_score < 40:
+            return "**Critical:** Significant weaknesses pose serious risks to the organization."
+        elif total_score < 60:
+            return "**Concerning:** Notable gaps need prompt attention to avoid vulnerabilities."
+        elif total_score < 80:
+            return "**Improving:** A good foundation exists; targeted improvements will strengthen security."
+        elif total_score < 95:
+            return "**Strong:** Solid practices are in place, with minor enhancements recommended."
+        else:
+            return "**Excellent:** Outstanding cybersecurity hygiene. Keep maintaining and refining your efforts."
 
     def _build_feedback_prompt(self, findings, strengths, total_score):
         findings_text = "\n\n".join(
@@ -60,39 +102,30 @@ class OrganizationFeedbackGenerator:
             if strengths else "No notable strengths identified yet."
         )
 
-        # Tailor urgency message
-        if total_score < 30:
-            urgency = "**Critical:** Your cyber hygiene posture is weak and urgent action is needed."
-        elif total_score < 60:
-            urgency = "**Needs Improvement:** You have made some progress but key gaps remain."
-        else:
-            urgency = "**Moderate:** You're on the right track but should continue strengthening security."
+        risks = self._extract_risks(findings)
+        immediate, short_term, medium_term = self._build_action_plan(findings)
+        tone = self._determine_urgency_tone(total_score)
 
-        return (
+        prompt = (
             f"You are a cybersecurity advisor for small and medium-sized enterprises (SMEs).\n"
-            f"Based on the cyber hygiene self-assessment, generate friendly, well-structured, and professional feedback.\n\n"
-            f"**Score:** {total_score:.2f}%\n"
-            f"{urgency}\n\n"
+            f"Generate friendly, professional, and accessible feedback for {self.organization_name}.\n"
+            f"Use clear headers, bullet points, and concise explanations.\n\n"
+            f"Example style:\n"
+            f"**What You're Doing Well:** You have strong password policies. Regular staff training is a key strength.\n"
+            f"**Areas to Improve:** Multi-factor authentication adoption is incomplete, exposing vulnerabilities.\n\n"
+            f"Feedback based on self-assessment:\n\n"
+            f"**Cyber Hygiene Score:** {total_score:.2f}%\n"
+            f"{tone}\n\n"
             f"**What You're Doing Well**\n{strengths_text}\n\n"
             f"**Areas to Improve**\n{findings_text}\n\n"
-            f"**Potential Risks**\n"
-            f"- Credential theft due to weak access controls\n"
-            f"- Data loss if backups are unreliable\n"
-            f"- Phishing attacks targeting untrained staff\n"
-            f"- System compromise from unpatched vulnerabilities\n\n"
+            f"**Potential Risks**\n" + "\n".join(risks) + "\n\n"
             f"**Action Plan**\n"
-            f"**Immediate (0–30 Days)**\n"
-            f"- Implement MFA for all critical systems\n"
-            f"- Start cybersecurity awareness training\n"
-            f"- Enforce strong password policies\n\n"
-            f"**Short-Term (60–90 Days)**\n"
-            f"- Set up automated backups and test recovery\n"
-            f"- Patch outdated systems and software\n\n"
-            f"**Medium-Term (3–6 Months)**\n"
-            f"- Review user access privileges regularly\n"
-            f"- Encrypt sensitive data at rest and in transit\n\n"
-            f"Keep your language clear and accessible. Use headers and bullets to aid readability."
+            f"**Immediate (0–30 Days)**\n" + ("\n".join(f"- {a}" for a in immediate) if immediate else "- Maintain existing strong practices.") + "\n\n"
+            f"**Short-Term (60–90 Days)**\n" + ("\n".join(f"- {a}" for a in short_term) if short_term else "- Continue monitoring and improvement.") + "\n\n"
+            f"**Medium-Term (3–6 Months)**\n" + ("\n".join(f"- {a}" for a in medium_term) if medium_term else "- Plan for regular cybersecurity reassessments.")
         )
+
+        return prompt
 
     def _generate_ai_feedback(self, prompt):
         client = openai.OpenAI(api_key="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")  # Replace with secure method
