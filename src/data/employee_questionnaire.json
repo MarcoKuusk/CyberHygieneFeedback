@@ -194,16 +194,6 @@
           ]
         },
         {
-          "question": "Do you think your organization prioritizes cybersecurity?",
-          "answers": [
-            {"option": "No, it is not a priority", "score": 0},
-            {"option": "There are some efforts, but they are weak", "score": 1},
-            {"option": "Cybersecurity is important but not enforced well", "score": 2},
-            {"option": "Cybersecurity is taken seriously", "score": 3},
-            {"option": "Cybersecurity is a top priority and well-integrated", "score": 4}
-          ]
-        },
-        {
           "question": "Would you feel comfortable reporting a mistake or security issue to IT/security?",
           "answers": [
             {"option": "No, I am afraid of consequences", "score": 0},
