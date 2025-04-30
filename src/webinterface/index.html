@@ -35,7 +35,6 @@
                 <a href="#" class="nav-link active">Home</a>
                 <a href="#employee" class="nav-link">Employee</a>
                 <a href="#organization" class="nav-link">Organization</a>
-                <a href="#unified" class="nav-link">Unified Report</a>
                 <a href="#about" class="nav-link">About</a>
             </div>
             <button class="md:hidden text-accent">
@@ -54,7 +53,7 @@
                 Identify strengths, weaknesses, and actionable insights to enhance your digital defenses.
             </p>
             
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
+            <div class="grid md:grid-cols-2 gap-6 mb-16">
                 <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
                     <div class="card-content">
                         <i class="fas fa-user-shield text-4xl mb-4 text-accent"></i>
@@ -73,16 +72,6 @@
                     </div>
                     <div class="card-button">
                         <button id="startOrganization" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Start Assessment</button>
-                    </div>
-                </div>
-                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
-                    <div class="card-content">
-                        <i class="fas fa-chart-pie text-4xl mb-4 text-accent"></i>
-                        <h3 class="text-xl font-semibold mb-3">Unified Report</h3>
-                        <p class="mb-4 text-textlight">Combine employee and organization data for comprehensive insights.</p>
-                    </div>
-                    <div class="card-button">
-                        <button id="generateReport" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Generate Report</button>
                     </div>
                 </div>
             </div>
@@ -462,139 +451,6 @@
                 <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
             </button>
         </div>
-        </section>
-
-        <!-- Unified Feedback -->
-        <section id="unifiedFeedback" class="hidden max-w-4xl mx-auto">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-accent mb-2">Unified Cyber Hygiene Feedback</h2>
-                <p class="text-xl text-textlight">Combining employee and organizational assessments</p>
-            </div>
-            
-            <div class="bg-secondary p-8 rounded-lg cyber-border mb-10">
-                <h3 class="text-xl font-semibold mb-6 text-accent text-center">Unified Score</h3>
-                <div class="flex justify-center mb-6">
-                    <div class="relative w-48 h-48">
-                        <svg class="w-full h-full" viewBox="0 0 36 36">
-                            <path
-                                d="M18 2.0845
-                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                                fill="none"
-                                stroke="#172a45"
-                                stroke-width="3"
-                            />
-                            <path
-                                d="M18 2.0845
-                                    a 15.9155 15.9155 0 0 1 0 31.831
-                                    a 15.9155 15.9155 0 0 1 0 -31.831"
-                                fill="none"
-                                stroke="#64ffda"
-                                stroke-width="3"
-                                stroke-dasharray="70, 100"
-                            />
-                            <text x="18" y="20.5" text-anchor="middle" fill="#ccd6f6" font-size="8" font-weight="bold">70%</text>
-                            <text x="18" y="24.5" text-anchor="middle" fill="#8892b0" font-size="4">Overall</text>
-                        </svg>
-                    </div>
-                </div>
-                <div class="text-center text-textlight">
-                    Your combined cyber hygiene score indicates moderate security posture with significant room for improvement.
-                </div>
-            </div>
-            
-            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
-                <h3 class="text-xl font-semibold mb-6 text-accent text-center">Comparison</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-lg font-medium mb-3 text-center">Employee Score</h4>
-                        <div class="flex justify-center mb-2">
-                            <div class="text-4xl font-bold text-accent">72%</div>
-                        </div>
-                        <div class="gauge mx-auto">
-                            <div class="gauge-fill" style="width: 72%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-medium mb-3 text-center">Organization Score</h4>
-                        <div class="flex justify-center mb-2">
-                            <div class="text-4xl font-bold text-accent">68%</div>
-                        </div>
-                        <div class="gauge mx-auto">
-                            <div class="gauge-fill" style="width: 68%"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-700 text-textlight">
-                    <p class="text-center">
-                        The 4% gap between employee practices and organizational policies suggests relatively good alignment, 
-                        though both need improvement to reach optimal security levels.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
-                <h3 class="text-xl font-semibold mb-4 text-accent">Unified Action Plan</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h4 class="font-medium mb-2 text-accent">For Employees</h4>
-                        <ul class="space-y-2 text-textlight">
-                            <li class="flex items-start">
-                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                                <span>Attend quarterly security awareness refreshers</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                                <span>Enable automatic updates on all devices</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                                <span>Always use VPN when working remotely</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-medium mb-2 text-accent">For Organization</h4>
-                        <ul class="space-y-2 text-textlight">
-                            <li class="flex items-start">
-                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                                <span>Implement automated patch management system</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                                <span>Enforce MFA across all systems uniformly</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                                <span>Develop vendor security assessment process</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mt-6 pt-4 border-t border-gray-700">
-                    <h4 class="font-medium mb-2 text-accent">Joint Recommendations</h4>
-                    <ul class="space-y-2 text-textlight">
-                        <li class="flex items-start">
-                            <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                            <span>Conduct biannual security drills combining policy and practice</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                            <span>Establish security champions program to bridge gaps</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-chevron-right text-accent mr-2 mt-1 text-xs"></i>
-                            <span>Implement feedback loop between employees and security team</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
-                    <i class="fas fa-file-pdf mr-2"></i> Download Unified PDF Report
-                </button>
-            </div>
         </section>
 
         <!-- About Section -->

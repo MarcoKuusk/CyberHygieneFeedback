@@ -615,10 +615,6 @@ document.addEventListener('DOMContentLoaded', function() {
         startAssessment('organization');
     });
 
-    document.getElementById('generateReport').addEventListener('click', () => {
-        showSection('unifiedFeedback');
-    });
-
     // Navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -630,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (target === 'organization') {
                 startAssessment('organization');
             } else {
-                showSection(target === 'unified' ? 'unifiedFeedback' : target || 'home');
+                showSection(target || 'home');
             }
         });
     });
@@ -801,8 +797,7 @@ document.addEventListener('DOMContentLoaded', function() {
             employeeFeedback: 1,
             organizationAssessment: 2,
             organizationFeedback: 2,
-            unifiedFeedback: 3,
-            about: 4
+            about: 3
         };
 
         if (sectionMap.hasOwnProperty(sectionId)) {
