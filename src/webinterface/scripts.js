@@ -161,11 +161,11 @@ const employeeQuestions = {
                 {
                     question: "Do you use personal USB drives or unauthorized software on work devices?",
                     answers: [
-                        { option: "Yes, regularly", score: 0 },
-                        { option: "Sometimes, if necessary", score: 1 },
+                        { option: "Never, I follow IT policies strictly", score: 0 },
+                        { option: "Almost never, except after IT approval", score: 1 },
                         { option: "Rarely, only when required", score: 2 },
-                        { option: "Almost never, except after IT approval", score: 3 },
-                        { option: "Never, I follow IT policies strictly", score: 4 }
+                        { option: "Sometimes, if necessary", score: 3 },
+                        { option: "Yes, regularly", score: 4 }
                     ],
                     feedback: {
                         strength: "You strictly follow device usage policies",
@@ -443,10 +443,10 @@ const organizationQuestions = {
                     question: "Are antivirus and endpoint protection solutions installed and updated?",
                     answers: [
                         { option: "No protection in place", score: 0 },
-                        { option: "Basic antivirus only", score: 1 },
-                        { option: "Antivirus & basic firewall", score: 2 },
-                        { option: "Advanced endpoint detection and response (EDR)", score: 3 },
-                        { option: "Fully managed EDR with advanced threat detection tools", score: 4 }
+                        { option: "Installed but not updated regularly", score: 1 },
+                        { option: "Installed and updated semi-regularly", score: 2 },
+                        { option: "Installed and updated regularly", score: 3 },
+                        { option: "Installed, updated, and centrally monitored", score: 4 }
                     ],
                     feedback: {
                         strength: "Advanced endpoint protection is implemented",
@@ -718,7 +718,7 @@ const organizationQuestions = {
             ]
         },
         {
-            category: "Incient Response & Business Continuity",
+            category: "Incident Response & Business Continuity",
             questions: [
                 {
                     question: "Does your organization have a documented incident response plan?",
@@ -1070,6 +1070,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById(config.nextBtnId).textContent = 'Submit';
             }
         } else {
+            const assessmentData = saveAssessmentData(type);
+
             generateFeedback(type);
             showSection(config.feedbackSection);
         }
@@ -1091,6 +1093,41 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById(config.nextBtnId).textContent = 
                 data.currentQuestion === config.questions.length - 1 ? 'Submit' : 'Next';
         }
+    }
+
+    function saveAssessmentData(type) {
+        const data = state[type];
+        const questions = questionData[type].questions;
+    
+        const assessmentData = questions.map((question, index) => {
+            const selectedAnswerIndex = data.answers[index];
+            const selectedAnswer = selectedAnswerIndex !== undefined 
+                ? question.answers.find(answer => answer.score === selectedAnswerIndex)
+                : null;
+    
+            return {
+                question: question.question,
+                category: question.category,
+                answers: question.answers.map(answer => ({
+                    option: answer.option,
+                    score: answer.score
+                })),
+                selectedAnswer: selectedAnswer ? {
+                    option: selectedAnswer.option,
+                    score: selectedAnswer.score
+                } : null,
+                feedback: question.feedback
+            };
+        });
+    
+        const fileName = type === 'employee' ? 'employee_assessment.json' : 'organization_assessment.json';
+        fetch(`http://127.0.0.1:5000/saveAssessmentData/${fileName}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(assessmentData)
+        });
+    
+        return assessmentData;
     }
 
     function generateFeedback(type) {
@@ -1301,6 +1338,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showSection(sectionId) {
         // Hide all sections
+        console.log(`Navigating to section: ${sectionId}`);
         document.querySelectorAll('main > section').forEach(section => {
             section.classList.add('hidden');
         });
