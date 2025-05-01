@@ -27,10 +27,10 @@
     <!-- Navigation Bar -->
     <nav class="bg-secondary py-4 px-6 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
+            <a href="#" id="homeLink" class="flex items-center space-x-2">
                 <i class="fas fa-shield-alt text-accent text-2xl"></i>
                 <span class="text-xl font-bold">CyberHygiene</span>
-            </div>
+            </a>
             <div class="hidden md:flex space-x-6">
                 <a href="#" class="nav-link active">Home</a>
                 <a href="#employee" class="nav-link">Employee</a>
@@ -203,19 +203,8 @@
                     <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
                         <i class="fas fa-check-circle mr-3"></i> Strengths
                     </h3>
-                    <ul class="space-y-3 text-textlight">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                            <span>You consistently recognize phishing attempts (scored 92%)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                            <span>You use strong, unique passwords for different accounts</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                            <span>You lock your workstation when stepping away</span>
-                        </li>
+                    <ul id="employeeStrengths" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
                     </ul>
                 </div>
                 
@@ -223,19 +212,8 @@
                     <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
                         <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
                     </h3>
-                    <ul class="space-y-3 text-textlight">
-                        <li class="flex items-start">
-                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                            <span>You rarely update software promptly (scored 35%)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                            <span>You don't always use VPN when working remotely</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                            <span>You sometimes share credentials for convenience</span>
-                        </li>
+                    <ul id="employeeWeaknesses" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
                     </ul>
                 </div>
             </div>
@@ -244,75 +222,29 @@
                 <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
                     <i class="fas fa-clipboard-list mr-3"></i> Action Plan
                 </h3>
-                <div class="grid md:grid-cols-3 gap-4">
-                    <div class="bg-primary bg-opacity-50 p-4 rounded">
-                        <h4 class="font-medium mb-2 text-accent">Enable Automatic Updates</h4>
-                        <p class="text-sm text-textlight">Configure all devices to install security updates automatically.</p>
-                    </div>
-                    <div class="bg-primary bg-opacity-50 p-4 rounded">
-                        <h4 class="font-medium mb-2 text-accent">VPN Usage Policy</h4>
-                        <p class="text-sm text-textlight">Always connect to VPN when accessing company resources remotely.</p>
-                    </div>
-                    <div class="bg-primary bg-opacity-50 p-4 rounded">
-                        <h4 class="font-medium mb-2 text-accent">Credential Management</h4>
-                        <p class="text-sm text-textlight">Never share passwords - use approved sharing methods instead.</p>
-                    </div>
+                <div id="employeeActionPlan" class="grid md:grid-cols-3 gap-4">
+                    <!-- Dynamic content will be inserted here -->
                 </div>
             </div>
             
             <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
                 <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
-                <div class="space-y-4">
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-textlight">Phishing Awareness</span>
-                            <span class="font-medium">92%</span>
-                        </div>
-                        <div class="gauge">
-                            <div class="gauge-fill" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-textlight">Password Security</span>
-                            <span class="font-medium">85%</span>
-                        </div>
-                        <div class="gauge">
-                            <div class="gauge-fill" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-textlight">Software Updates</span>
-                            <span class="font-medium">35%</span>
-                        </div>
-                        <div class="gauge">
-                            <div class="gauge-fill" style="width: 35%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1">
-                            <span class="text-textlight">Secure Remote Work</span>
-                            <span class="font-medium">58%</span>
-                        </div>
-                        <div class="gauge">
-                            <div class="gauge-fill" style="width: 58%"></div>
-                        </div>
-                    </div>
+                <div id="employeeScoreBreakdown" class="space-y-4">
+                    <!-- Dynamic content will be inserted here -->
                 </div>
                 <div class="mt-6 pt-4 border-t border-gray-700">
                     <div class="flex justify-between items-center">
                         <span class="text-lg font-medium">Overall Score</span>
-                        <span class="text-2xl font-bold text-accent">72%</span>
-                    </div>
+                        <span id="employeeOverallScore" class="text-2xl font-bold text-accent">0%</span>
                     </div>
                 </div>
-                
-                <div class="text-center">
-                    <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
-                        <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
-                    </button>
-                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                    <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                </button>
+            </div>
         </section>
 
         <!-- Organization Feedback -->
@@ -324,133 +256,58 @@
             
             <div class="grid md:grid-cols-2 gap-8 mb-10">
                 <div class="bg-secondary p-6 rounded-lg cyber-border">
-                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
-                    <i class="fas fa-check-circle mr-3"></i> Strengths
-                </h3>
-                <ul class="space-y-3 text-textlight">
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                        <span>Strong incident response plan (scored 88%)</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                        <span>Regular security awareness training for employees</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                        <span>Comprehensive backup strategy in place</span>
-                    </li>
-                </ul>
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-check-circle mr-3"></i> Strengths
+                    </h3>
+                    <ul id="orgStrengths" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
+                    </ul>
+                </div>
+                
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
+                    </h3>
+                    <ul id="orgWeaknesses" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
+                    </ul>
+                </div>
             </div>
             
-            <div class="bg-secondary p-6 rounded-lg cyber-border">
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
                 <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
-                    <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
+                    <i class="fas fa-clipboard-list mr-3"></i> Action Plan
                 </h3>
-                <ul class="space-y-3 text-textlight">
-                    <li class="flex items-start">
-                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                        <span>Patch management process needs improvement (scored 42%)</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                        <span>Inconsistent MFA implementation across systems</span>
-                    </li>
-                    <li class="flex items-start">
-                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                        <span>No formal vendor security assessment process</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
-            <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
-                <i class="fas fa-clipboard-list mr-3"></i> Action Plan
-            </h3>
-            <div class="grid md:grid-cols-3 gap-4">
-                <div class="bg-primary bg-opacity-50 p-4 rounded">
-                    <h4 class="font-medium mb-2 text-accent">Automated Patch Management</h4>
-                    <p class="text-sm text-textlight">Implement system to automatically deploy critical security patches.</p>
-                </div>
-                <div class="bg-primary bg-opacity-50 p-4 rounded">
-                    <h4 class="font-medium mb-2 text-accent">MFA Enforcement</h4>
-                    <p class="text-sm text-textlight">Require MFA for all systems, especially those with sensitive data.</p>
-                </div>
-                <div class="bg-primary bg-opacity-50 p-4 rounded">
-                    <h4 class="font-medium mb-2 text-accent">Vendor Security</h4>
-                    <p class="text-sm text-textlight">Develop process to assess third-party vendor security practices.</p>
+                <div id="orgActionPlan" class="grid md:grid-cols-3 gap-4">
+                    <!-- Dynamic content will be inserted here -->
                 </div>
             </div>
-        </div>
-        
-        <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
-            <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
-            <div class="space-y-4">
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-textlight">Incident Response</span>
-                        <span class="font-medium">88%</span>
-                    </div>
-                    <div class="gauge">
-                        <div class="gauge-fill" style="width: 88%"></div>
-                    </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
+                <div id="orgScoreBreakdown" class="space-y-4">
+                    <!-- Dynamic content will be inserted here -->
                 </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-textlight">Employee Training</span>
-                        <span class="font-medium">75%</span>
-                    </div>
-                    <div class="gauge">
-                        <div class="gauge-fill" style="width: 75%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-textlight">Patch Management</span>
-                        <span class="font-medium">42%</span>
-                    </div>
-                    <div class="gauge">
-                        <div class="gauge-fill" style="width: 42%"></div>
-                    </div>
-                </div>
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <span class="text-textlight">Access Control</span>
-                        <span class="font-medium">65%</span>
-                    </div>
-                    <div class="gauge">
-                        <div class="gauge-fill" style="width: 65%"></div>
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-medium">Overall Score</span>
+                        <span id="orgOverallScore" class="text-2xl font-bold text-accent">0%</span>
                     </div>
                 </div>
             </div>
-            <div class="mt-6 pt-4 border-t border-gray-700">
-                <div class="flex justify-between items-center">
-                    <span class="text-lg font-medium">Overall Score</span>
-                    <span class="text-2xl font-bold text-accent">68%</span>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Risk Insights</h3>
+                <div id="orgRiskInsights" class="grid md:grid-cols-2 gap-4">
+                    <!-- Dynamic content will be inserted here -->
                 </div>
             </div>
-        </div>
-        
-        <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
-            <h3 class="text-xl font-semibold mb-4 text-accent">Risk Insights</h3>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="bg-red-900 bg-opacity-30 p-4 rounded border border-red-700">
-                    <h4 class="font-medium mb-2 text-red-300">High Risk</h4>
-                    <p class="text-sm text-textlight">Delayed patching leaves systems vulnerable to known exploits.</p>
-                </div>
-                <div class="bg-yellow-900 bg-opacity-30 p-4 rounded border border-yellow-700">
-                    <h4 class="font-medium mb-2 text-yellow-300">Medium Risk</h4>
-                    <p class="text-sm text-textlight">Inconsistent MFA increases risk of credential compromise.</p>
-                </div>
+            
+            <div class="text-center">
+                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                    <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                </button>
             </div>
-        </div>
-        
-        <div class="text-center">
-            <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
-                <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
-            </button>
-        </div>
         </section>
 
         <!-- About Section -->
