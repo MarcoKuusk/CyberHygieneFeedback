@@ -174,16 +174,6 @@
           ]
         },
         {
-          "question": "Do you feel your organization provides adequate cybersecurity training?",
-          "answers": [
-            {"option": "No, I have never received training", "score": 0},
-            {"option": "Some training, but not enough", "score": 1},
-            {"option": "Training is provided, but it could be better", "score": 2},
-            {"option": "Training is good, but I’d like more practical exercises", "score": 3},
-            {"option": "Training is excellent and prepares me well for threats", "score": 4}
-          ]
-        },
-        {
           "question": "Have you participated in simulated cybersecurity exercises (e.g., phishing tests)?",
           "answers": [
             {"option": "No", "score": 0},
@@ -191,16 +181,6 @@
             {"option": "Occasionally, but not regularly", "score": 2},
             {"option": "Frequently, at least once per year", "score": 3},
             {"option": "Regularly, with multiple tests and feedback", "score": 4}
-          ]
-        },
-        {
-          "question": "Do you think your organization prioritizes cybersecurity?",
-          "answers": [
-            {"option": "No, it is not a priority", "score": 0},
-            {"option": "There are some efforts, but they are weak", "score": 1},
-            {"option": "Cybersecurity is important but not enforced well", "score": 2},
-            {"option": "Cybersecurity is taken seriously", "score": 3},
-            {"option": "Cybersecurity is a top priority and well-integrated", "score": 4}
           ]
         },
         {

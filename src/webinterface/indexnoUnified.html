@@ -79,7 +79,6 @@
                 <a href="#" class="nav-link active">Home</a>
                 <a href="#employee" class="nav-link">Employee</a>
                 <a href="#organization" class="nav-link">Organization</a>
-                <a href="#unified" class="nav-link">Unified Report</a>
                 <a href="#about" class="nav-link">About</a>
             </div>
             <button class="md:hidden text-accent">
@@ -98,8 +97,8 @@
                 Identify strengths, weaknesses, and actionable insights to enhance your digital defenses.
             </p>
             
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
-                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-16">
+                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col max-w-md">
                     <div class="card-content">
                         <i class="fas fa-user-shield text-4xl mb-4 text-accent"></i>
                         <h3 class="text-xl font-semibold mb-3">Employee Assessment</h3>
@@ -109,7 +108,7 @@
                         <button id="startEmployee" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Start Assessment</button>
                     </div>
                 </div>
-                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
+                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col max-w-md">
                     <div class="card-content">
                         <i class="fas fa-building text-4xl mb-4 text-accent"></i>
                         <h3 class="text-xl font-semibold mb-3">Organization Assessment</h3>
@@ -117,16 +116,6 @@
                     </div>
                     <div class="card-button">
                         <button id="startOrganization" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Start Assessment</button>
-                    </div>
-                </div>
-                <div class="bg-secondary p-6 rounded-lg cyber-border hover:cyber-glow transition-all duration-300 flex flex-col">
-                    <div class="card-content">
-                        <i class="fas fa-chart-pie text-4xl mb-4 text-accent"></i>
-                        <h3 class="text-xl font-semibold mb-3">Unified Report</h3>
-                        <p class="mb-4 text-textlight">Combine employee and organization data for comprehensive insights.</p>
-                    </div>
-                    <div class="card-button">
-                        <button id="generateReport" class="w-full bg-accent text-primary px-6 py-2 rounded-md font-medium hover:bg-opacity-90 transition">Generate Report</button>
                     </div>
                 </div>
             </div>
@@ -360,14 +349,14 @@
                         <span class="text-lg font-medium">Overall Score</span>
                         <span class="text-2xl font-bold text-accent">72%</span>
                     </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="text-center">
-                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
-                    <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
-                </button>
-            </div>
+                
+                <div class="text-center">
+                    <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                        <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                    </button>
+                </div>
         </section>
 
         <!-- Organization Feedback -->
@@ -379,54 +368,54 @@
             
             <div class="grid md:grid-cols-2 gap-8 mb-10">
                 <div class="bg-secondary p-6 rounded-lg cyber-border">
-                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
-                        <i class="fas fa-check-circle mr-3"></i> Strengths
-                    </h3>
-                    <ul class="space-y-3 text-textlight">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                            <span>Strong incident response plan (scored 88%)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                            <span>Regular security awareness training for employees</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
-                            <span>Comprehensive backup strategy in place</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-secondary p-6 rounded-lg cyber-border">
-                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
-                        <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
-                    </h3>
-                    <ul class="space-y-3 text-textlight">
-                        <li class="flex items-start">
-                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                            <span>Patch management process needs improvement (scored 42%)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                            <span>Inconsistent MFA implementation across systems</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
-                            <span>No formal vendor security assessment process</span>
-                        </li>
-                    </ul>
-                </div>
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-check-circle mr-3"></i> Strengths
+                </h3>
+                <ul class="space-y-3 text-textlight">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Strong incident response plan (scored 88%)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Regular security awareness training for employees</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                        <span>Comprehensive backup strategy in place</span>
+                    </li>
+                </ul>
             </div>
             
-            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+            <div class="bg-secondary p-6 rounded-lg cyber-border">
                 <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
-                    <i class="fas fa-clipboard-list mr-3"></i> Action Plan
+                    <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
                 </h3>
-                <div class="grid md:grid-cols-3 gap-4">
-                    <div class="bg-primary bg-opacity-50 p-4 rounded">
-                        <h4 class="font-medium mb-2 text-accent">Automated Patch Management</h4>
-                        <p class="text-sm text-textlight">Implement system to automatically deploy critical security patches.</p>
+                <ul class="space-y-3 text-textlight">
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                        <span>Patch management process needs improvement (scored 42%)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                        <span>Inconsistent MFA implementation across systems</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                        <span>No formal vendor security assessment process</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+            <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                <i class="fas fa-clipboard-list mr-3"></i> Action Plan
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="bg-primary bg-opacity-50 p-4 rounded">
+                    <h4 class="font-medium mb-2 text-accent">Automated Patch Management</h4>
+                    <p class="text-sm text-textlight">Implement system to automatically deploy critical security patches.</p>
                 </div>
                 <div class="bg-primary bg-opacity-50 p-4 rounded">
                     <h4 class="font-medium mb-2 text-accent">MFA Enforcement</h4>
@@ -506,6 +495,20 @@
                 <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
             </button>
         </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">About Our Cyber Hygiene Tool</h2>
+                <p class="text-xl text-textlight">Content coming soon</p>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border text-center">
+                <p class="text-textlight">
+                    This section will contain detailed information about the tool, its purpose, and how it helps organizations.
+                </p>
+            </div>
         </section>
     </main>
 
@@ -1143,10 +1146,6 @@
                 startAssessment('organization');
             });
 
-            document.getElementById('generateReport').addEventListener('click', () => {
-                showSection('unifiedFeedback');
-            });
-
             // Navigation links
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -1158,7 +1157,7 @@
                     } else if (target === 'organization') {
                         startAssessment('organization');
                     } else {
-                        showSection(target === 'unified' ? 'unifiedFeedback' : target || 'home');
+                        showSection(target || 'home');
                     }
                 });
             });
@@ -1168,17 +1167,6 @@
                 employee: { currentQuestion: 0, answers: [] },
                 organization: { currentQuestion: 0, answers: [] }
             };
-
-            // Load saved answers from localStorage if they exist
-            function loadSavedAnswers(type) {
-                const savedAnswers = localStorage.getItem(`${type}Answers`);
-                if (savedAnswers) {
-                    state[type].answers = JSON.parse(savedAnswers);
-                    // Find the first unanswered question
-                    const firstUnanswered = state[type].answers.findIndex(answer => answer === undefined);
-                    state[type].currentQuestion = firstUnanswered !== -1 ? firstUnanswered : state[type].answers.length;
-                }
-            }
 
             const questionData = {
                 employee: {
@@ -1202,29 +1190,22 @@
             };
 
             function startAssessment(type) {
-                loadSavedAnswers(type);
-                renderQuestion(type, state[type].currentQuestion);
-                updateProgress(type);
+                resetAssessment(type);
                 showSection(`${type}Assessment`);
-                
-                // Update back button state
-                document.getElementById(questionData[type].backBtnId).disabled = state[type].currentQuestion === 0;
-                
-                // Update next button text
-                const nextBtn = document.getElementById(questionData[type].nextBtnId);
-                if (state[type].currentQuestion === questionData[type].questions.length - 1) {
-                    nextBtn.textContent = 'Generate Report';
-                    nextBtn.innerHTML = '<i class="fas fa-file-alt mr-2"></i> Generate Report';
-                } else {
-                    nextBtn.textContent = 'Next';
-                    nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right ml-2"></i>';
-                }
             }
 
             function resetAssessment(type) {
-                state[type].currentQuestion = 0;
-                state[type].answers = [];
-                localStorage.removeItem(`${type}Answers`);
+                const data = state[type];
+                const config = questionData[type];
+
+                data.currentQuestion = 0;
+                data.answers.length = 0;
+
+                renderQuestion(type, 0);
+                updateProgress(type);
+
+                document.getElementById(config.backBtnId).disabled = true;
+                document.getElementById(config.nextBtnId).textContent = 'Next';
             }
 
             function renderQuestion(type, index) {
@@ -1256,9 +1237,9 @@
 
                 container.innerHTML = html;
 
-                // Check if answer exists in state
-                if (state[type].answers[index] !== undefined) {
-                    document.querySelector(`input[name="${type}Answer${index}"][value="${state[type].answers[index]}"]`).checked = true;
+                const savedAnswer = state[type].answers[index];
+                if (savedAnswer !== undefined) {
+                    document.querySelector(`input[name="${type}Answer${index}"][value="${savedAnswer}"]`).checked = true;
                 }
             }
 
@@ -1273,10 +1254,6 @@
 
                 if (error) error.style.display = 'none';
                 state[type].answers[index] = parseInt(selected.value);
-                
-                // Save answers to localStorage
-                localStorage.setItem(`${type}Answers`, JSON.stringify(state[type].answers));
-                
                 return true;
             }
 
@@ -1302,14 +1279,10 @@
                     updateProgress(type);
                     document.getElementById(config.backBtnId).disabled = false;
 
-                    // Update next button text if we're on the last question
-                    const nextBtn = document.getElementById(config.nextBtnId);
                     if (data.currentQuestion === config.questions.length - 1) {
-                        nextBtn.textContent = 'Generate Report';
-                        nextBtn.innerHTML = '<i class="fas fa-file-alt mr-2"></i> Generate Report';
+                        document.getElementById(config.nextBtnId).textContent = 'Submit';
                     }
                 } else {
-                    // Assessment complete, show feedback
                     showSection(config.feedbackSection);
                 }
             }
@@ -1327,12 +1300,8 @@
                         document.getElementById(config.backBtnId).disabled = true;
                     }
 
-                    // Update next button text
-                    const nextBtn = document.getElementById(config.nextBtnId);
-                    nextBtn.textContent = data.currentQuestion === config.questions.length - 1 ? 'Generate Report' : 'Next';
-                    nextBtn.innerHTML = data.currentQuestion === config.questions.length - 1 
-                        ? '<i class="fas fa-file-alt mr-2"></i> Generate Report' 
-                        : 'Next <i class="fas fa-arrow-right ml-2"></i>';
+                    document.getElementById(config.nextBtnId).textContent = 
+                        data.currentQuestion === config.questions.length - 1 ? 'Submit' : 'Next';
                 }
             }
 
@@ -1359,8 +1328,7 @@
                     employeeFeedback: 1,
                     organizationAssessment: 2,
                     organizationFeedback: 2,
-                    unifiedFeedback: 3,
-                    about: 4
+                    about: 3
                 };
 
                 if (sectionMap.hasOwnProperty(sectionId)) {

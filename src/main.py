@@ -1,6 +1,7 @@
-from employee_feedback_generator import EmployeeFeedbackGenerator
-from organization_feedback_generator import OrganizationFeedbackGenerator
-from unified_feedback_generator import UnifiedFeedbackGenerator
+from Feedback_Generators.employee_feedback_generator import EmployeeFeedbackGenerator
+from Feedback_Generators.organization_feedback_generator import OrganizationFeedbackGenerator
+from flask import Flask, request, send_file
+
 import json
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -15,6 +16,29 @@ from reportlab.lib.colors import black
 from reportlab.platypus.flowables import HRFlowable
 from reportlab.lib import fonts
 import re
+import os
+
+app = Flask(__name__)
+
+@app.route('/generate-employee-pdf', methods=['POST'])
+def generate_employee_pdf():
+    data = request.json
+    employee_responses = data['answers']
+    generator = EmployeeFeedbackGenerator(employee_responses)
+    feedback = generator.generate_feedback()
+    filename = "employee_feedback_report.pdf"
+    save_feedback_to_pdf(feedback, "Employee Feedback", filename)
+    return send_file(filename, as_attachment=True)
+
+@app.route('/generate-organization-pdf', methods=['POST'])
+def generate_organization_pdf():
+    data = request.json
+    organization_responses = data['answers']
+    generator = OrganizationFeedbackGenerator(organization_responses)
+    feedback = generator.generate_feedback()
+    filename = "organization_feedback_report.pdf"
+    save_feedback_to_pdf(feedback, "Organization Feedback", filename)
+    return send_file(filename, as_attachment=True)
 
 def load_questionnaire(file_path):
     with open(file_path, 'r') as file:
@@ -80,6 +104,7 @@ def format_bullet(text, style):
     return Paragraph(f'• {text}', style)
 
 def save_feedback_to_pdf(feedback_text, title, filename):
+    print(f"Generating PDF: {filename}")
     doc = SimpleDocTemplate(filename, pagesize=letter, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
     elements = []
 
@@ -173,6 +198,11 @@ def save_feedback_to_pdf(feedback_text, title, filename):
 
     doc.build(elements)
 
+    if os.path.exists(filename):
+        print(f"PDF successfully created: {filename}")
+    else:
+        print(f"Failed to create PDF: {filename}")
+
 def main():
     # Load the questionnaires
     employee_questionnaire = load_questionnaire('src/data/employee_questionnaire.json')
@@ -198,20 +228,9 @@ def main():
     print("\nOrganization Feedback:")
     print(organization_feedback)
 
-    # Calculate scores for unified feedback
-    org_score = calculate_organization_score(organization_responses)
-    emp_score = calculate_employee_score(employee_responses)
-    unified_feedback_generator = UnifiedFeedbackGenerator(org_score, emp_score)
-
-    # Generate unified feedback
-    unified_feedback = unified_feedback_generator.generate_feedback()
-    print("\nUnified Feedback:")
-    print(unified_feedback)
-
     # Save feedback to separate PDFs
     save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
     save_feedback_to_pdf(organization_feedback, "Organization Feedback", "organization_feedback_report.pdf")
-    save_feedback_to_pdf(unified_feedback, "Unified Feedback", "unified_feedback_report.pdf")
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
