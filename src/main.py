@@ -20,11 +20,14 @@ import os
 
 def load_assessment_data(file_path):
     absolute_path = os.path.abspath(file_path)
+    print(f"Looking for file at: {absolute_path}")  # Debug log
     if not os.path.exists(absolute_path):
         print(f"Warning: {absolute_path} does not exist. Returning empty data.")
         return []  # Return an empty list or default value
     with open(absolute_path, 'r') as file:
-        return json.load(file)
+        data = json.load(file)
+        print(f"Loaded data: {data}")  # Debug log
+        return data
 
 def get_user_responses(questionnaire):
     responses = {}
@@ -191,16 +194,23 @@ def main():
         print("Warning: No organization assessment data found.")
 
     # Initialize feedback generators with assessment data
+    print(f"Initializing EmployeeFeedbackGenerator with data: {employee_data}")  # Debug log
     employee_feedback_generator = EmployeeFeedbackGenerator(employee_data)
+
+    print(f"Initializing OrganizationFeedbackGenerator with data: {organization_data}")  # Debug log
     organization_feedback_generator = OrganizationFeedbackGenerator(organization_data)
 
     # Generate feedback
     employee_feedback = employee_feedback_generator.generate_feedback() if employee_data else "No employee data available."
     organization_feedback = organization_feedback_generator.generate_feedback() if organization_data else "No organization data available."
 
+    # Define output directory for PDF reports
+    output_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'Generated_PDF_Report'))
+    os.makedirs(output_dir, exist_ok=True)
+
     # Save feedback to PDFs
-    save_feedback_to_pdf(employee_feedback, "Employee Feedback", "employee_feedback_report.pdf")
-    save_feedback_to_pdf(organization_feedback, "Organization Feedback", "organization_feedback_report.pdf")
+    save_feedback_to_pdf(employee_feedback, "Employee Feedback", os.path.join(output_dir, "employee_feedback_report.pdf"))
+    save_feedback_to_pdf(organization_feedback, "Organization Feedback", os.path.join(output_dir, "organization_feedback_report.pdf"))
 
 
 if __name__ == "__main__":

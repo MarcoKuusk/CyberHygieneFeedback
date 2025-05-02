@@ -7,3 +7,4 @@ reportlab
 pymupdf
 flask-cors
 flask
+waitress

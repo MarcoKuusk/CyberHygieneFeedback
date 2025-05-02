@@ -161,11 +161,11 @@ const employeeQuestions = {
                 {
                     question: "Do you use personal USB drives or unauthorized software on work devices?",
                     answers: [
-                        { option: "Never, I follow IT policies strictly", score: 0 },
-                        { option: "Almost never, except after IT approval", score: 1 },
+                        { option: "Yes, regularly", score: 0 },
+                        { option: "Sometimes, if necessary", score: 1 },
                         { option: "Rarely, only when required", score: 2 },
-                        { option: "Sometimes, if necessary", score: 3 },
-                        { option: "Yes, regularly", score: 4 }
+                        { option: "Almost never, except after IT approval", score: 3 },
+                        { option: "Never, I follow IT policies strictly", score: 4 }
                     ],
                     feedback: {
                         strength: "You strictly follow device usage policies",
@@ -1130,6 +1130,44 @@ document.addEventListener('DOMContentLoaded', function() {
         return assessmentData;
     }
 
+    function downloadReport(reportType) {
+        // Trigger feedback generation
+        fetch(`http://127.0.0.1:5000/generateFeedback/${reportType}`, {
+            method: 'POST'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.message);
+    
+            // Download the report
+            const downloadUrl = `http://127.0.0.1:5000/downloadReport/${reportType}`;
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = `${reportType}_feedback_report.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to generate or download the report. Please try again.');
+        });
+    }
+    
+    // Attach event listeners to the buttons
+    document.querySelector('.employee-download-btn').addEventListener('click', () => {
+        downloadReport('employee');
+    });
+    
+    document.querySelector('.organization-download-btn').addEventListener('click', () => {
+        downloadReport('organization');
+    });
+
     function generateFeedback(type) {
         const data = state[type];
         const config = questionData[type];
@@ -1338,7 +1376,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showSection(sectionId) {
         // Hide all sections
-        console.log(`Navigating to section: ${sectionId}`);
         document.querySelectorAll('main > section').forEach(section => {
             section.classList.add('hidden');
         });

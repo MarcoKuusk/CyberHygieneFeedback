@@ -61,8 +61,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Semi-annually",
-            "score": 2
+            "option": "Never",
+            "score": 0
         },
         "feedback": {
             "strength": "Access privileges are reviewed frequently",
@@ -97,8 +97,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Strictly enforced for all employees",
-            "score": 4
+            "option": "Basic enforcement, but not monitored",
+            "score": 1
         },
         "feedback": {
             "strength": "Strong password policies are strictly enforced",
@@ -133,8 +133,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No formal process",
-            "score": 0
+            "option": "Deactivated within a week",
+            "score": 2
         },
         "feedback": {
             "strength": "Terminated accounts are deactivated immediately",
@@ -169,8 +169,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Strict least privilege policy enforced across the organization",
-            "score": 4
+            "option": "Some departments follow least privilege",
+            "score": 2
         },
         "feedback": {
             "strength": "Least privilege principle is strictly enforced",
@@ -205,8 +205,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Available but not required",
-            "score": 1
+            "option": "Required for most employees",
+            "score": 3
         },
         "feedback": {
             "strength": "Password managers are required for all employees",
@@ -241,8 +241,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "Fully automated patch management",
+            "score": 4
         },
         "feedback": {
             "strength": "Fully automated patch management system in place",
@@ -313,8 +313,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No protection in place",
-            "score": 0
+            "option": "Installed but not updated regularly",
+            "score": 1
         },
         "feedback": {
             "strength": "Advanced endpoint protection is implemented",
@@ -349,8 +349,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Automated patching system in place",
-            "score": 4
+            "option": "Updates applied within 3 months of release",
+            "score": 2
         },
         "feedback": {
             "strength": "Automated patching keeps systems up-to-date",
@@ -385,8 +385,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No classification policy",
-            "score": 0
+            "option": "Classified data is encrypted",
+            "score": 3
         },
         "feedback": {
             "strength": "Data is classified, encrypted, and audited",
@@ -457,8 +457,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No backup system in place",
-            "score": 0
+            "option": "Backups are performed regularly and tested occasionally",
+            "score": 3
         },
         "feedback": {
             "strength": "Comprehensive backup and recovery process exists",
@@ -565,8 +565,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Quarterly",
-            "score": 3
+            "option": "Annually",
+            "score": 1
         },
         "feedback": {
             "strength": "Backups are tested frequently",
@@ -637,8 +637,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Monthly with detailed reporting",
-            "score": 4
+            "option": "Once per year",
+            "score": 1
         },
         "feedback": {
             "strength": "Regular phishing simulations are conducted",
@@ -673,8 +673,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Basic training for all",
-            "score": 1
+            "option": "Role-specific training for some",
+            "score": 2
         },
         "feedback": {
             "strength": "Role-specific security training is provided",
@@ -709,8 +709,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "A well-established system exists with clear reporting procedures",
-            "score": 4
+            "option": "A formal system exists and most employees are aware",
+            "score": 3
         },
         "feedback": {
             "strength": "Clear incident reporting procedures exist",
@@ -745,8 +745,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Employees receive occasional awareness training",
-            "score": 2
+            "option": "A strong cybersecurity culture is embedded across the organization",
+            "score": 4
         },
         "feedback": {
             "strength": "Strong cybersecurity culture exists",
@@ -781,8 +781,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Basic security, default passwords exist",
-            "score": 1
+            "option": "Regular security reviews",
+            "score": 3
         },
         "feedback": {
             "strength": "Secure Wi-Fi policies are enforced and monitored",
@@ -817,8 +817,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Fully managed EDR with advanced threat detection tools",
-            "score": 4
+            "option": "Antivirus & basic firewall",
+            "score": 2
         },
         "feedback": {
             "strength": "Advanced endpoint protection is implemented",
@@ -853,8 +853,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Basic VPN access",
-            "score": 1
+            "option": "VPN with MFA",
+            "score": 2
         },
         "feedback": {
             "strength": "Zero Trust model is implemented for remote access",
@@ -925,8 +925,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "24/7 emergency support",
-            "score": 4
+            "option": "No",
+            "score": 0
         },
         "feedback": {
             "strength": "24/7 emergency support is available",
@@ -961,8 +961,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No logging system",
-            "score": 0
+            "option": "Automated logging but no analysis",
+            "score": 2
         },
         "feedback": {
             "strength": "Advanced logging and analysis is performed",
@@ -997,8 +997,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Comprehensive cyber insurance with crisis management",
-            "score": 4
+            "option": "Evaluating options",
+            "score": 1
         },
         "feedback": {
             "strength": "Comprehensive cyber insurance is in place",
@@ -1033,8 +1033,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Within a week",
-            "score": 1
+            "option": "Within 72 hours",
+            "score": 2
         },
         "feedback": {
             "strength": "Immediate incident reporting is required",
@@ -1105,8 +1105,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Basic security requirements but not enforced",
-            "score": 1
+            "option": "All vendors required to meet strict security standards with audits",
+            "score": 4
         },
         "feedback": {
             "strength": "Vendors must meet strict security standards",
@@ -1141,8 +1141,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No physical security measures",
-            "score": 0
+            "option": "Sensitive devices secured",
+            "score": 2
         },
         "feedback": {
             "strength": "All devices are physically secured",
@@ -1177,8 +1177,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Continuous monitoring of vendor security",
-            "score": 4
+            "option": "No vendor assessments",
+            "score": 0
         },
         "feedback": {
             "strength": "Vendor security is continuously monitored",
@@ -1213,8 +1213,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Enforced for administrators",
-            "score": 2
+            "option": "Mandatory for all remote access",
+            "score": 4
         },
         "feedback": {
             "strength": "VPN is mandatory for all remote access",
