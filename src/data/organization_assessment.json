@@ -25,14 +25,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Only for administrators",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "MFA is enforced for all critical systems",
-            "weakness": "MFA is not enforced or only partially implemented",
-            "action": "Implement MFA for all systems, especially those with sensitive data",
-            "category": "Multi-Factor Authentication"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -61,14 +55,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Never",
-            "score": 0
-        },
-        "feedback": {
-            "strength": "Access privileges are reviewed frequently",
-            "weakness": "Access privileges are rarely reviewed",
-            "action": "Implement quarterly access reviews for all critical systems",
-            "category": "Access Control"
+            "option": "Annually",
+            "score": 1
         }
     },
     {
@@ -97,14 +85,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Basic enforcement, but not monitored",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Strong password policies are strictly enforced",
-            "weakness": "Password policies are weak or not enforced",
-            "action": "Enforce minimum 12-character passwords with complexity requirements",
-            "category": "Password Policy"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -133,14 +115,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Deactivated within a week",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Terminated accounts are deactivated immediately",
-            "weakness": "Terminated accounts remain active too long",
-            "action": "Automate account deactivation upon termination",
-            "category": "Account Management"
+            "option": "Deactivated within a month",
+            "score": 1
         }
     },
     {
@@ -169,14 +145,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Some departments follow least privilege",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Least privilege principle is strictly enforced",
-            "weakness": "Least privilege principle is not implemented",
-            "action": "Implement role-based access control (RBAC) for all systems",
-            "category": "Least Privilege"
+            "option": "Limited restrictions",
+            "score": 1
         }
     },
     {
@@ -205,14 +175,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Required for most employees",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "Password managers are required for all employees",
-            "weakness": "Password managers are not provided or required",
-            "action": "Provide and mandate password manager usage organization-wide",
-            "category": "Credential Management"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -241,14 +205,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Fully automated patch management",
-            "score": 4
-        },
-        "feedback": {
-            "strength": "Fully automated patch management system in place",
-            "weakness": "No centralized patch management system",
-            "action": "Implement automated patch management for all systems",
-            "category": "Patch Management"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -279,12 +237,6 @@
         "selectedAnswer": {
             "option": "No",
             "score": 0
-        },
-        "feedback": {
-            "strength": "Vulnerability scans are performed frequently",
-            "weakness": "Vulnerability scans are rarely performed",
-            "action": "Perform vulnerability scans at least quarterly",
-            "category": "Vulnerability Management"
         }
     },
     {
@@ -313,14 +265,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Installed but not updated regularly",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Advanced endpoint protection is implemented",
-            "weakness": "Endpoint protection is weak or non-existent",
-            "action": "Upgrade to advanced endpoint detection and response (EDR) solutions",
-            "category": "Endpoint Protection"
+            "option": "Installed and updated semi-regularly",
+            "score": 2
         }
     },
     {
@@ -349,14 +295,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Updates applied within 3 months of release",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Automated patching keeps systems up-to-date",
-            "weakness": "Systems are rarely updated",
-            "action": "Implement automated patching for all systems",
-            "category": "Software Updates"
+            "option": "Automated patching system in place",
+            "score": 4
         }
     },
     {
@@ -385,14 +325,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Classified data is encrypted",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "Data is classified, encrypted, and audited",
-            "weakness": "No formal data classification policy exists",
-            "action": "Implement data classification with appropriate protections",
-            "category": "Data Classification"
+            "option": "No classification policy",
+            "score": 0
         }
     },
     {
@@ -421,14 +355,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Full encryption for all sensitive data",
-            "score": 4
-        },
-        "feedback": {
-            "strength": "All sensitive data is encrypted",
-            "weakness": "Encryption is not consistently applied",
-            "action": "Implement encryption for all sensitive data at rest and in transit",
-            "category": "Data Encryption"
+            "option": "No encryption",
+            "score": 0
         }
     },
     {
@@ -457,14 +385,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Backups are performed regularly and tested occasionally",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "Comprehensive backup and recovery process exists",
-            "weakness": "Backup process is inadequate or non-existent",
-            "action": "Implement 3-2-1 backup strategy (3 copies, 2 media types, 1 offsite)",
-            "category": "Backup Strategy"
+            "option": "Backups are performed regularly but not tested for recovery",
+            "score": 2
         }
     },
     {
@@ -493,14 +415,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Weekly",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Frequent or continuous backups are performed",
-            "weakness": "Backups are infrequent or non-existent",
-            "action": "Increase backup frequency based on data criticality",
-            "category": "Backup Frequency"
+            "option": "Daily",
+            "score": 3
         }
     },
     {
@@ -529,14 +445,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Backups stored on-premises only",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Backups are encrypted and stored offsite",
-            "weakness": "Backups are not stored securely offsite",
-            "action": "Store encrypted backups in multiple secure locations",
-            "category": "Backup Storage"
+            "option": "Offsite backups stored but not encrypted",
+            "score": 2
         }
     },
     {
@@ -565,14 +475,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Annually",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Backups are tested frequently",
-            "weakness": "Backups are rarely or never tested",
-            "action": "Test backup restoration at least quarterly",
-            "category": "Backup Testing"
+            "option": "Never",
+            "score": 0
         }
     },
     {
@@ -603,12 +507,6 @@
         "selectedAnswer": {
             "option": "Never",
             "score": 0
-        },
-        "feedback": {
-            "strength": "Regular security training is provided",
-            "weakness": "Security training is infrequent or non-existent",
-            "action": "Provide security training at least annually with ongoing reinforcement",
-            "category": "Security Training"
         }
     },
     {
@@ -637,14 +535,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Once per year",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Regular phishing simulations are conducted",
-            "weakness": "Phishing simulations are not conducted",
-            "action": "Implement quarterly phishing simulations with training",
-            "category": "Phishing Simulations"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -673,14 +565,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Role-specific training for some",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Role-specific security training is provided",
-            "weakness": "Training is not tailored to employee roles",
-            "action": "Develop role-specific security training programs",
-            "category": "Role-Based Training"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -709,14 +595,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "A formal system exists and most employees are aware",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "Clear incident reporting procedures exist",
-            "weakness": "Employees don't know how to report incidents",
-            "action": "Establish and communicate clear incident reporting procedures",
-            "category": "Incident Reporting"
+            "option": "No awareness",
+            "score": 0
         }
     },
     {
@@ -745,14 +625,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "A strong cybersecurity culture is embedded across the organization",
-            "score": 4
-        },
-        "feedback": {
-            "strength": "Strong cybersecurity culture exists",
-            "weakness": "Weak or non-existent security culture",
-            "action": "Foster security culture through leadership and continuous engagement",
-            "category": "Security Culture"
+            "option": "No expectations or policies in place",
+            "score": 0
         }
     },
     {
@@ -781,14 +655,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Regular security reviews",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "Secure Wi-Fi policies are enforced and monitored",
-            "weakness": "Wi-Fi security is weak or non-existent",
-            "action": "Implement WPA3 encryption and separate guest networks",
-            "category": "Wi-Fi Security"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -817,14 +685,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Antivirus & basic firewall",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Advanced endpoint protection is implemented",
-            "weakness": "Endpoint protection is weak or non-existent",
-            "action": "Deploy advanced endpoint detection and response (EDR) solutions",
-            "category": "Endpoint Protection"
+            "option": "Basic antivirus only",
+            "score": 1
         }
     },
     {
@@ -853,14 +715,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "VPN with MFA",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Zero Trust model is implemented for remote access",
-            "weakness": "Remote access security is weak or non-existent",
-            "action": "Implement Zero Trust Network Access (ZTNA) for remote workers",
-            "category": "Remote Access"
+            "option": "No security measures",
+            "score": 0
         }
     },
     {
@@ -889,14 +745,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Exists but never tested",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Incident response plan is regularly tested",
-            "weakness": "No incident response plan exists",
-            "action": "Develop and regularly test an incident response plan",
-            "category": "Incident Response"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -927,12 +777,6 @@
         "selectedAnswer": {
             "option": "No",
             "score": 0
-        },
-        "feedback": {
-            "strength": "24/7 emergency support is available",
-            "weakness": "No emergency support is arranged",
-            "action": "Establish relationship with cybersecurity emergency response provider",
-            "category": "Emergency Support"
         }
     },
     {
@@ -961,14 +805,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Automated logging but no analysis",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Advanced logging and analysis is performed",
-            "weakness": "Incidents are not logged or analyzed",
-            "action": "Implement security information and event management (SIEM) system",
-            "category": "Logging & Analysis"
+            "option": "No logging system",
+            "score": 0
         }
     },
     {
@@ -997,14 +835,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Evaluating options",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "Comprehensive cyber insurance is in place",
-            "weakness": "No cyber insurance coverage exists",
-            "action": "Obtain cyber insurance with incident response support",
-            "category": "Cyber Insurance"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -1033,14 +865,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Within 72 hours",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "Immediate incident reporting is required",
-            "weakness": "No formal incident reporting timeline exists",
-            "action": "Require immediate reporting of security incidents",
-            "category": "Incident Reporting"
+            "option": "No formal reporting process",
+            "score": 0
         }
     },
     {
@@ -1069,14 +895,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Mostly compliant",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "Full compliance with industry standards",
-            "weakness": "No compliance with industry standards",
-            "action": "Align with relevant cybersecurity frameworks and standards",
-            "category": "Regulatory Compliance"
+            "option": "No compliance efforts",
+            "score": 0
         }
     },
     {
@@ -1105,14 +925,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "All vendors required to meet strict security standards with audits",
-            "score": 4
-        },
-        "feedback": {
-            "strength": "Vendors must meet strict security standards",
-            "weakness": "No security requirements for vendors",
-            "action": "Implement vendor security assessment program",
-            "category": "Vendor Security"
+            "option": "No security requirements for vendors",
+            "score": 0
         }
     },
     {
@@ -1141,14 +955,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sensitive devices secured",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "All devices are physically secured",
-            "weakness": "Physical security is weak or non-existent",
-            "action": "Implement physical security controls for all devices",
-            "category": "Physical Security"
+            "option": "Basic measures (e.g., office locks)",
+            "score": 1
         }
     },
     {
@@ -1179,12 +987,6 @@
         "selectedAnswer": {
             "option": "No vendor assessments",
             "score": 0
-        },
-        "feedback": {
-            "strength": "Vendor security is continuously monitored",
-            "weakness": "No vendor security assessments are performed",
-            "action": "Implement formal vendor security assessment process",
-            "category": "Vendor Risk"
         }
     },
     {
@@ -1213,14 +1015,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Mandatory for all remote access",
-            "score": 4
-        },
-        "feedback": {
-            "strength": "VPN is mandatory for all remote access",
-            "weakness": "No remote access security requirements exist",
-            "action": "Require VPN for all remote access to company systems",
-            "category": "Remote Work Security"
+            "option": "No requirements",
+            "score": 0
         }
     }
 ]

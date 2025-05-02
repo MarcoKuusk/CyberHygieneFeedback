@@ -20,12 +20,15 @@ class OrganizationFeedbackGenerator:
             selected_answer = question_data.get('selectedAnswer')
             if selected_answer:
                 score = selected_answer['score']
+                question = question_data['question']
                 if score >= 3:
-                    strengths.append(question_data['feedback']['strength'])
+                    # Dynamically generate strength based on the question
+                    strengths.append(f"Good practice: {question}")
                 else:
+                    # Dynamically generate weakness based on the question
                     if category not in grouped_findings:
                         grouped_findings[category] = []
-                    grouped_findings[category].append(question_data['feedback']['weakness'])
+                    grouped_findings[category].append(f"Needs improvement: {question}")
 
         return grouped_findings, strengths
 
@@ -120,39 +123,69 @@ class OrganizationFeedbackGenerator:
 
     def _build_feedback_prompt(self, findings, strengths, total_score):
         findings_text = "\n\n".join(
-            [f"**{domain}**\n" + "\n".join(f"- {item}" for item in items) 
-            for domain, items in findings.items() if items]
+            f"**{category}**\n" + "\n".join(f"- {item}" for item in items)
+            for category, items in findings.items()
         )
 
-        strengths_text = (
-            "\n".join(f"- {s}" for s in strengths)
-            if strengths else "No notable strengths identified yet."
-        )
+        strengths_text = "\n".join(f"- {s}" for s in strengths) if strengths else "- No specific strengths identified yet."
 
         risks = self._extract_risks(findings)
         immediate, short_term, medium_term = self._build_action_plan(findings)
         tone = self._determine_urgency_tone(total_score)
 
-        prompt = (
-            f"You are a cybersecurity advisor for small and medium-sized enterprises (SMEs).\n"
-            f"Generate friendly, professional, and accessible feedback for the organization\n"
-            f"Use clear headers, bullet points, and concise explanations.\n\n"
-            f"Example style:\n"
-            f"**What You're Doing Well:** You have strong password policies. Regular staff training is a key strength.\n"
-            f"**Areas to Improve:** Multi-factor authentication adoption is incomplete, exposing vulnerabilities.\n\n"
-            f"Feedback based on self-assessment:\n\n"
-            f"**Cyber Hygiene Score:** {total_score:.2f}%\n"
-            f"{tone}\n\n"
-            f"**What You're Doing Well**\n{strengths_text}\n\n"
-            f"**Areas to Improve**\n{findings_text}\n\n"
-            f"**Potential Risks**\n" + "\n".join(risks) + "\n\n"
-            f"**Action Plan**\n"
-            f"**Immediate (0–30 Days)**\n" + ("\n".join(f"- {a}" for a in immediate) if immediate else "- Maintain existing strong practices.") + "\n\n"
-            f"**Short-Term (60–90 Days)**\n" + ("\n".join(f"- {a}" for a in short_term) if short_term else "- Continue monitoring and improvement.") + "\n\n"
-            f"**Medium-Term (3–6 Months)**\n" + ("\n".join(f"- {a}" for a in medium_term) if medium_term else "- Plan for regular cybersecurity reassessments.")
-        )
+        prompt = f"""
+        You are a cybersecurity advisor helping small and medium-sized enterprises (SMEs) improve their security posture.
 
-        return prompt
+        Generate a clear, structured, and accessible feedback report based on the following assessment data. Your audience is SME business leaders who may not be technical, so use plain language and actionable advice.
+
+        Use the following format:
+
+        ## Cyber Hygiene Score
+        {total_score:.2f}%  
+        {tone}
+
+        ## Introduction
+        Write a short paragraph summarizing the organization's current cybersecurity hygiene based on the score. Mention whether it's strong, moderate, or weak, and emphasize the importance of continuous improvement.
+
+        ## What You're Doing Well
+        Highlight areas where the organization is following good practices. Use bullet points and explain why each practice is important.
+
+        {strengths_text}
+
+        ## Areas to Improve
+        Break down weaknesses by category. Clearly explain what needs improvement and why it matters. Use plain language.
+
+        {findings_text}
+
+        ## Potential Risks and Risk Scenarios
+        Describe the potential threats based on weaknesses. Write short, scenario-based risk statements (e.g., “Without MFA, an attacker could take over email accounts.”)
+
+        {chr(10).join(risks)}
+
+        ## Action Plan
+
+        Provide a prioritized and **concrete cybersecurity action plan** for the organization. Break actions into timeframes based on effort and urgency. Ensure **each timeframe has at least 4–6 specific, actionable tasks** the organization can execute.
+
+        ### Immediate (0–30 Days)
+        These should be quick wins or critical issues. Phrase them as direct, clear steps:
+        {chr(10).join(f"- {item}" for item in immediate) if immediate else "- No urgent actions identified."}
+
+        ### Short-Term (60–90 Days)
+        Mid-term improvements requiring some planning:
+        {chr(10).join(f"- {item}" for item in short_term) if short_term else "- No short-term actions identified."}
+
+        ### Medium-Term (3–6 Months)
+        Strategic actions for sustained cybersecurity maturity:
+        {chr(10).join(f"- {item}" for item in medium_term) if medium_term else "- No medium-term actions identified."}
+
+
+        ## Conclusion
+        Encourage the organization to continue improving its cybersecurity posture. Recommend reassessing in 6–12 months. Reinforce that even small steps can significantly reduce risk.
+
+        Return the feedback as if you were delivering it to a real SME client.
+        """
+
+        return prompt.strip()
 
     def _generate_ai_feedback(self, prompt):
         client = openai.OpenAI(api_key="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")  # Replace with secure method

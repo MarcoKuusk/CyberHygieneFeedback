@@ -20,13 +20,11 @@ import os
 
 def load_assessment_data(file_path):
     absolute_path = os.path.abspath(file_path)
-    print(f"Looking for file at: {absolute_path}")  # Debug log
     if not os.path.exists(absolute_path):
         print(f"Warning: {absolute_path} does not exist. Returning empty data.")
         return []  # Return an empty list or default value
     with open(absolute_path, 'r') as file:
         data = json.load(file)
-        print(f"Loaded data: {data}")  # Debug log
         return data
 
 def get_user_responses(questionnaire):
@@ -194,10 +192,8 @@ def main():
         print("Warning: No organization assessment data found.")
 
     # Initialize feedback generators with assessment data
-    print(f"Initializing EmployeeFeedbackGenerator with data: {employee_data}")  # Debug log
     employee_feedback_generator = EmployeeFeedbackGenerator(employee_data)
 
-    print(f"Initializing OrganizationFeedbackGenerator with data: {organization_data}")  # Debug log
     organization_feedback_generator = OrganizationFeedbackGenerator(organization_data)
 
     # Generate feedback

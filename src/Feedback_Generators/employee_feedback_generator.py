@@ -19,10 +19,11 @@ class EmployeeFeedbackGenerator:
             selected_answer = question_data.get('selectedAnswer')
             if selected_answer:
                 score = selected_answer['score']
+                question = question_data['question']
                 if score >= 3:
-                    strengths.append(question_data['feedback']['strength'])
+                    strengths.append(f"Good practice: {question}")
                 else:
-                    findings.append(question_data['feedback']['weakness'])
+                    findings.append(f"Needs improvement: {question}")
 
         return findings, strengths
 

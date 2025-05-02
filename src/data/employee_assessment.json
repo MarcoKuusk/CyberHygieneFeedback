@@ -25,14 +25,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
-        },
-        "feedback": {
-            "strength": "You use strong, unique passwords for different accounts",
-            "weakness": "You reuse passwords across multiple accounts",
-            "action": "Use a password manager to generate and store unique passwords",
-            "category": "Password Security"
+            "option": "I reuse passwords across many accounts",
+            "score": 1
         }
     },
     {
@@ -61,14 +55,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I exclusively use a password manager or secure method",
-            "score": 4
-        },
-        "feedback": {
-            "strength": "You store passwords securely using a password manager",
-            "weakness": "You store passwords insecurely (written down or in unprotected files)",
-            "action": "Adopt a password manager to securely store all credentials",
-            "category": "Password Storage"
+            "option": "I memorize most but reuse some weak passwords",
+            "score": 2
         }
     },
     {
@@ -97,14 +85,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I enable MFA for most work accounts",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "You consistently use MFA for all accounts",
-            "weakness": "You don't use MFA or only use it for some accounts",
-            "action": "Enable MFA for all accounts, especially email and financial services",
-            "category": "Multi-Factor Authentication"
+            "option": "I enable MFA for all possible accounts",
+            "score": 4
         }
     },
     {
@@ -133,14 +115,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I lock them when in public spaces",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "You consistently lock devices when unattended",
-            "weakness": "You often leave devices unlocked when unattended",
-            "action": "Set up automatic locking after inactivity and develop the habit of manual locking",
-            "category": "Device Security"
+            "option": "I always lock them, even at home",
+            "score": 4
         }
     },
     {
@@ -169,14 +145,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I have heard of phishing but wouldn't always recognize it",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "You consistently recognize and report phishing attempts",
-            "weakness": "You struggle to identify phishing emails",
-            "action": "Complete phishing awareness training and participate in simulated phishing tests",
-            "category": "Phishing Awareness"
+            "option": "I always verify sender details, URLs, and report phishing attempts",
+            "score": 4
         }
     },
     {
@@ -205,14 +175,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
-        },
-        "feedback": {
-            "strength": "You regularly participate in security training and phishing simulations",
-            "weakness": "You haven't received recent security training",
-            "action": "Request regular security awareness training from your organization",
-            "category": "Security Training"
+            "option": "Occasionally, but not regularly",
+            "score": 2
         }
     },
     {
@@ -241,14 +205,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Rarely",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "You always verify email senders before interacting with content",
-            "weakness": "You rarely verify email senders before clicking links",
-            "action": "Hover over links to preview URLs and verify sender email addresses",
-            "category": "Email Security"
+            "option": "Always, I verify senders and links before clicking",
+            "score": 4
         }
     },
     {
@@ -277,14 +235,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I report some emails but not consistently",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "You consistently report suspicious emails to IT/security",
-            "weakness": "You don't report suspicious emails",
-            "action": "Learn the proper procedure for reporting suspicious emails in your organization",
-            "category": "Incident Reporting"
+            "option": "I delete them but don't report them",
+            "score": 1
         }
     },
     {
@@ -315,12 +267,6 @@
         "selectedAnswer": {
             "option": "I update devices promptly when notified",
             "score": 3
-        },
-        "feedback": {
-            "strength": "You promptly install all security updates",
-            "weakness": "You delay or ignore important security updates",
-            "action": "Enable automatic updates for all software and operating systems",
-            "category": "Software Updates"
         }
     },
     {
@@ -351,12 +297,6 @@
         "selectedAnswer": {
             "option": "Never, I follow IT policies strictly",
             "score": 4
-        },
-        "feedback": {
-            "strength": "You strictly follow device usage policies",
-            "weakness": "You use unauthorized devices or software on work systems",
-            "action": "Only use approved devices and software on work systems",
-            "category": "Device Compliance"
         }
     },
     {
@@ -387,12 +327,6 @@
         "selectedAnswer": {
             "option": "I use them for most sensitive communications",
             "score": 3
-        },
-        "feedback": {
-            "strength": "You consistently use encrypted channels for sensitive communications",
-            "weakness": "You rarely use encrypted communication channels",
-            "action": "Use encrypted messaging apps for all work communications",
-            "category": "Secure Communication"
         }
     },
     {
@@ -421,14 +355,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sometimes, but not consistently",
-            "score": 2
-        },
-        "feedback": {
-            "strength": "You always use a VPN when working remotely",
-            "weakness": "You rarely use a VPN when working remotely",
-            "action": "Always connect to VPN when accessing company resources remotely",
-            "category": "Remote Work Security"
+            "option": "Always, I never work remotely without a VPN",
+            "score": 4
         }
     },
     {
@@ -457,14 +385,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sometimes, but I don't take security measures",
-            "score": 1
-        },
-        "feedback": {
-            "strength": "You avoid using public Wi-Fi for work",
-            "weakness": "You use public Wi-Fi without security precautions",
-            "action": "Avoid public Wi-Fi or use a VPN if absolutely necessary",
-            "category": "Network Security"
+            "option": "I avoid public Wi-Fi when possible",
+            "score": 3
         }
     },
     {
@@ -493,14 +415,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No, I share my work device",
-            "score": 0
-        },
-        "feedback": {
-            "strength": "You never allow others to use your work devices",
-            "weakness": "You allow others to use your work devices",
-            "action": "Keep work devices strictly for work use only",
-            "category": "Device Sharing"
+            "option": "Never, I strictly keep work devices private",
+            "score": 4
         }
     },
     {
@@ -529,14 +445,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I know how to report and have done it before",
-            "score": 3
-        },
-        "feedback": {
-            "strength": "You know exactly how to report security incidents",
-            "weakness": "You're unsure how to report security incidents",
-            "action": "Learn your organization's incident reporting procedures",
-            "category": "Incident Reporting"
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -567,12 +477,6 @@
         "selectedAnswer": {
             "option": "Occasionally, but not regularly",
             "score": 2
-        },
-        "feedback": {
-            "strength": "You regularly participate in security training exercises",
-            "weakness": "You haven't participated in security training exercises",
-            "action": "Participate in all security training opportunities",
-            "category": "Security Training"
         }
     },
     {
@@ -603,12 +507,6 @@
         "selectedAnswer": {
             "option": "I actively encourage others to report issues",
             "score": 4
-        },
-        "feedback": {
-            "strength": "You feel comfortable reporting security issues",
-            "weakness": "You hesitate to report security mistakes",
-            "action": "Remember that reporting issues quickly helps prevent larger problems",
-            "category": "Security Culture"
         }
     }
 ]

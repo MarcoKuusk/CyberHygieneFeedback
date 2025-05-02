@@ -477,7 +477,7 @@ const organizationQuestions = {
             category: "Data Classification & Protection",
             questions: [
                 {
-                    question: "Does your organization have a formal data classification policy?",
+                    question: "Does your organization have a formal data classification policy (e.g., Do you inventory and restrict access to sensitive data?)?",
                     answers: [
                         { option: "No classification policy", score: 0 },
                         { option: "Basic classification exists", score: 1 },
@@ -1116,7 +1116,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     option: selectedAnswer.option,
                     score: selectedAnswer.score
                 } : null,
-                feedback: question.feedback
             };
         });
     
