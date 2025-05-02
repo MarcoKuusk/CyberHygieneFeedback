@@ -1,0 +1,614 @@
+[
+    {
+        "question": "Do you use unique passwords for different accounts (work and personal)?",
+        "category": "Password & Access Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "I reuse passwords across many accounts",
+                "score": 1
+            },
+            {
+                "option": "I use different passwords but sometimes reuse old ones",
+                "score": 2
+            },
+            {
+                "option": "I use different passwords and change them occasionally",
+                "score": 3
+            },
+            {
+                "option": "I use different, strong passwords and a password manager",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "No",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "You use strong, unique passwords for different accounts",
+            "weakness": "You reuse passwords across multiple accounts",
+            "action": "Use a password manager to generate and store unique passwords",
+            "category": "Password Security"
+        }
+    },
+    {
+        "question": "Do you store your passwords securely?",
+        "category": "Password & Access Management",
+        "answers": [
+            {
+                "option": "No, I write them down or save them in unprotected files",
+                "score": 0
+            },
+            {
+                "option": "I use a simple password-protected document",
+                "score": 1
+            },
+            {
+                "option": "I memorize most but reuse some weak passwords",
+                "score": 2
+            },
+            {
+                "option": "I use a password manager but sometimes write down passwords",
+                "score": 3
+            },
+            {
+                "option": "I exclusively use a password manager or secure method",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I exclusively use a password manager or secure method",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "You store passwords securely using a password manager",
+            "weakness": "You store passwords insecurely (written down or in unprotected files)",
+            "action": "Adopt a password manager to securely store all credentials",
+            "category": "Password Storage"
+        }
+    },
+    {
+        "question": "Do you use multi-factor authentication (MFA) when available?",
+        "category": "Password & Access Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Only for highly sensitive accounts",
+                "score": 1
+            },
+            {
+                "option": "I enable MFA for some work accounts",
+                "score": 2
+            },
+            {
+                "option": "I enable MFA for most work accounts",
+                "score": 3
+            },
+            {
+                "option": "I enable MFA for all possible accounts",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I enable MFA for most work accounts",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "You consistently use MFA for all accounts",
+            "weakness": "You don't use MFA or only use it for some accounts",
+            "action": "Enable MFA for all accounts, especially email and financial services",
+            "category": "Multi-Factor Authentication"
+        }
+    },
+    {
+        "question": "Do you lock your computer and devices when leaving them unattended?",
+        "category": "Password & Access Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Sometimes, but I often forget",
+                "score": 1
+            },
+            {
+                "option": "I lock them when in public spaces",
+                "score": 2
+            },
+            {
+                "option": "I lock them in most situations",
+                "score": 3
+            },
+            {
+                "option": "I always lock them, even at home",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I lock them when in public spaces",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "You consistently lock devices when unattended",
+            "weakness": "You often leave devices unlocked when unattended",
+            "action": "Set up automatic locking after inactivity and develop the habit of manual locking",
+            "category": "Device Security"
+        }
+    },
+    {
+        "question": "Would you recognize a phishing email?",
+        "category": "Phishing Awareness & Email Security",
+        "answers": [
+            {
+                "option": "No, I am not familiar with phishing attacks",
+                "score": 0
+            },
+            {
+                "option": "I have heard of phishing but wouldn't always recognize it",
+                "score": 1
+            },
+            {
+                "option": "I recognize some phishing attempts but have fallen for them before",
+                "score": 2
+            },
+            {
+                "option": "I can recognize most phishing emails and verify links before clicking",
+                "score": 3
+            },
+            {
+                "option": "I always verify sender details, URLs, and report phishing attempts",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I have heard of phishing but wouldn't always recognize it",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "You consistently recognize and report phishing attempts",
+            "weakness": "You struggle to identify phishing emails",
+            "action": "Complete phishing awareness training and participate in simulated phishing tests",
+            "category": "Phishing Awareness"
+        }
+    },
+    {
+        "question": "Have you received cybersecurity training on phishing attacks?",
+        "category": "Phishing Awareness & Email Security",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Once, but I do not remember much",
+                "score": 1
+            },
+            {
+                "option": "Occasionally, but not regularly",
+                "score": 2
+            },
+            {
+                "option": "I receive training at least once a year",
+                "score": 3
+            },
+            {
+                "option": "I regularly receive training and participate in phishing tests",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "No",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "You regularly participate in security training and phishing simulations",
+            "weakness": "You haven't received recent security training",
+            "action": "Request regular security awareness training from your organization",
+            "category": "Security Training"
+        }
+    },
+    {
+        "question": "Do you verify sender addresses before clicking on links or opening attachments?",
+        "category": "Phishing Awareness & Email Security",
+        "answers": [
+            {
+                "option": "Never",
+                "score": 0
+            },
+            {
+                "option": "Rarely",
+                "score": 1
+            },
+            {
+                "option": "Sometimes, if an email looks suspicious",
+                "score": 2
+            },
+            {
+                "option": "Often, but I have clicked on a suspicious link before",
+                "score": 3
+            },
+            {
+                "option": "Always, I verify senders and links before clicking",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Rarely",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "You always verify email senders before interacting with content",
+            "weakness": "You rarely verify email senders before clicking links",
+            "action": "Hover over links to preview URLs and verify sender email addresses",
+            "category": "Email Security"
+        }
+    },
+    {
+        "question": "Do you report suspicious emails to IT/security?",
+        "category": "Phishing Awareness & Email Security",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "I delete them but don't report them",
+                "score": 1
+            },
+            {
+                "option": "I report some emails but not consistently",
+                "score": 2
+            },
+            {
+                "option": "I usually report them",
+                "score": 3
+            },
+            {
+                "option": "I always report phishing attempts",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I report some emails but not consistently",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "You consistently report suspicious emails to IT/security",
+            "weakness": "You don't report suspicious emails",
+            "action": "Learn the proper procedure for reporting suspicious emails in your organization",
+            "category": "Incident Reporting"
+        }
+    },
+    {
+        "question": "Do you regularly update your work device (OS, apps, security patches)?",
+        "category": "Device & Data Security",
+        "answers": [
+            {
+                "option": "No, I ignore updates",
+                "score": 0
+            },
+            {
+                "option": "Sometimes, but I delay updates",
+                "score": 1
+            },
+            {
+                "option": "I update most things within a few weeks",
+                "score": 2
+            },
+            {
+                "option": "I update devices promptly when notified",
+                "score": 3
+            },
+            {
+                "option": "I always update immediately or have auto-updates enabled",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I update devices promptly when notified",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "You promptly install all security updates",
+            "weakness": "You delay or ignore important security updates",
+            "action": "Enable automatic updates for all software and operating systems",
+            "category": "Software Updates"
+        }
+    },
+    {
+        "question": "Do you use personal USB drives or unauthorized software on work devices?",
+        "category": "Device & Data Security",
+        "answers": [
+            {
+                "option": "Yes, regularly",
+                "score": 0
+            },
+            {
+                "option": "Sometimes, if necessary",
+                "score": 1
+            },
+            {
+                "option": "Rarely, only when required",
+                "score": 2
+            },
+            {
+                "option": "Almost never, except after IT approval",
+                "score": 3
+            },
+            {
+                "option": "Never, I follow IT policies strictly",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Never, I follow IT policies strictly",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "You strictly follow device usage policies",
+            "weakness": "You use unauthorized devices or software on work systems",
+            "action": "Only use approved devices and software on work systems",
+            "category": "Device Compliance"
+        }
+    },
+    {
+        "question": "Do you use encrypted communication channels for sensitive work discussions?",
+        "category": "Device & Data Security",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Sometimes, but not always",
+                "score": 1
+            },
+            {
+                "option": "I use encrypted channels when instructed",
+                "score": 2
+            },
+            {
+                "option": "I use them for most sensitive communications",
+                "score": 3
+            },
+            {
+                "option": "I always use encrypted channels",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I use them for most sensitive communications",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "You consistently use encrypted channels for sensitive communications",
+            "weakness": "You rarely use encrypted communication channels",
+            "action": "Use encrypted messaging apps for all work communications",
+            "category": "Secure Communication"
+        }
+    },
+    {
+        "question": "Do you use a VPN or secured connection when working remotely?",
+        "category": "Remote Work & Public Network Security",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Only for highly sensitive work",
+                "score": 1
+            },
+            {
+                "option": "Sometimes, but not consistently",
+                "score": 2
+            },
+            {
+                "option": "Mostly, unless I forget",
+                "score": 3
+            },
+            {
+                "option": "Always, I never work remotely without a VPN",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Sometimes, but not consistently",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "You always use a VPN when working remotely",
+            "weakness": "You rarely use a VPN when working remotely",
+            "action": "Always connect to VPN when accessing company resources remotely",
+            "category": "Remote Work Security"
+        }
+    },
+    {
+        "question": "Do you avoid using public Wi-Fi for work tasks?",
+        "category": "Remote Work & Public Network Security",
+        "answers": [
+            {
+                "option": "No, I use public Wi-Fi without precautions",
+                "score": 0
+            },
+            {
+                "option": "Sometimes, but I don't take security measures",
+                "score": 1
+            },
+            {
+                "option": "I use public Wi-Fi but with some security precautions",
+                "score": 2
+            },
+            {
+                "option": "I avoid public Wi-Fi when possible",
+                "score": 3
+            },
+            {
+                "option": "I never use public Wi-Fi for work tasks",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Sometimes, but I don't take security measures",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "You avoid using public Wi-Fi for work",
+            "weakness": "You use public Wi-Fi without security precautions",
+            "action": "Avoid public Wi-Fi or use a VPN if absolutely necessary",
+            "category": "Network Security"
+        }
+    },
+    {
+        "question": "Do you ensure that family members or friends do not use your work devices?",
+        "category": "Remote Work & Public Network Security",
+        "answers": [
+            {
+                "option": "No, I share my work device",
+                "score": 0
+            },
+            {
+                "option": "Sometimes, but only for non-work purposes",
+                "score": 1
+            },
+            {
+                "option": "Rarely, but they have accessed it before",
+                "score": 2
+            },
+            {
+                "option": "Almost never, except in emergencies",
+                "score": 3
+            },
+            {
+                "option": "Never, I strictly keep work devices private",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "No, I share my work device",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "You never allow others to use your work devices",
+            "weakness": "You allow others to use your work devices",
+            "action": "Keep work devices strictly for work use only",
+            "category": "Device Sharing"
+        }
+    },
+    {
+        "question": "Do you know how to report a cybersecurity incident?",
+        "category": "Incident Reporting & Cybersecurity Culture",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "I think I know, but I'm not sure",
+                "score": 1
+            },
+            {
+                "option": "I know where to report but have never done it",
+                "score": 2
+            },
+            {
+                "option": "I know how to report and have done it before",
+                "score": 3
+            },
+            {
+                "option": "I actively report security incidents and encourage others to do so",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I know how to report and have done it before",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "You know exactly how to report security incidents",
+            "weakness": "You're unsure how to report security incidents",
+            "action": "Learn your organization's incident reporting procedures",
+            "category": "Incident Reporting"
+        }
+    },
+    {
+        "question": "Have you participated in simulated cybersecurity exercises (e.g., phishing tests)?",
+        "category": "Incident Reporting & Cybersecurity Culture",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Once, but not recently",
+                "score": 1
+            },
+            {
+                "option": "Occasionally, but not regularly",
+                "score": 2
+            },
+            {
+                "option": "Frequently, at least once per year",
+                "score": 3
+            },
+            {
+                "option": "Regularly, with multiple tests and feedback",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Occasionally, but not regularly",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "You regularly participate in security training exercises",
+            "weakness": "You haven't participated in security training exercises",
+            "action": "Participate in all security training opportunities",
+            "category": "Security Training"
+        }
+    },
+    {
+        "question": "Would you feel comfortable reporting a mistake or security issue to IT/security?",
+        "category": "Incident Reporting & Cybersecurity Culture",
+        "answers": [
+            {
+                "option": "No, I am afraid of consequences",
+                "score": 0
+            },
+            {
+                "option": "I am unsure if I should report mistakes",
+                "score": 1
+            },
+            {
+                "option": "I would report it, but I worry about judgment",
+                "score": 2
+            },
+            {
+                "option": "I would report it without hesitation",
+                "score": 3
+            },
+            {
+                "option": "I actively encourage others to report issues",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "I actively encourage others to report issues",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "You feel comfortable reporting security issues",
+            "weakness": "You hesitate to report security mistakes",
+            "action": "Remember that reporting issues quickly helps prevent larger problems",
+            "category": "Security Culture"
+        }
+    }
+]

@@ -1,0 +1,1226 @@
+[
+    {
+        "question": "Do you enforce multi-factor authentication (MFA) for all critical systems (e.g., email, financial software, customer databases)?",
+        "category": "Identity & Access Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Only for administrators",
+                "score": 1
+            },
+            {
+                "option": "For some employees",
+                "score": 2
+            },
+            {
+                "option": "For most employees",
+                "score": 3
+            },
+            {
+                "option": "Mandatory for all employees",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Only for administrators",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "MFA is enforced for all critical systems",
+            "weakness": "MFA is not enforced or only partially implemented",
+            "action": "Implement MFA for all systems, especially those with sensitive data",
+            "category": "Multi-Factor Authentication"
+        }
+    },
+    {
+        "question": "How often are user access privileges reviewed?",
+        "category": "Identity & Access Management",
+        "answers": [
+            {
+                "option": "Never",
+                "score": 0
+            },
+            {
+                "option": "Annually",
+                "score": 1
+            },
+            {
+                "option": "Semi-annually",
+                "score": 2
+            },
+            {
+                "option": "Quarterly",
+                "score": 3
+            },
+            {
+                "option": "Monthly or continuously monitored",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Never",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "Access privileges are reviewed frequently",
+            "weakness": "Access privileges are rarely reviewed",
+            "action": "Implement quarterly access reviews for all critical systems",
+            "category": "Access Control"
+        }
+    },
+    {
+        "question": "Are strong password policies enforced (length, complexity, expiration, reuse restrictions)?",
+        "category": "Identity & Access Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Basic enforcement, but not monitored",
+                "score": 1
+            },
+            {
+                "option": "Enforced for administrators only",
+                "score": 2
+            },
+            {
+                "option": "Enforced for most employees",
+                "score": 3
+            },
+            {
+                "option": "Strictly enforced for all employees",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Basic enforcement, but not monitored",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Strong password policies are strictly enforced",
+            "weakness": "Password policies are weak or not enforced",
+            "action": "Enforce minimum 12-character passwords with complexity requirements",
+            "category": "Password Policy"
+        }
+    },
+    {
+        "question": "Are inactive or terminated employee accounts deactivated immediately?",
+        "category": "Identity & Access Management",
+        "answers": [
+            {
+                "option": "No formal process",
+                "score": 0
+            },
+            {
+                "option": "Deactivated within a month",
+                "score": 1
+            },
+            {
+                "option": "Deactivated within a week",
+                "score": 2
+            },
+            {
+                "option": "Deactivated within 48 hours",
+                "score": 3
+            },
+            {
+                "option": "Deactivated immediately upon termination",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Deactivated within a week",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Terminated accounts are deactivated immediately",
+            "weakness": "Terminated accounts remain active too long",
+            "action": "Automate account deactivation upon termination",
+            "category": "Account Management"
+        }
+    },
+    {
+        "question": "Do employees have access only to the data and systems required for their job roles (least privilege principle)?",
+        "category": "Identity & Access Management",
+        "answers": [
+            {
+                "option": "No restrictions",
+                "score": 0
+            },
+            {
+                "option": "Limited restrictions",
+                "score": 1
+            },
+            {
+                "option": "Some departments follow least privilege",
+                "score": 2
+            },
+            {
+                "option": "Most departments follow least privilege",
+                "score": 3
+            },
+            {
+                "option": "Strict least privilege policy enforced across the organization",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Some departments follow least privilege",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Least privilege principle is strictly enforced",
+            "weakness": "Least privilege principle is not implemented",
+            "action": "Implement role-based access control (RBAC) for all systems",
+            "category": "Least Privilege"
+        }
+    },
+    {
+        "question": "Does your organization provide and require the use of password managers?",
+        "category": "Identity & Access Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Available but not required",
+                "score": 1
+            },
+            {
+                "option": "Required for administrators",
+                "score": 2
+            },
+            {
+                "option": "Required for most employees",
+                "score": 3
+            },
+            {
+                "option": "Required for all employees",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Required for most employees",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "Password managers are required for all employees",
+            "weakness": "Password managers are not provided or required",
+            "action": "Provide and mandate password manager usage organization-wide",
+            "category": "Credential Management"
+        }
+    },
+    {
+        "question": "Does your organization have a centralized system for managing software updates?",
+        "category": "Software & Patch Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Updates are done manually by users",
+                "score": 1
+            },
+            {
+                "option": "IT manages updates but not automatically",
+                "score": 2
+            },
+            {
+                "option": "Centralized automatic updates for some systems",
+                "score": 3
+            },
+            {
+                "option": "Fully automated patch management",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Fully automated patch management",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "Fully automated patch management system in place",
+            "weakness": "No centralized patch management system",
+            "action": "Implement automated patch management for all systems",
+            "category": "Patch Management"
+        }
+    },
+    {
+        "question": "Do you perform regular vulnerability scans?",
+        "category": "Software & Patch Management",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Annually",
+                "score": 1
+            },
+            {
+                "option": "Semi-annually",
+                "score": 2
+            },
+            {
+                "option": "Quarterly",
+                "score": 3
+            },
+            {
+                "option": "Monthly or continuously monitored",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "No",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "Vulnerability scans are performed frequently",
+            "weakness": "Vulnerability scans are rarely performed",
+            "action": "Perform vulnerability scans at least quarterly",
+            "category": "Vulnerability Management"
+        }
+    },
+    {
+        "question": "Are antivirus and endpoint protection solutions installed and updated?",
+        "category": "Software & Patch Management",
+        "answers": [
+            {
+                "option": "No protection in place",
+                "score": 0
+            },
+            {
+                "option": "Installed but not updated regularly",
+                "score": 1
+            },
+            {
+                "option": "Installed and updated semi-regularly",
+                "score": 2
+            },
+            {
+                "option": "Installed and updated regularly",
+                "score": 3
+            },
+            {
+                "option": "Installed, updated, and centrally monitored",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Installed but not updated regularly",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Advanced endpoint protection is implemented",
+            "weakness": "Endpoint protection is weak or non-existent",
+            "action": "Upgrade to advanced endpoint detection and response (EDR) solutions",
+            "category": "Endpoint Protection"
+        }
+    },
+    {
+        "question": "How often are operating systems, software, and applications updated?",
+        "category": "Software & Patch Management",
+        "answers": [
+            {
+                "option": "Never or rarely",
+                "score": 0
+            },
+            {
+                "option": "Only critical updates applied manually",
+                "score": 1
+            },
+            {
+                "option": "Updates applied within 3 months of release",
+                "score": 2
+            },
+            {
+                "option": "Updates applied within 1 month of release",
+                "score": 3
+            },
+            {
+                "option": "Automated patching system in place",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Updates applied within 3 months of release",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Automated patching keeps systems up-to-date",
+            "weakness": "Systems are rarely updated",
+            "action": "Implement automated patching for all systems",
+            "category": "Software Updates"
+        }
+    },
+    {
+        "question": "Does your organization have a formal data classification policy?",
+        "category": "Data Classification & Protection",
+        "answers": [
+            {
+                "option": "No classification policy",
+                "score": 0
+            },
+            {
+                "option": "Basic classification exists",
+                "score": 1
+            },
+            {
+                "option": "Classified data has access restrictions",
+                "score": 2
+            },
+            {
+                "option": "Classified data is encrypted",
+                "score": 3
+            },
+            {
+                "option": "Data is encrypted and regularly audited",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Classified data is encrypted",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "Data is classified, encrypted, and audited",
+            "weakness": "No formal data classification policy exists",
+            "action": "Implement data classification with appropriate protections",
+            "category": "Data Classification"
+        }
+    },
+    {
+        "question": "Are sensitive files and communications encrypted at rest and in transit?",
+        "category": "Data Classification & Protection",
+        "answers": [
+            {
+                "option": "No encryption",
+                "score": 0
+            },
+            {
+                "option": "Basic encryption but not enforced",
+                "score": 1
+            },
+            {
+                "option": "Encryption applied to some systems",
+                "score": 2
+            },
+            {
+                "option": "Encryption applied to most systems",
+                "score": 3
+            },
+            {
+                "option": "Full encryption for all sensitive data",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Full encryption for all sensitive data",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "All sensitive data is encrypted",
+            "weakness": "Encryption is not consistently applied",
+            "action": "Implement encryption for all sensitive data at rest and in transit",
+            "category": "Data Encryption"
+        }
+    },
+    {
+        "question": "Do you have a data backup and recovery process?",
+        "category": "Backup & Recovery",
+        "answers": [
+            {
+                "option": "No backup system in place",
+                "score": 0
+            },
+            {
+                "option": "Backups exist but are not performed regularly",
+                "score": 1
+            },
+            {
+                "option": "Backups are performed regularly but not tested for recovery",
+                "score": 2
+            },
+            {
+                "option": "Backups are performed regularly and tested occasionally",
+                "score": 3
+            },
+            {
+                "option": "Backups are performed regularly, encrypted, stored securely, and tested frequently",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Backups are performed regularly and tested occasionally",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "Comprehensive backup and recovery process exists",
+            "weakness": "Backup process is inadequate or non-existent",
+            "action": "Implement 3-2-1 backup strategy (3 copies, 2 media types, 1 offsite)",
+            "category": "Backup Strategy"
+        }
+    },
+    {
+        "question": "How frequently are data backups performed?",
+        "category": "Backup & Recovery",
+        "answers": [
+            {
+                "option": "No backup system in place",
+                "score": 0
+            },
+            {
+                "option": "Monthly",
+                "score": 1
+            },
+            {
+                "option": "Weekly",
+                "score": 2
+            },
+            {
+                "option": "Daily",
+                "score": 3
+            },
+            {
+                "option": "Continuous real-time backups",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Weekly",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Frequent or continuous backups are performed",
+            "weakness": "Backups are infrequent or non-existent",
+            "action": "Increase backup frequency based on data criticality",
+            "category": "Backup Frequency"
+        }
+    },
+    {
+        "question": "Are backups stored securely in an offsite or cloud location?",
+        "category": "Backup & Recovery",
+        "answers": [
+            {
+                "option": "No backups",
+                "score": 0
+            },
+            {
+                "option": "Backups stored on-premises only",
+                "score": 1
+            },
+            {
+                "option": "Offsite backups stored but not encrypted",
+                "score": 2
+            },
+            {
+                "option": "Offsite backups stored with encryption",
+                "score": 3
+            },
+            {
+                "option": "Encrypted offsite backups with multi-location redundancy",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Backups stored on-premises only",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Backups are encrypted and stored offsite",
+            "weakness": "Backups are not stored securely offsite",
+            "action": "Store encrypted backups in multiple secure locations",
+            "category": "Backup Storage"
+        }
+    },
+    {
+        "question": "Are backups regularly tested for successful restoration?",
+        "category": "Backup & Recovery",
+        "answers": [
+            {
+                "option": "Never",
+                "score": 0
+            },
+            {
+                "option": "Annually",
+                "score": 1
+            },
+            {
+                "option": "Semi-annually",
+                "score": 2
+            },
+            {
+                "option": "Quarterly",
+                "score": 3
+            },
+            {
+                "option": "Monthly or more frequently",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Annually",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Backups are tested frequently",
+            "weakness": "Backups are rarely or never tested",
+            "action": "Test backup restoration at least quarterly",
+            "category": "Backup Testing"
+        }
+    },
+    {
+        "question": "How often do employees receive cybersecurity awareness training?",
+        "category": "Security Awareness & Training",
+        "answers": [
+            {
+                "option": "Never",
+                "score": 0
+            },
+            {
+                "option": "Once during onboarding",
+                "score": 1
+            },
+            {
+                "option": "Annually",
+                "score": 2
+            },
+            {
+                "option": "Semi-annually",
+                "score": 3
+            },
+            {
+                "option": "Regular ongoing training with simulations",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Never",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "Regular security training is provided",
+            "weakness": "Security training is infrequent or non-existent",
+            "action": "Provide security training at least annually with ongoing reinforcement",
+            "category": "Security Training"
+        }
+    },
+    {
+        "question": "Are simulated phishing attacks conducted to test employee awareness?",
+        "category": "Security Awareness & Training",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Once per year",
+                "score": 1
+            },
+            {
+                "option": "Semi-annually",
+                "score": 2
+            },
+            {
+                "option": "Quarterly",
+                "score": 3
+            },
+            {
+                "option": "Monthly with detailed reporting",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Once per year",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Regular phishing simulations are conducted",
+            "weakness": "Phishing simulations are not conducted",
+            "action": "Implement quarterly phishing simulations with training",
+            "category": "Phishing Simulations"
+        }
+    },
+    {
+        "question": "Do employees receive role-specific cybersecurity training?",
+        "category": "Security Awareness & Training",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Basic training for all",
+                "score": 1
+            },
+            {
+                "option": "Role-specific training for some",
+                "score": 2
+            },
+            {
+                "option": "Role-specific training for most",
+                "score": 3
+            },
+            {
+                "option": "Continuous training tailored to roles",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Role-specific training for some",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Role-specific security training is provided",
+            "weakness": "Training is not tailored to employee roles",
+            "action": "Develop role-specific security training programs",
+            "category": "Role-Based Training"
+        }
+    },
+    {
+        "question": "Do employees know how to report security incidents and suspicious activity?",
+        "category": "Security Awareness & Training",
+        "answers": [
+            {
+                "option": "No awareness",
+                "score": 0
+            },
+            {
+                "option": "Some employees know",
+                "score": 1
+            },
+            {
+                "option": "A formal reporting system exists but is not well known",
+                "score": 2
+            },
+            {
+                "option": "A formal system exists and most employees are aware",
+                "score": 3
+            },
+            {
+                "option": "A well-established system exists with clear reporting procedures",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "A formal system exists and most employees are aware",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "Clear incident reporting procedures exist",
+            "weakness": "Employees don't know how to report incidents",
+            "action": "Establish and communicate clear incident reporting procedures",
+            "category": "Incident Reporting"
+        }
+    },
+    {
+        "question": "Do employees understand and actively participate in cybersecurity practices (e.g., reporting suspicious activity, following policies)?",
+        "category": "Security Awareness & Training",
+        "answers": [
+            {
+                "option": "No expectations or policies in place",
+                "score": 0
+            },
+            {
+                "option": "Basic policies exist, but no training provided",
+                "score": 1
+            },
+            {
+                "option": "Employees receive occasional awareness training",
+                "score": 2
+            },
+            {
+                "option": "Employees actively report threats and follow security procedures",
+                "score": 3
+            },
+            {
+                "option": "A strong cybersecurity culture is embedded across the organization",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "A strong cybersecurity culture is embedded across the organization",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "Strong cybersecurity culture exists",
+            "weakness": "Weak or non-existent security culture",
+            "action": "Foster security culture through leadership and continuous engagement",
+            "category": "Security Culture"
+        }
+    },
+    {
+        "question": "Does your organization enforce secure Wi-Fi policies (e.g., WPA3, no default credentials, guest network separation)?",
+        "category": "Network & Endpoint Security",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Basic security, default passwords exist",
+                "score": 1
+            },
+            {
+                "option": "Secure settings, but not reviewed",
+                "score": 2
+            },
+            {
+                "option": "Regular security reviews",
+                "score": 3
+            },
+            {
+                "option": "Enforced policies with monitoring",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Regular security reviews",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "Secure Wi-Fi policies are enforced and monitored",
+            "weakness": "Wi-Fi security is weak or non-existent",
+            "action": "Implement WPA3 encryption and separate guest networks",
+            "category": "Wi-Fi Security"
+        }
+    },
+    {
+        "question": "Are all devices protected with endpoint security solutions (e.g., EDR, antivirus, firewalls)?",
+        "category": "Network & Endpoint Security",
+        "answers": [
+            {
+                "option": "No protection",
+                "score": 0
+            },
+            {
+                "option": "Basic antivirus only",
+                "score": 1
+            },
+            {
+                "option": "Antivirus & basic firewall",
+                "score": 2
+            },
+            {
+                "option": "Advanced endpoint detection and response (EDR)",
+                "score": 3
+            },
+            {
+                "option": "Fully managed EDR with advanced threat detection tools",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Antivirus & basic firewall",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Advanced endpoint protection is implemented",
+            "weakness": "Endpoint protection is weak or non-existent",
+            "action": "Deploy advanced endpoint detection and response (EDR) solutions",
+            "category": "Endpoint Protection"
+        }
+    },
+    {
+        "question": "How is remote access to company systems secured?",
+        "category": "Network & Endpoint Security",
+        "answers": [
+            {
+                "option": "No security measures",
+                "score": 0
+            },
+            {
+                "option": "Basic VPN access",
+                "score": 1
+            },
+            {
+                "option": "VPN with MFA",
+                "score": 2
+            },
+            {
+                "option": "Strict access controls partially implemented",
+                "score": 3
+            },
+            {
+                "option": "Full Zero Trust Model with strict controls",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "VPN with MFA",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Zero Trust model is implemented for remote access",
+            "weakness": "Remote access security is weak or non-existent",
+            "action": "Implement Zero Trust Network Access (ZTNA) for remote workers",
+            "category": "Remote Access"
+        }
+    },
+    {
+        "question": "Does your organization have a documented incident response plan?",
+        "category": "Incident Response & Business Continuity",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Exists but never tested",
+                "score": 1
+            },
+            {
+                "option": "Tested once a year",
+                "score": 2
+            },
+            {
+                "option": "Tested semi-annually",
+                "score": 3
+            },
+            {
+                "option": "Regularly tested with live drills",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Exists but never tested",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Incident response plan is regularly tested",
+            "weakness": "No incident response plan exists",
+            "action": "Develop and regularly test an incident response plan",
+            "category": "Incident Response"
+        }
+    },
+    {
+        "question": "Do you have a cybersecurity expert or service provider to help during emergencies (e.g., ransomware, data breaches)?",
+        "category": "Incident Response & Business Continuity",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Evaluating options",
+                "score": 1
+            },
+            {
+                "option": "External partner but no SLA",
+                "score": 2
+            },
+            {
+                "option": "Partner on retainer",
+                "score": 3
+            },
+            {
+                "option": "24/7 emergency support",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "No",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "24/7 emergency support is available",
+            "weakness": "No emergency support is arranged",
+            "action": "Establish relationship with cybersecurity emergency response provider",
+            "category": "Emergency Support"
+        }
+    },
+    {
+        "question": "Are security incidents logged and analyzed for patterns?",
+        "category": "Incident Response & Business Continuity",
+        "answers": [
+            {
+                "option": "No logging system",
+                "score": 0
+            },
+            {
+                "option": "Some manual logging",
+                "score": 1
+            },
+            {
+                "option": "Automated logging but no analysis",
+                "score": 2
+            },
+            {
+                "option": "Automated logging with periodic analysis",
+                "score": 3
+            },
+            {
+                "option": "Advanced logging with continuous monitoring and AI-driven analysis",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Automated logging but no analysis",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Advanced logging and analysis is performed",
+            "weakness": "Incidents are not logged or analyzed",
+            "action": "Implement security information and event management (SIEM) system",
+            "category": "Logging & Analysis"
+        }
+    },
+    {
+        "question": "Is there a cyber insurance policy to mitigate financial losses from cyber incidents?",
+        "category": "Incident Response & Business Continuity",
+        "answers": [
+            {
+                "option": "No",
+                "score": 0
+            },
+            {
+                "option": "Evaluating options",
+                "score": 1
+            },
+            {
+                "option": "Basic coverage",
+                "score": 2
+            },
+            {
+                "option": "Moderate coverage with defined incident response support",
+                "score": 3
+            },
+            {
+                "option": "Comprehensive cyber insurance with crisis management",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Evaluating options",
+            "score": 1
+        },
+        "feedback": {
+            "strength": "Comprehensive cyber insurance is in place",
+            "weakness": "No cyber insurance coverage exists",
+            "action": "Obtain cyber insurance with incident response support",
+            "category": "Cyber Insurance"
+        }
+    },
+    {
+        "question": "How quickly are cybersecurity incidents required to be reported internally?",
+        "category": "Incident Response & Business Continuity",
+        "answers": [
+            {
+                "option": "No formal reporting process",
+                "score": 0
+            },
+            {
+                "option": "Within a week",
+                "score": 1
+            },
+            {
+                "option": "Within 72 hours",
+                "score": 2
+            },
+            {
+                "option": "Within 24 hours",
+                "score": 3
+            },
+            {
+                "option": "Immediately",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Within 72 hours",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "Immediate incident reporting is required",
+            "weakness": "No formal incident reporting timeline exists",
+            "action": "Require immediate reporting of security incidents",
+            "category": "Incident Reporting"
+        }
+    },
+    {
+        "question": "Does your organization follow industry-specific cybersecurity regulations or standards (e.g., ISO 27001, E-ITS, NIS2)?",
+        "category": "Compliance & Regulatory Alignment",
+        "answers": [
+            {
+                "option": "No compliance efforts",
+                "score": 0
+            },
+            {
+                "option": "Aware of requirements but not implemented",
+                "score": 1
+            },
+            {
+                "option": "Partially compliant",
+                "score": 2
+            },
+            {
+                "option": "Mostly compliant",
+                "score": 3
+            },
+            {
+                "option": "Fully compliant with audits",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Mostly compliant",
+            "score": 3
+        },
+        "feedback": {
+            "strength": "Full compliance with industry standards",
+            "weakness": "No compliance with industry standards",
+            "action": "Align with relevant cybersecurity frameworks and standards",
+            "category": "Regulatory Compliance"
+        }
+    },
+    {
+        "question": "Are third-party vendors required to meet cybersecurity standards?",
+        "category": "Compliance & Regulatory Alignment",
+        "answers": [
+            {
+                "option": "No security requirements for vendors",
+                "score": 0
+            },
+            {
+                "option": "Basic security requirements but not enforced",
+                "score": 1
+            },
+            {
+                "option": "Some vendors required to meet security standards",
+                "score": 2
+            },
+            {
+                "option": "Most vendors required to meet security standards",
+                "score": 3
+            },
+            {
+                "option": "All vendors required to meet strict security standards with audits",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "All vendors required to meet strict security standards with audits",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "Vendors must meet strict security standards",
+            "weakness": "No security requirements for vendors",
+            "action": "Implement vendor security assessment program",
+            "category": "Vendor Security"
+        }
+    },
+    {
+        "question": "Are devices (laptops, servers, etc.) physically secured against unauthorized access?",
+        "category": "Physical Security",
+        "answers": [
+            {
+                "option": "No physical security measures",
+                "score": 0
+            },
+            {
+                "option": "Basic measures (e.g., office locks)",
+                "score": 1
+            },
+            {
+                "option": "Sensitive devices secured",
+                "score": 2
+            },
+            {
+                "option": "Most devices secured",
+                "score": 3
+            },
+            {
+                "option": "All devices secured and monitored",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Sensitive devices secured",
+            "score": 2
+        },
+        "feedback": {
+            "strength": "All devices are physically secured",
+            "weakness": "Physical security is weak or non-existent",
+            "action": "Implement physical security controls for all devices",
+            "category": "Physical Security"
+        }
+    },
+    {
+        "question": "Do you assess vendors/partners for cybersecurity practices before sharing data or system access?",
+        "category": "Third-Party Risk",
+        "answers": [
+            {
+                "option": "No vendor assessments",
+                "score": 0
+            },
+            {
+                "option": "Informal verbal assurances",
+                "score": 1
+            },
+            {
+                "option": "Basic checklist for critical vendors",
+                "score": 2
+            },
+            {
+                "option": "Formal assessments for all vendors",
+                "score": 3
+            },
+            {
+                "option": "Continuous monitoring of vendor security",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "No vendor assessments",
+            "score": 0
+        },
+        "feedback": {
+            "strength": "Vendor security is continuously monitored",
+            "weakness": "No vendor security assessments are performed",
+            "action": "Implement formal vendor security assessment process",
+            "category": "Vendor Risk"
+        }
+    },
+    {
+        "question": "Are employees required to use VPNs or secure networks when accessing company data remotely?",
+        "category": "Remote Work Security",
+        "answers": [
+            {
+                "option": "No requirements",
+                "score": 0
+            },
+            {
+                "option": "Recommended but not enforced",
+                "score": 1
+            },
+            {
+                "option": "Enforced for administrators",
+                "score": 2
+            },
+            {
+                "option": "Enforced for most employees",
+                "score": 3
+            },
+            {
+                "option": "Mandatory for all remote access",
+                "score": 4
+            }
+        ],
+        "selectedAnswer": {
+            "option": "Mandatory for all remote access",
+            "score": 4
+        },
+        "feedback": {
+            "strength": "VPN is mandatory for all remote access",
+            "weakness": "No remote access security requirements exist",
+            "action": "Require VPN for all remote access to company systems",
+            "category": "Remote Work Security"
+        }
+    }
+]

@@ -443,10 +443,10 @@ const organizationQuestions = {
                     question: "Are antivirus and endpoint protection solutions installed and updated?",
                     answers: [
                         { option: "No protection in place", score: 0 },
-                        { option: "Basic antivirus only", score: 1 },
-                        { option: "Antivirus & basic firewall", score: 2 },
-                        { option: "Advanced endpoint detection and response (EDR)", score: 3 },
-                        { option: "Fully managed EDR with advanced threat detection tools", score: 4 }
+                        { option: "Installed but not updated regularly", score: 1 },
+                        { option: "Installed and updated semi-regularly", score: 2 },
+                        { option: "Installed and updated regularly", score: 3 },
+                        { option: "Installed, updated, and centrally monitored", score: 4 }
                     ],
                     feedback: {
                         strength: "Advanced endpoint protection is implemented",
@@ -718,7 +718,7 @@ const organizationQuestions = {
             ]
         },
         {
-            category: "Incient Response & Business Continuity",
+            category: "Incident Response & Business Continuity",
             questions: [
                 {
                     question: "Does your organization have a documented incident response plan?",
@@ -1070,6 +1070,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById(config.nextBtnId).textContent = 'Submit';
             }
         } else {
+            const assessmentData = saveAssessmentData(type);
+
             generateFeedback(type);
             showSection(config.feedbackSection);
         }
@@ -1092,6 +1094,79 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.currentQuestion === config.questions.length - 1 ? 'Submit' : 'Next';
         }
     }
+
+    function saveAssessmentData(type) {
+        const data = state[type];
+        const questions = questionData[type].questions;
+    
+        const assessmentData = questions.map((question, index) => {
+            const selectedAnswerIndex = data.answers[index];
+            const selectedAnswer = selectedAnswerIndex !== undefined 
+                ? question.answers.find(answer => answer.score === selectedAnswerIndex)
+                : null;
+    
+            return {
+                question: question.question,
+                category: question.category,
+                answers: question.answers.map(answer => ({
+                    option: answer.option,
+                    score: answer.score
+                })),
+                selectedAnswer: selectedAnswer ? {
+                    option: selectedAnswer.option,
+                    score: selectedAnswer.score
+                } : null,
+                feedback: question.feedback
+            };
+        });
+    
+        const fileName = type === 'employee' ? 'employee_assessment.json' : 'organization_assessment.json';
+        fetch(`http://127.0.0.1:5000/saveAssessmentData/${fileName}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(assessmentData)
+        });
+    
+        return assessmentData;
+    }
+
+    function downloadReport(reportType) {
+        // Trigger feedback generation
+        fetch(`http://127.0.0.1:5000/generateFeedback/${reportType}`, {
+            method: 'POST'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data.message);
+    
+            // Download the report
+            const downloadUrl = `http://127.0.0.1:5000/downloadReport/${reportType}`;
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = `${reportType}_feedback_report.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to generate or download the report. Please try again.');
+        });
+    }
+    
+    // Attach event listeners to the buttons
+    document.querySelector('.employee-download-btn').addEventListener('click', () => {
+        downloadReport('employee');
+    });
+    
+    document.querySelector('.organization-download-btn').addEventListener('click', () => {
+        downloadReport('organization');
+    });
 
     function generateFeedback(type) {
         const data = state[type];

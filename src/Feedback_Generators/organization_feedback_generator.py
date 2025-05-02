@@ -2,62 +2,73 @@ import openai
 from utils.scoring import calculate_organization_score
 
 class OrganizationFeedbackGenerator:
-    def __init__(self, organization_responses, organization_name="the organization"):
-        self.organization_responses = organization_responses
-        self.organization_name = organization_name
+    def __init__(self, assessment_data):
+        self.assessment_data = assessment_data
 
     def generate_feedback(self):
-        total_score = calculate_organization_score(self.organization_responses)
         grouped_findings, strengths = self._summarize_findings()
+        total_score = self._calculate_total_score()
         prompt = self._build_feedback_prompt(grouped_findings, strengths, total_score)
         return self._generate_ai_feedback(prompt)
 
     def _summarize_findings(self):
-        grouped_findings = {
-            "Access Control": [],
-            "Awareness": [],
-            "Backup and Recovery": [],
-            "Other": []
-        }
+        grouped_findings = {}
         strengths = []
 
-        for question, response in self.organization_responses.items():
-            level = [
-                "Not implemented",
-                "Weak implementation",
-                "Partially implemented",
-                "Mostly implemented",
-                "Fully implemented"
-            ][response]
-
-            statement = f"{question}: {level}"
-
-            if "MFA" in question or "password" in question:
-                domain = "Access Control"
-            elif "training" in question or "awareness" in question:
-                domain = "Awareness"
-            elif "backup" in question or "recovery" in question:
-                domain = "Backup and Recovery"
-            else:
-                domain = "Other"
-
-            grouped_findings[domain].append(statement)
-
-            if response >= 3:
-                strengths.append(f"{question} ({level})")
+        for question_data in self.assessment_data:
+            category = question_data['category']
+            selected_answer = question_data.get('selectedAnswer')
+            if selected_answer:
+                score = selected_answer['score']
+                if score >= 3:
+                    strengths.append(question_data['feedback']['strength'])
+                else:
+                    if category not in grouped_findings:
+                        grouped_findings[category] = []
+                    grouped_findings[category].append(question_data['feedback']['weakness'])
 
         return grouped_findings, strengths
 
+    def _calculate_total_score(self):
+        total_score = 0
+        max_score = 0
+
+        for question_data in self.assessment_data:
+            selected_answer = question_data.get('selectedAnswer')
+            if selected_answer:
+                total_score += selected_answer['score']
+            max_score += len(question_data['answers']) - 1
+
+        return (total_score / max_score) * 100 if max_score > 0 else 0
+    
     def _extract_risks(self, findings):
         risks = []
-        if findings["Access Control"]:
-            risks.append("- Unauthorized access and credential theft due to weak access controls.")
-        if findings["Awareness"]:
-            risks.append("- Higher likelihood of phishing attacks due to low cybersecurity awareness.")
-        if findings["Backup and Recovery"]:
-            risks.append("- Risk of permanent data loss from insufficient backups and recovery plans.")
-        if findings["Other"]:
-            risks.append("- Exposure to various cyber threats due to general security weaknesses.")
+        # Identity & Access Management
+        if findings.get("Multi-Factor Authentication"):
+            risks.append("- Account takeover risks due to insufficient MFA enforcement")
+        if findings.get("Access Control"):
+            risks.append("- Privilege escalation risks from infrequent access reviews")
+        if findings.get("Password Policy"):
+            risks.append("- Credential compromise vulnerabilities from weak passwords")
+        
+        # Software & Patch Management
+        if findings.get("Patch Management"):
+            risks.append("- Exploitable vulnerabilities due to delayed patching")
+        if findings.get("Vulnerability Management"):
+            risks.append("- Unidentified security gaps from infrequent scanning")
+        
+        # Data Protection
+        if findings.get("Data Encryption"):
+            risks.append("- Data breach risks from unencrypted sensitive information")
+        
+        # Backup & Recovery
+        if findings.get("Backup Strategy") or findings.get("Backup Testing"):
+            risks.append("- Business continuity risks from inadequate backup processes")
+        
+        # Security Awareness
+        if findings.get("Security Training") or findings.get("Phishing Simulations"):
+            risks.append("- Social engineering risks from untrained staff")
+        
         return risks if risks else ["- No major risks identified at this time. Maintain current efforts."]
 
     def _build_action_plan(self, findings):
@@ -65,16 +76,32 @@ class OrganizationFeedbackGenerator:
         short_term = []
         medium_term = []
 
-        if findings["Access Control"]:
-            immediate.append("Implement multi-factor authentication (MFA) on all critical accounts.")
-            immediate.append("Enforce strong password policies (complexity, rotation, minimum length).")
-        if findings["Awareness"]:
-            immediate.append("Launch mandatory cybersecurity awareness training for all employees.")
-        if findings["Backup and Recovery"]:
-            short_term.append("Establish regular automated backups and test data recovery processes.")
-        if findings["Other"]:
-            medium_term.append("Conduct a comprehensive cybersecurity assessment and patch known vulnerabilities.")
-
+        # Critical IAM fixes
+        if findings.get("Multi-Factor Authentication"):
+            immediate.append("Implement MFA enforcement for all critical systems")
+        if findings.get("Password Policy"):
+            immediate.append("Enforce strong password policies with 12+ character requirements")
+        
+        # Access management
+        if findings.get("Access Control"):
+            short_term.append("Implement quarterly access reviews for privileged accounts")
+        
+        # Patching urgency
+        if findings.get("Patch Management"):
+            medium_term.append("Establish automated patch management system")
+        
+        # Data protection
+        if findings.get("Data Encryption"):
+            short_term.append("Implement full-disk encryption for sensitive data stores")
+        
+        # Backup improvements
+        if findings.get("Backup Strategy"):
+            immediate.append("Implement 3-2-1 backup strategy with offsite storage")
+        
+        # Training needs
+        if findings.get("Security Training"):
+            medium_term.append("Launch quarterly security awareness training program")
+        
         return immediate, short_term, medium_term
 
     def _determine_urgency_tone(self, total_score):
@@ -108,7 +135,7 @@ class OrganizationFeedbackGenerator:
 
         prompt = (
             f"You are a cybersecurity advisor for small and medium-sized enterprises (SMEs).\n"
-            f"Generate friendly, professional, and accessible feedback for {self.organization_name}.\n"
+            f"Generate friendly, professional, and accessible feedback for the organization\n"
             f"Use clear headers, bullet points, and concise explanations.\n\n"
             f"Example style:\n"
             f"**What You're Doing Well:** You have strong password policies. Regular staff training is a key strength.\n"

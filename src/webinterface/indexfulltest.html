@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Hygiene Feedback Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0a192f',
+                        secondary: '#172a45',
+                        accent: '#64ffda',
+                        text: '#ccd6f6',
+                        textlight: '#8892b0'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .cyber-border {
+            border: 1px solid #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+        .cyber-glow:hover {
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+        }
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #64ffda 0%, #0a192f 100%);
+        }
+        .gauge {
+            width: 100%;
+            height: 20px;
+            background: #172a45;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .gauge-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #64ffda, #1e90ff);
+            transition: width 0.5s ease;
+        }
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .card-button {
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+        .perspective-item {
+            display: flex;
+            align-items: flex-start;
+            min-height: 60px;
+        }
+        .error-message {
+            color: #f87171;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        .answer-summary-item {
+            border-left: 3px solid #64ffda;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .answer-option {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            border-radius: 0.25rem;
+        }
+        .selected-answer {
+            background-color: rgba(100, 255, 218, 0.2);
+            border: 1px solid #64ffda;
+        }
+    </style>
+</head>
+<body class="bg-primary text-text min-h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <nav class="bg-secondary py-4 px-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-shield-alt text-accent text-2xl"></i>
+                <span class="text-xl font-bold">CyberHygiene</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#employee" class="nav-link">Employee</a>
+                <a href="#organization" class="nav-link">Organization</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <button class="md:hidden text-accent">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <!-- Homepage (Placeholder) -->
+        <section id="home" class="text-center max-w-4xl mx-auto">
+            <!-- Content will be added later -->
+        </section>
+
+        <!-- Employee Assessment -->
+        <section id="employeeAssessment" class="hidden max-w-3xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-accent">Employee Cyber Hygiene Assessment</h2>
+                <span id="employeeProgressText" class="text-textlight">Question 1 of 15</span>
+            </div>
+            
+            <div class="mb-4 bg-secondary rounded-full h-2">
+                <div id="employeeProgressBar" class="progress-bar rounded-full" style="width: 6.66%"></div>
+            </div>
+            
+            <div id="employeeQuestionContainer" class="bg-secondary p-8 rounded-lg cyber-border mb-6">
+                <!-- Questions will be inserted here dynamically -->
+            </div>
+            
+            <div class="flex justify-between">
+                <button id="employeeBack" class="bg-secondary text-accent px-6 py-2 rounded-md border border-accent hover:bg-accent hover:text-primary transition disabled:opacity-50" disabled>
+                    <i class="fas fa-arrow-left mr-2"></i> Back
+                </button>
+                <button id="employeeNext" class="bg-accent text-primary px-6 py-2 rounded-md hover:bg-opacity-90 transition">
+                    Next <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Organization Assessment -->
+        <section id="organizationAssessment" class="hidden max-w-3xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-accent">Organization Cyber Hygiene Assessment</h2>
+                <span id="orgProgressText" class="text-textlight">Question 1 of 20</span>
+            </div>
+            
+            <div class="mb-4 bg-secondary rounded-full h-2">
+                <div id="orgProgressBar" class="progress-bar rounded-full" style="width: 5%"></div>
+            </div>
+            
+            <div id="orgQuestionContainer" class="bg-secondary p-8 rounded-lg cyber-border mb-6">
+                <!-- Questions will be inserted here dynamically -->
+            </div>
+            
+            <div class="flex justify-between">
+                <button id="orgBack" class="bg-secondary text-accent px-6 py-2 rounded-md border border-accent hover:bg-accent hover:text-primary transition disabled:opacity-50" disabled>
+                    <i class="fas fa-arrow-left mr-2"></i> Back
+                </button>
+                <button id="orgNext" class="bg-accent text-primary px-6 py-2 rounded-md hover:bg-opacity-90 transition">
+                    Next <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Employee Feedback -->
+        <section id="employeeFeedback" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">Employee Cyber Hygiene Feedback</h2>
+                <p class="text-xl text-textlight">Based on your assessment responses</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-check-circle mr-3"></i> Strengths
+                    </h3>
+                    <ul id="employeeStrengths" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
+                    </ul>
+                </div>
+                
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
+                    </h3>
+                    <ul id="employeeWeaknesses" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-clipboard-list mr-3"></i> Action Plan
+                </h3>
+                <div id="employeeActionPlan" class="grid md:grid-cols-3 gap-4">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
+                <div id="employeeScoreBreakdown" class="space-y-4">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-medium">Overall Score</span>
+                        <span id="employeeOverallScore" class="text-2xl font-bold text-accent">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Answer Summary -->
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-list-check mr-3"></i> Detailed Answers
+                </h3>
+                <div id="employeeAnswerSummary" class="space-y-6">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                    <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                </button>
+            </div>
+        </section>
+
+        <!-- Organization Feedback -->
+        <section id="organizationFeedback" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">Organizational Cyber Hygiene Feedback</h2>
+                <p class="text-xl text-textlight">Based on your assessment responses</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-check-circle mr-3"></i> Strengths
+                    </h3>
+                    <ul id="orgStrengths" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
+                    </ul>
+                </div>
+                
+                <div class="bg-secondary p-6 rounded-lg cyber-border">
+                    <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i> Areas to Improve
+                    </h3>
+                    <ul id="orgWeaknesses" class="space-y-3 text-textlight">
+                        <!-- Dynamic content will be inserted here -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-10">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-clipboard-list mr-3"></i> Action Plan
+                </h3>
+                <div id="orgActionPlan" class="grid md:grid-cols-3 gap-4">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Score Breakdown</h3>
+                <div id="orgScoreBreakdown" class="space-y-4">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+                <div class="mt-6 pt-4 border-t border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-medium">Overall Score</span>
+                        <span id="orgOverallScore" class="text-2xl font-bold text-accent">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent">Risk Insights</h3>
+                <div id="orgRiskInsights" class="grid md:grid-cols-2 gap-4">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- Detailed Answer Summary -->
+            <div class="bg-secondary p-6 rounded-lg cyber-border mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-accent flex items-center">
+                    <i class="fas fa-list-check mr-3"></i> Detailed Answers
+                </h3>
+                <div id="orgAnswerSummary" class="space-y-6">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button class="bg-accent text-primary px-8 py-3 rounded-md font-medium hover:bg-opacity-90 transition flex items-center mx-auto">
+                    <i class="fas fa-file-pdf mr-2"></i> Download PDF Report
+                </button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="hidden max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-accent mb-2">About Our Cyber Hygiene Tool</h2>
+                <p class="text-xl text-textlight">Content coming soon</p>
+            </div>
+            
+            <div class="bg-secondary p-8 rounded-lg cyber-border text-center">
+                <p class="text-textlight">
+                    This section will contain detailed information about the tool, its purpose, and how it helps organizations.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary py-8 px-6">
+        <div class="container mx-auto">
+            <div class="text-center">
+                <div class="flex items-center space-x-2 mb-4 justify-center">
+                    <i class="fas fa-shield-alt text-accent text-2xl"></i>
+                    <span class="text-xl font-bold">CyberHygiene</span>
+                </div>
+                <p class="text-textlight text-sm max-w-2xl mx-auto">
+                    Empowering organizations to strengthen their cybersecurity through comprehensive assessment and actionable feedback.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Question data (same as before)
+        const employeeQuestions = {
+            categories: [
+                {
+                    category: "Password & Access Management",
+                    questions: [
+                        {
+                            question: "Do you use unique passwords for different accounts (work and personal)?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "I reuse passwords across many accounts", score: 1 },
+                                { option: "I use different passwords but sometimes reuse old ones", score: 2 },
+                                { option: "I use different passwords and change them occasionally", score: 3 },
+                                { option: "I use different, strong passwords and a password manager", score: 4 }
+                            ],
+                            feedback: {
+                                strength: "You use strong, unique passwords for different accounts",
+                                weakness: "You reuse passwords across multiple accounts",
+                                action: "Use a password manager to generate and store unique passwords",
+                                category: "Password Security"
+                            }
+                        },
+                        // ... (rest of employee questions remain the same)
+                    ]
+                },
+                // ... (rest of employee categories remain the same)
+            ]
+        };
+
+        const organizationQuestions = {
+            categories: [
+                {
+                    category: "Identity & Access Management",
+                    questions: [
+                        {
+                            question: "Do you enforce multi-factor authentication (MFA) for all critical systems (e.g., email, financial software, customer databases)?",
+                            answers: [
+                                { option: "No", score: 0 },
+                                { option: "Only for administrators", score: 1 },
+                                { option: "For some employees", score: 2 },
+                                { option: "For most employees", score: 3 },
+                                { option: "Mandatory for all employees", score: 4 }
+                            ],
+                            feedback: {
+                                strength: "MFA is enforced for all critical systems",
+                                weakness: "MFA is not enforced or only partially implemented",
+                                action: "Implement MFA for all systems, especially those with sensitive data",
+                                category: "Multi-Factor Authentication"
+                            }
+                        },
+                        // ... (rest of organization questions remain the same)
+                    ]
+                },
+                // ... (rest of organization categories remain the same)
+            ]
+        };
+
+        // Flatten questions into single arrays
+        const flattenedEmployeeQuestions = employeeQuestions.categories.flatMap(category => 
+            category.questions.map(q => ({ ...q, category: category.category }))
+        );
+        
+        const flattenedOrgQuestions = organizationQuestions.categories.flatMap(category => 
+            category.questions.map(q => ({ ...q, category: category.category }))
+        );
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show home by default
+            document.getElementById('home').classList.remove('hidden');
+
+            // Button event listeners
+            document.getElementById('startEmployee').addEventListener('click', () => {
+                startAssessment('employee');
+            });
+
+            document.getElementById('startOrganization').addEventListener('click', () => {
+                startAssessment('organization');
+            });
+
+            // Navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href').substring(1);
+                    if (target === 'employee') {
+                        startAssessment('employee');
+                    } else if (target === 'organization') {
+                        startAssessment('organization');
+                    } else {
+                        showSection(target || 'home');
+                    }
+                });
+            });
+
+            // Variables to track assessments
+            const state = {
+                employee: { currentQuestion: 0, answers: [] },
+                organization: { currentQuestion: 0, answers: [] }
+            };
+
+            const questionData = {
+                employee: {
+                    questions: flattenedEmployeeQuestions,
+                    containerId: 'employeeQuestionContainer',
+                    backBtnId: 'employeeBack',
+                    nextBtnId: 'employeeNext',
+                    progressBarId: 'employeeProgressBar',
+                    progressTextId: 'employeeProgressText',
+                    feedbackSection: 'employeeFeedback',
+                    answerSummaryId: 'employeeAnswerSummary'
+                },
+                organization: {
+                    questions: flattenedOrgQuestions,
+                    containerId: 'orgQuestionContainer',
+                    backBtnId: 'orgBack',
+                    nextBtnId: 'orgNext',
+                    progressBarId: 'orgProgressBar',
+                    progressTextId: 'orgProgressText',
+                    feedbackSection: 'organizationFeedback',
+                    answerSummaryId: 'orgAnswerSummary'
+                }
+            };
+
+            function startAssessment(type) {
+                resetAssessment(type);
+                showSection(`${type}Assessment`);
+            }
+
+            function resetAssessment(type) {
+                const data = state[type];
+                const config = questionData[type];
+
+                data.currentQuestion = 0;
+                data.answers.length = 0;
+
+                renderQuestion(type, 0);
+                updateProgress(type);
+
+                document.getElementById(config.backBtnId).disabled = true;
+                document.getElementById(config.nextBtnId).textContent = 'Next';
+            }
+
+            function renderQuestion(type, index) {
+                const config = questionData[type];
+                const container = document.getElementById(config.containerId);
+                const question = config.questions[index];
+
+                let html = `
+                    <div class="question" data-index="${index}">
+                        <p class="text-xl mb-6">${question.question}</p>
+                        <div class="space-y-4">
+                `;
+
+                question.answers.forEach((answer, i) => {
+                    html += `
+                        <div class="flex items-center">
+                            <input type="radio" id="${type}Option${index}_${i}" name="${type}Answer${index}" 
+                                value="${answer.score}" class="h-4 w-4 text-accent focus:ring-accent border-gray-300">
+                            <label for="${type}Option${index}_${i}" class="ml-3 block text-textlight">${answer.option}</label>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                        <div class="error-message">Please select an answer to continue</div>
+                    </div>
+                `;
+
+                container.innerHTML = html;
+
+                const savedAnswer = state[type].answers[index];
+                if (savedAnswer !== undefined) {
+                    document.querySelector(`input[name="${type}Answer${index}"][value="${savedAnswer}"]`).checked = true;
+                }
+            }
+
+            function validateQuestion(type, index) {
+                const selected = document.querySelector(`input[name="${type}Answer${index}"]:checked`);
+                const error = document.querySelector(`#${questionData[type].containerId} .error-message`);
+
+                if (!selected) {
+                    if (error) error.style.display = 'block';
+                    return false;
+                }
+
+                if (error) error.style.display = 'none';
+                state[type].answers[index] = parseInt(selected.value);
+                return true;
+            }
+
+            function updateProgress(type) {
+                const data = state[type];
+                const config = questionData[type];
+                const progress = ((data.currentQuestion + 1) / config.questions.length) * 100;
+
+                document.getElementById(config.progressBarId).style.width = `${progress}%`;
+                document.getElementById(config.progressTextId).textContent = 
+                    `Question ${data.currentQuestion + 1} of ${config.questions.length}`;
+            }
+
+            function handleNext(type) {
+                const data = state[type];
+                const config = questionData[type];
+
+                if (!validateQuestion(type, data.currentQuestion)) return;
+
+                if (data.currentQuestion < config.questions.length - 1) {
+                    data.currentQuestion++;
+                    renderQuestion(type, data.currentQuestion);
+                    updateProgress(type);
+                    document.getElementById(config.backBtnId).disabled = false;
+
+                    if (data.currentQuestion === config.questions.length - 1) {
+                        document.getElementById(config.nextBtnId).textContent = 'Submit';
+                    }
+                } else {
+                    generateFeedback(type);
+                    showSection(config.feedbackSection);
+                }
+            }
+
+            function handleBack(type) {
+                const data = state[type];
+                const config = questionData[type];
+
+                if (data.currentQuestion > 0) {
+                    data.currentQuestion--;
+                    renderQuestion(type, data.currentQuestion);
+                    updateProgress(type);
+
+                    if (data.currentQuestion === 0) {
+                        document.getElementById(config.backBtnId).disabled = true;
+                    }
+
+                    document.getElementById(config.nextBtnId).textContent = 
+                        data.currentQuestion === config.questions.length - 1 ? 'Submit' : 'Next';
+                }
+            }
+
+            function generateAnswerSummary(type) {
+                const data = state[type];
+                const config = questionData[type];
+                const questions = config.questions;
+                const answers = data.answers;
+                
+                const summaryContainer = document.getElementById(config.answerSummaryId);
+                summaryContainer.innerHTML = '';
+                
+                questions.forEach((question, index) => {
+                    const answerValue = answers[index] || 0;
+                    const selectedAnswer = question.answers.find(a => a.score === answerValue);
+                    
+                    const summaryItem = document.createElement('div');
+                    summaryItem.className = 'answer-summary-item';
+                    
+                    let answersHtml = '';
+                    question.answers.forEach(answer => {
+                        const isSelected = answer.score === answerValue;
+                        answersHtml += `
+                            <div class="answer-option ${isSelected ? 'selected-answer' : ''}">
+                                <div class="flex items-center">
+                                    <input type="radio" ${isSelected ? 'checked' : ''} disabled class="h-4 w-4 text-accent focus:ring-accent border-gray-300">
+                                    <span class="ml-2">${answer.option}</span>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    
+                    summaryItem.innerHTML = `
+                        <h4 class="font-medium mb-2">${question.question}</h4>
+                        <div class="space-y-2">
+                            ${answersHtml}
+                        </div>
+                        <div class="mt-2 text-sm text-textlight">
+                            <span class="font-medium">Category:</span> ${question.category}
+                        </div>
+                    `;
+                    
+                    summaryContainer.appendChild(summaryItem);
+                });
+            }
+
+            function generateFeedback(type) {
+                const data = state[type];
+                const config = questionData[type];
+                const questions = config.questions;
+                const answers = data.answers;
+                
+                // First generate the answer summary
+                generateAnswerSummary(type);
+                
+                // Calculate category scores
+                const categoryScores = {};
+                const categoryCounts = {};
+                
+                questions.forEach((question, index) => {
+                    const category = question.category;
+                    const score = answers[index] || 0;
+                    const maxScore = question.answers.length - 1;
+                    const normalizedScore = (score / maxScore) * 100;
+                    
+                    if (!categoryScores[category]) {
+                        categoryScores[category] = 0;
+                        categoryCounts[category] = 0;
+                    }
+                    
+                    categoryScores[category] += normalizedScore;
+                    categoryCounts[category]++;
+                });
+                
+                // Calculate average scores per category
+                const categoryAverages = {};
+                for (const category in categoryScores) {
+                    categoryAverages[category] = Math.round(categoryScores[category] / categoryCounts[category]);
+                }
+                
+                // Calculate overall score
+                const totalScore = answers.reduce((sum, score, index) => {
+                    const maxScore = questions[index].answers.length - 1;
+                    return sum + (score / maxScore) * 100;
+                }, 0);
+                
+                const overallScore = Math.round(totalScore / questions.length);
+                
+                // Identify strengths and weaknesses
+                const strengths = [];
+                const weaknesses = [];
+                const actionItems = [];
+                
+                questions.forEach((question, index) => {
+                    const score = answers[index] || 0;
+                    const maxScore = question.answers.length - 1;
+                    const threshold = maxScore * 0.75; // 75% of max score is considered strong
+                    
+                    if (score >= threshold) {
+                        strengths.push(question.feedback.strength);
+                    } else {
+                        weaknesses.push(question.feedback.weakness);
+                        actionItems.push(question.feedback.action);
+                    }
+                });
+                
+                // Display feedback
+                if (type === 'employee') {
+                    // Display strengths
+                    const strengthsList = document.getElementById('employeeStrengths');
+                    strengthsList.innerHTML = '';
+                    strengths.slice(0, 3).forEach(strength => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-start';
+                        li.innerHTML = `
+                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                            <span>${strength}</span>
+                        `;
+                        strengthsList.appendChild(li);
+                    });
+                    
+                    // Display weaknesses
+                    const weaknessesList = document.getElementById('employeeWeaknesses');
+                    weaknessesList.innerHTML = '';
+                    weaknesses.slice(0, 3).forEach(weakness => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-start';
+                        li.innerHTML = `
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>${weakness}</span>
+                        `;
+                        weaknessesList.appendChild(li);
+                    });
+                    
+                    // Display action plan
+                    const actionPlan = document.getElementById('employeeActionPlan');
+                    actionPlan.innerHTML = '';
+                    actionItems.slice(0, 3).forEach(action => {
+                        const div = document.createElement('div');
+                        div.className = 'bg-primary bg-opacity-50 p-4 rounded';
+                        div.innerHTML = `
+                            <h4 class="font-medium mb-2 text-accent">Action Item</h4>
+                            <p class="text-sm text-textlight">${action}</p>
+                        `;
+                        actionPlan.appendChild(div);
+                    });
+                    
+                    // Display score breakdown
+                    const scoreBreakdown = document.getElementById('employeeScoreBreakdown');
+                    scoreBreakdown.innerHTML = '';
+                    for (const category in categoryAverages) {
+                        const score = categoryAverages[category];
+                        
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                            <div class="flex justify-between mb-1">
+                                <span class="text-textlight">${category}</span>
+                                <span class="font-medium">${score}%</span>
+                            </div>
+                            <div class="gauge">
+                                <div class="gauge-fill" style="width: ${score}%"></div>
+                            </div>
+                        `;
+                        scoreBreakdown.appendChild(div);
+                    }
+                    
+                    // Display overall score
+                    document.getElementById('employeeOverallScore').textContent = `${overallScore}%`;
+                    
+                } else { // Organization feedback
+                    // Display strengths
+                    const strengthsList = document.getElementById('orgStrengths');
+                    strengthsList.innerHTML = '';
+                    strengths.slice(0, 3).forEach(strength => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-start';
+                        li.innerHTML = `
+                            <i class="fas fa-check text-accent mr-2 mt-1"></i>
+                            <span>${strength}</span>
+                        `;
+                        strengthsList.appendChild(li);
+                    });
+                    
+                    // Display weaknesses
+                    const weaknessesList = document.getElementById('orgWeaknesses');
+                    weaknessesList.innerHTML = '';
+                    weaknesses.slice(0, 3).forEach(weakness => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-start';
+                        li.innerHTML = `
+                            <i class="fas fa-times text-red-400 mr-2 mt-1"></i>
+                            <span>${weakness}</span>
+                        `;
+                        weaknessesList.appendChild(li);
+                    });
+                    
+                    // Display action plan
+                    const actionPlan = document.getElementById('orgActionPlan');
+                    actionPlan.innerHTML = '';
+                    actionItems.slice(0, 3).forEach(action => {
+                        const div = document.createElement('div');
+                        div.className = 'bg-primary bg-opacity-50 p-4 rounded';
+                        div.innerHTML = `
+                            <h4 class="font-medium mb-2 text-accent">Action Item</h4>
+                            <p class="text-sm text-textlight">${action}</p>
+                        `;
+                        actionPlan.appendChild(div);
+                    });
+                    
+                    // Display score breakdown
+                    const scoreBreakdown = document.getElementById('orgScoreBreakdown');
+                    scoreBreakdown.innerHTML = '';
+                    for (const category in categoryAverages) {
+                        const score = categoryAverages[category];
+                        
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                            <div class="flex justify-between mb-1">
+                                <span class="text-textlight">${category}</span>
+                                <span class="font-medium">${score}%</span>
+                            </div>
+                            <div class="gauge">
+                                <div class="gauge-fill" style="width: ${score}%"></div>
+                            </div>
+                        `;
+                        scoreBreakdown.appendChild(div);
+                    }
+                    
+                    // Display overall score
+                    document.getElementById('orgOverallScore').textContent = `${overallScore}%`;
+                    
+                    // Display risk insights
+                    const riskInsights = document.getElementById('orgRiskInsights');
+                    riskInsights.innerHTML = '';
+                    
+                    // High risk items
+                    const highRiskDiv = document.createElement('div');
+                    highRiskDiv.className = 'bg-red-900 bg-opacity-30 p-4 rounded border border-red-700';
+                    highRiskDiv.innerHTML = `
+                        <h4 class="font-medium mb-2 text-red-300">High Risk</h4>
+                        <p class="text-sm text-textlight">${weaknesses.length > 0 ? weaknesses[0] : 'No critical risks identified'}</p>
+                    `;
+                    riskInsights.appendChild(highRiskDiv);
+                    
+                    // Medium risk items
+                    const mediumRiskDiv = document.createElement('div');
+                    mediumRiskDiv.className = 'bg-yellow-900 bg-opacity-30 p-4 rounded border border-yellow-700';
+                    mediumRiskDiv.innerHTML = `
+                        <h4 class="font-medium mb-2 text-yellow-300">Medium Risk</h4>
+                        <p class="text-sm text-textlight">${weaknesses.length > 1 ? weaknesses[1] : 'No medium risks identified'}</p>
+                    `;
+                    riskInsights.appendChild(mediumRiskDiv);
+                }
+            }
+
+            function showSection(sectionId) {
+                // Hide all sections
+                document.querySelectorAll('main > section').forEach(section => {
+                    section.classList.add('hidden');
+                });
+                
+                // Show the requested section
+                document.getElementById(sectionId).classList.remove('hidden');
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                if (sectionId === 'home') {
+                    document.querySelector('.nav-link[href="#"]').classList.add('active');
+                } else {
+                    document.querySelector(`.nav-link[href="#${sectionId}"]`)?.classList.add('active');
+                }
+            }
+
+            // Attach assessment button handlers
+            ['employee', 'organization'].forEach(type => {
+                document.getElementById(questionData[type].nextBtnId).addEventListener('click', () => handleNext(type));
+                document.getElementById(questionData[type].backBtnId).addEventListener('click', () => handleBack(type));
+            });
+        });
+    </script>
+</body>
+</html>

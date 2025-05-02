@@ -2,39 +2,41 @@ import openai
 from utils.scoring import calculate_employee_score
 
 class EmployeeFeedbackGenerator:
-    def __init__(self, employee_responses):
-        self.employee_responses = employee_responses
+    def __init__(self, assessment_data):
+        self.assessment_data = assessment_data
 
     def generate_feedback(self):
-        total_score = calculate_employee_score(self.employee_responses)
         findings, strengths = self._summarize_findings()
+        total_score = self._calculate_total_score()
         prompt = self._build_feedback_prompt(findings, strengths, total_score)
         return self._generate_ai_feedback(prompt)
 
     def _summarize_findings(self):
-        """
-        Summarizes employee responses into strengths and improvement areas.
-        """
         findings = []
         strengths = []
 
-        for question, response in self.employee_responses.items():
-            label = [
-                "Not practiced",
-                "Weak practice",
-                "Moderate practice",
-                "Strong practice",
-                "Excellent practice"
-            ][response]
-
-            statement = f"{question}: {label}"
-
-            if response >= 3:
-                strengths.append(statement)
-            else:
-                findings.append(statement)
+        for question_data in self.assessment_data:
+            selected_answer = question_data.get('selectedAnswer')
+            if selected_answer:
+                score = selected_answer['score']
+                if score >= 3:
+                    strengths.append(question_data['feedback']['strength'])
+                else:
+                    findings.append(question_data['feedback']['weakness'])
 
         return findings, strengths
+
+    def _calculate_total_score(self):
+        total_score = 0
+        max_score = 0
+
+        for question_data in self.assessment_data:
+            selected_answer = question_data.get('selectedAnswer')
+            if selected_answer:
+                total_score += selected_answer['score']
+            max_score += len(question_data['answers']) - 1
+
+        return (total_score / max_score) * 100 if max_score > 0 else 0
 
     def _build_feedback_prompt(self, findings, strengths, total_score):
         findings_text = "\n".join(f"- {f}" for f in findings) if findings else "- None"
