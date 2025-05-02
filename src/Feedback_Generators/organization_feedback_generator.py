@@ -168,15 +168,15 @@ class OrganizationFeedbackGenerator:
 
         ### Immediate (0–30 Days)
         These should be quick wins or critical issues. Phrase them as direct, clear steps:
-        {chr(10).join(f"- {item}" for item in immediate) if immediate else "- No urgent actions identified."}
+        {chr(10).join(f"- {item}" for item in immediate)}
 
         ### Short-Term (60–90 Days)
         Mid-term improvements requiring some planning:
-        {chr(10).join(f"- {item}" for item in short_term) if short_term else "- No short-term actions identified."}
+        {chr(10).join(f"- {item}" for item in short_term)}
 
         ### Medium-Term (3–6 Months)
         Strategic actions for sustained cybersecurity maturity:
-        {chr(10).join(f"- {item}" for item in medium_term) if medium_term else "- No medium-term actions identified."}
+        {chr(10).join(f"- {item}" for item in medium_term)}
 
 
         ## Conclusion

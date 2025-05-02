@@ -25,8 +25,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I reuse passwords across many accounts",
-            "score": 1
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -55,8 +55,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I memorize most but reuse some weak passwords",
-            "score": 2
+            "option": "No, I write them down or save them in unprotected files",
+            "score": 0
         }
     },
     {
@@ -115,8 +115,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I always lock them, even at home",
-            "score": 4
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -175,8 +175,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Occasionally, but not regularly",
-            "score": 2
+            "option": "Once, but I do not remember much",
+            "score": 1
         }
     },
     {
@@ -205,8 +205,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Always, I verify senders and links before clicking",
-            "score": 4
+            "option": "Sometimes, if an email looks suspicious",
+            "score": 2
         }
     },
     {
@@ -235,8 +235,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I delete them but don't report them",
-            "score": 1
+            "option": "I always report phishing attempts",
+            "score": 4
         }
     },
     {
@@ -265,8 +265,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I update devices promptly when notified",
-            "score": 3
+            "option": "Sometimes, but I delay updates",
+            "score": 1
         }
     },
     {
@@ -325,8 +325,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I use them for most sensitive communications",
-            "score": 3
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -355,8 +355,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Always, I never work remotely without a VPN",
-            "score": 4
+            "option": "Mostly, unless I forget",
+            "score": 3
         }
     },
     {
@@ -385,8 +385,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I avoid public Wi-Fi when possible",
-            "score": 3
+            "option": "I use public Wi-Fi but with some security precautions",
+            "score": 2
         }
     },
     {
@@ -445,8 +445,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "I know where to report but have never done it",
+            "score": 2
         }
     },
     {
@@ -475,8 +475,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Occasionally, but not regularly",
-            "score": 2
+            "option": "No",
+            "score": 0
         }
     },
     {

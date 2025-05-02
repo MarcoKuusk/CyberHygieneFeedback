@@ -300,7 +300,7 @@
         }
     },
     {
-        "question": "Does your organization have a formal data classification policy?",
+        "question": "Does your organization have a formal data classification policy (e.g., Do you inventory and restrict access to sensitive data?)?",
         "category": "Data Classification & Protection",
         "answers": [
             {
