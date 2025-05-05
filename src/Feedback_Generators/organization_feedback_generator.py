@@ -1,5 +1,4 @@
 import openai
-from utils.scoring import calculate_organization_score
 
 class OrganizationFeedbackGenerator:
     def __init__(self, assessment_data):

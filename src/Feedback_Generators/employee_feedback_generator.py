@@ -1,5 +1,4 @@
 import openai
-from utils.scoring import calculate_employee_score
 from collections import defaultdict
 
 class EmployeeFeedbackGenerator:
