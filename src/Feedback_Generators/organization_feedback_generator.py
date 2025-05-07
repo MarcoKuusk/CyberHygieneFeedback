@@ -163,7 +163,7 @@ class OrganizationFeedbackGenerator:
 
         ## Action Plan
 
-        Provide a prioritized and **concrete cybersecurity action plan** for the organization. Break actions into timeframes based on effort and urgency. Ensure **each timeframe has at least 4–6 specific, actionable tasks** the organization can execute.
+        Provide a prioritized and **concrete cybersecurity action plan** for the organization. Break actions into timeframes based on effort and urgency. Ensure **each timeframe has at least 4–6 specific, actionable tasks** the organization can execute. Where helpful, briefly suggest how to get started with each step (e.g., what tools, resources, or internal processes to explore).
 
         ### Immediate (0–30 Days)
         These should be quick wins or critical issues. Phrase them as direct, clear steps:

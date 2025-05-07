@@ -25,8 +25,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "I reuse passwords across many accounts",
+            "score": 1
         }
     },
     {
@@ -42,7 +42,7 @@
                 "score": 1
             },
             {
-                "option": "I memorize most but reuse some weak passwords",
+                "option": "I memorize most of my passwords",
                 "score": 2
             },
             {
@@ -55,8 +55,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I exclusively use a password manager or secure method",
-            "score": 4
+            "option": "I memorize most of my passwords",
+            "score": 2
         }
     },
     {
@@ -85,8 +85,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I enable MFA for most work accounts",
-            "score": 3
+            "option": "Only for highly sensitive accounts",
+            "score": 1
         }
     },
     {
@@ -115,8 +115,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I lock them when in public spaces",
-            "score": 2
+            "option": "Sometimes, but I often forget",
+            "score": 1
         }
     },
     {
@@ -145,8 +145,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I always verify sender details, URLs, and report phishing attempts",
-            "score": 4
+            "option": "I have heard of phishing but wouldn't always recognize it",
+            "score": 1
         }
     },
     {
@@ -175,8 +175,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Once, but I do not remember much",
-            "score": 1
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -205,8 +205,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Never",
-            "score": 0
+            "option": "Rarely",
+            "score": 1
         }
     },
     {
@@ -235,8 +235,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I usually report them",
-            "score": 3
+            "option": "I delete them but don't report them",
+            "score": 1
         }
     },
     {
@@ -265,8 +265,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I update most things within a few weeks",
-            "score": 2
+            "option": "I update devices promptly when notified",
+            "score": 3
         }
     },
     {
@@ -295,8 +295,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sometimes, if necessary",
-            "score": 1
+            "option": "Yes, regularly",
+            "score": 0
         }
     },
     {
@@ -325,8 +325,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I always use encrypted channels",
-            "score": 4
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -355,8 +355,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sometimes, but not consistently",
-            "score": 2
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -415,8 +415,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Never, I strictly keep work devices private",
-            "score": 4
+            "option": "No, I share my work device",
+            "score": 0
         }
     },
     {
@@ -445,8 +445,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I know where to report but have never done it",
-            "score": 2
+            "option": "I think I know, but I'm not sure",
+            "score": 1
         }
     },
     {
@@ -475,8 +475,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Once, but not recently",
-            "score": 1
+            "option": "No",
+            "score": 0
         }
     },
     {
@@ -505,8 +505,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I actively encourage others to report issues",
-            "score": 4
+            "option": "I would report it without hesitation",
+            "score": 3
         }
     }
 ]

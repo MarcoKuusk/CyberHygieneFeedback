@@ -138,7 +138,7 @@ class EmployeeFeedbackGenerator:
 
         ## Personal Cyber Hygiene Action Plan
 
-        Provide a step-by-step action plan the employee can follow to improve their habits. Break it down by timeframe, and ensure each section includes 4–6 clear, actionable items.
+        Provide a step-by-step action plan the employee can follow to improve their habits. Break it down by timeframe, and ensure each section includes 4–6 clear, actionable items. Where helpful, add a brief tip on how to begin or what to look for (e.g., tools to use, settings to check, or support to ask for).
 
         ### Immediate (0–30 Days)
         Quick wins and critical fixes:

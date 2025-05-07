@@ -16,7 +16,7 @@ const employeeQuestions = {
                     feedback: {
                         strength: "You use strong, unique passwords for different accounts",
                         weakness: "You reuse passwords across multiple accounts",
-                        action: "Use a password manager to generate and store unique passwords",
+                        action: "Use a password manager to generate unique passwords",
                         category: "Password Security"
                     }
                 },
@@ -25,7 +25,7 @@ const employeeQuestions = {
                     answers: [
                         { option: "No, I write them down or save them in unprotected files", score: 0 },
                         { option: "I use a simple password-protected document", score: 1 },
-                        { option: "I memorize most but reuse some weak passwords", score: 2 },
+                        { option: "I memorize most of my passwords", score: 2 },
                         { option: "I use a password manager but sometimes write down passwords", score: 3 },
                         { option: "I exclusively use a password manager or secure method", score: 4 }
                     ],
