@@ -16,7 +16,7 @@ const employeeQuestions = {
                     feedback: {
                         strength: "You use strong, unique passwords for different accounts",
                         weakness: "You reuse passwords across multiple accounts",
-                        action: "Use a password manager to generate and store unique passwords",
+                        action: "Use a password manager to generate unique passwords",
                         category: "Password Security"
                     }
                 },
@@ -25,7 +25,7 @@ const employeeQuestions = {
                     answers: [
                         { option: "No, I write them down or save them in unprotected files", score: 0 },
                         { option: "I use a simple password-protected document", score: 1 },
-                        { option: "I memorize most but reuse some weak passwords", score: 2 },
+                        { option: "I memorize most of my passwords", score: 2 },
                         { option: "I use a password manager but sometimes write down passwords", score: 3 },
                         { option: "I exclusively use a password manager or secure method", score: 4 }
                     ],
@@ -1349,27 +1349,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Display overall score
             document.getElementById('orgOverallScore').textContent = `${overallScore}%`;
             
-            // Display risk insights
-            const riskInsights = document.getElementById('orgRiskInsights');
-            riskInsights.innerHTML = '';
-            
-            // High risk items
-            const highRiskDiv = document.createElement('div');
-            highRiskDiv.className = 'bg-red-900 bg-opacity-30 p-4 rounded border border-red-700';
-            highRiskDiv.innerHTML = `
-                <h4 class="font-medium mb-2 text-red-300">High Risk</h4>
-                <p class="text-sm text-textlight">${weaknesses.length > 0 ? weaknesses[0] : 'No critical risks identified'}</p>
-            `;
-            riskInsights.appendChild(highRiskDiv);
-            
-            // Medium risk items
-            const mediumRiskDiv = document.createElement('div');
-            mediumRiskDiv.className = 'bg-yellow-900 bg-opacity-30 p-4 rounded border border-yellow-700';
-            mediumRiskDiv.innerHTML = `
-                <h4 class="font-medium mb-2 text-yellow-300">Medium Risk</h4>
-                <p class="text-sm text-textlight">${weaknesses.length > 1 ? weaknesses[1] : 'No medium risks identified'}</p>
-            `;
-            riskInsights.appendChild(mediumRiskDiv);
         }
     }
 
