@@ -41,52 +41,6 @@ class EmployeeFeedbackGenerator:
 
         return (total_score / max_score) * 100 if max_score > 0 else 0
 
-    def _extract_risks(self, findings):
-        # Simple illustrative risks based on weak categories
-        risks = []
-        for category in findings:
-            if "Password" in category:
-                risks.append("If you use weak or reused passwords, attackers could easily compromise your accounts.")
-            elif "Phishing" in category or "Training" in category:
-                risks.append("Without phishing awareness, you might fall for malicious emails and expose sensitive data.")
-            elif "Device" in category or "Patch" in category:
-                risks.append("Running outdated software can leave your devices vulnerable to known exploits.")
-            elif "Remote Work" in category:
-                risks.append("Unsecured remote access can allow attackers to breach company systems.")
-            elif "Backup" in category:
-                risks.append("Without backups, accidental loss or ransomware attacks could result in permanent data loss.")
-        return risks or ["Insufficient security habits can increase the risk of account compromise, data leaks, or malware infection."]
-
-    def _build_action_plan(self, findings):
-        immediate = []
-        short_term = []
-        medium_term = []
-
-        # Sample actions (could later be more dynamic per category)
-        if findings:
-            immediate = [
-                "Use strong, unique passwords for each account.",
-                "Enable multi-factor authentication wherever possible.",
-                "Avoid clicking suspicious links or attachments.",
-                "Update all software and operating systems.",
-                "Restart your computer regularly to apply updates."
-            ]
-
-            short_term = [
-                "Attend cybersecurity awareness training.",
-                "Learn how to identify phishing and social engineering attempts.",
-                "Review password manager options for better password handling.",
-                "Ensure devices auto-lock after inactivity."
-            ]
-
-            medium_term = [
-                "Adopt a personal routine for monthly software updates.",
-                "Explore and improve digital privacy settings across services.",
-                "Develop safe remote work and travel security habits."
-            ]
-
-        return immediate, short_term, medium_term
-
     def _determine_urgency_tone(self, score):
         if score < 30:
             return "**Critical:** Your cyber hygiene practices need urgent improvement."
@@ -103,9 +57,14 @@ class EmployeeFeedbackGenerator:
 
         strengths_text = "\n".join(f"- {s}" for s in strengths) if strengths else "- No specific strengths identified yet."
 
-        risks = self._extract_risks(findings)
-        immediate, short_term, medium_term = self._build_action_plan(findings)
         tone = self._determine_urgency_tone(total_score)
+
+        print(f"Findings: {findings}")
+        print(f"Strengths: {strengths}")
+        print(f"Total Score: {total_score}")
+        print(f"Findings Text: {findings_text}")
+        print(f"Strengths Text: {strengths_text}")
+        print(f"Tone: {tone}")
 
         prompt = f"""
         You are a cybersecurity coach helping employees at small and medium-sized businesses improve their personal cyber hygiene and security habits.
@@ -134,23 +93,18 @@ class EmployeeFeedbackGenerator:
         ## Potential Risks and Risk Scenarios
         Based on the weak areas, describe the main risks. Use short, concrete examples (e.g., “If you reuse the same password everywhere, a data breach on one site could expose all your accounts.”)
 
-        {chr(10).join(risks)}
-
         ## Personal Cyber Hygiene Action Plan
 
         Provide a step-by-step action plan the employee can follow to improve their habits. Break it down by timeframe, and ensure each section includes 4–6 clear, actionable items. Where helpful, add a brief tip on how to begin or what to look for (e.g., tools to use, settings to check, or support to ask for).
 
         ### Immediate (0–30 Days)
         Quick wins and critical fixes:
-        {chr(10).join(f"- {item}" for item in immediate)}
 
         ### Short-Term (60–90 Days)
         Mid-term improvements that may need a bit more time or learning:
-        {chr(10).join(f"- {item}" for item in short_term)}
 
         ### Medium-Term (3–6 Months)
         Longer-term changes to build sustainable habits:
-        {chr(10).join(f"- {item}" for item in medium_term)}
 
         ## Conclusion
         Encourage the employee to keep improving their cybersecurity practices. Remind them that small actions — like updating passwords or learning to spot phishing — can have a big impact. Suggest reviewing their cyber hygiene again in 6–12 months.
