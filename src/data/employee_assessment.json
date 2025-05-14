@@ -55,8 +55,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I memorize most of my passwords",
-            "score": 2
+            "option": "I exclusively use a password manager or secure method",
+            "score": 4
         }
     },
     {
@@ -85,8 +85,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Only for highly sensitive accounts",
-            "score": 1
+            "option": "I enable MFA for all possible accounts",
+            "score": 4
         }
     },
     {
@@ -115,8 +115,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sometimes, but I often forget",
-            "score": 1
+            "option": "I always lock them, even at home",
+            "score": 4
         }
     },
     {
@@ -145,8 +145,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I have heard of phishing but wouldn't always recognize it",
-            "score": 1
+            "option": "I always verify sender details, URLs, and report phishing attempts",
+            "score": 4
         }
     },
     {
@@ -175,8 +175,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "Occasionally, but not regularly",
+            "score": 2
         }
     },
     {
@@ -205,8 +205,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Rarely",
-            "score": 1
+            "option": "Always, I verify senders and links before clicking",
+            "score": 4
         }
     },
     {
@@ -235,8 +235,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I delete them but don't report them",
-            "score": 1
+            "option": "I usually report them",
+            "score": 3
         }
     },
     {
@@ -295,8 +295,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Yes, regularly",
-            "score": 0
+            "option": "Never, I follow IT policies strictly",
+            "score": 4
         }
     },
     {
@@ -325,8 +325,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "I use them for most sensitive communications",
+            "score": 3
         }
     },
     {
@@ -355,8 +355,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "Always, I never work remotely without a VPN",
+            "score": 4
         }
     },
     {
@@ -385,8 +385,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "Sometimes, but I don't take security measures",
-            "score": 1
+            "option": "I avoid public Wi-Fi when possible",
+            "score": 3
         }
     },
     {
@@ -415,8 +415,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No, I share my work device",
-            "score": 0
+            "option": "Never, I strictly keep work devices private",
+            "score": 4
         }
     },
     {
@@ -445,8 +445,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "I think I know, but I'm not sure",
-            "score": 1
+            "option": "I know how to report and have done it before",
+            "score": 3
         }
     },
     {
@@ -475,8 +475,8 @@
             }
         ],
         "selectedAnswer": {
-            "option": "No",
-            "score": 0
+            "option": "Once, but not recently",
+            "score": 1
         }
     },
     {
