@@ -1,7 +1,7 @@
 # Cyber Hygiene Feedback Tool
 
 ## Overview
-The Cyber Hygiene Feedback Tool is designed to help organizations and employees assess their cybersecurity practices through structured questionnaires. The project generates tailored feedback based on the responses provided, enabling users to identify areas for improvement in their cyber hygiene. The feedback is presented in detailed PDF reports for both employees and organizations.
+The Cyber Hygiene Feedback Tool is designed to help organizations and employees assess their cybersecurity practices through structured questionnaires. The project generates tailored feedback based on the responses provided, enabling users to identify areas for improvement in their cyber hygiene. The feedback is presented in web interface format as well as detailed PDF reports for both employees and organizations.
 
 ## Project Structure
 ```
@@ -52,12 +52,26 @@ cyber-hygiene-feedback
    pip install -r requirements.txt
    ```
 
-3. Start the Flask server:
+3. Obtain an OpenAI API key:
+   - Visit the [OpenAI API website](https://platform.openai.com/signup/) and sign up or log in.
+   - Navigate to the API keys section in your account settings.
+   - Generate a new API key and copy it.
+
+4. Insert the API key into the `config.json` file:
+   - Open the `src/config.json` file.
+   - Replace `YOUR_OPENAI_API_KEY` with your actual API key:
+     ```json
+     {
+         "openai_api_key": "your_actual_api_key_here"
+     }
+     ```
+
+5. Start the Flask server:
    ```bash
    python src/server.py
    ```
 
-4. Open the web interface in your browser:
+6. Open the web interface in your browser:
    ```
    http://127.0.0.1:5000
    ```
