@@ -1,8 +1,15 @@
 import openai
+import json
 
 class OrganizationFeedbackGenerator:
-    def __init__(self, assessment_data):
+    def __init__(self, assessment_data, config_path="src\config.json"):
         self.assessment_data = assessment_data
+        self.api_key = self._load_api_key(config_path)
+
+    def _load_api_key(self, config_path):
+        with open(config_path, "r") as config_file:
+            config = json.load(config_file)
+        return config.get("openai_api_key")
 
     def generate_feedback(self):
         grouped_findings, strengths = self._summarize_findings()
@@ -115,7 +122,7 @@ class OrganizationFeedbackGenerator:
         return prompt.strip()
 
     def _generate_ai_feedback(self, prompt):
-        client = openai.OpenAI(api_key="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")  # Replace with secure method
+        client = openai.OpenAI(api_key=self.api_key)
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": prompt}]
