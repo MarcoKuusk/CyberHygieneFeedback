@@ -59,13 +59,6 @@ class EmployeeFeedbackGenerator:
 
         tone = self._determine_urgency_tone(total_score)
 
-        print(f"Findings: {findings}")
-        print(f"Strengths: {strengths}")
-        print(f"Total Score: {total_score}")
-        print(f"Findings Text: {findings_text}")
-        print(f"Strengths Text: {strengths_text}")
-        print(f"Tone: {tone}")
-
         prompt = f"""
         You are a cybersecurity coach helping employees at small and medium-sized businesses improve their personal cyber hygiene and security habits.
 
