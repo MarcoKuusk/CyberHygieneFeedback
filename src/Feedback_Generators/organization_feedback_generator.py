@@ -1,4 +1,3 @@
-import logging
 import openai
 
 class OrganizationFeedbackGenerator:
@@ -67,13 +66,6 @@ class OrganizationFeedbackGenerator:
         strengths_text = "\n".join(f"- {s}" for s in strengths) if strengths else "- No specific strengths identified yet."
 
         tone = self._determine_urgency_tone(total_score)
-
-        print(f"Findings: {findings}")
-        print(f"Strengths: {strengths}")
-        print(f"Total Score: {total_score}")
-        print(f"Findings Text: {findings_text}")
-        print(f"Strengths Text: {strengths_text}")
-        print(f"Tone: {tone}")
 
         prompt = f"""
         You are a cybersecurity advisor helping small and medium-sized enterprises (SMEs) improve their security posture.
