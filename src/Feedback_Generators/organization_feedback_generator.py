@@ -1,3 +1,4 @@
+import logging
 import openai
 
 class OrganizationFeedbackGenerator:
@@ -42,69 +43,6 @@ class OrganizationFeedbackGenerator:
             max_score += len(question_data['answers']) - 1
 
         return (total_score / max_score) * 100 if max_score > 0 else 0
-    
-    def _extract_risks(self, findings):
-        risks = []
-        # Identity & Access Management
-        if findings.get("Multi-Factor Authentication"):
-            risks.append("- Account takeover risks due to insufficient MFA enforcement")
-        if findings.get("Access Control"):
-            risks.append("- Privilege escalation risks from infrequent access reviews")
-        if findings.get("Password Policy"):
-            risks.append("- Credential compromise vulnerabilities from weak passwords")
-        
-        # Software & Patch Management
-        if findings.get("Patch Management"):
-            risks.append("- Exploitable vulnerabilities due to delayed patching")
-        if findings.get("Vulnerability Management"):
-            risks.append("- Unidentified security gaps from infrequent scanning")
-        
-        # Data Protection
-        if findings.get("Data Encryption"):
-            risks.append("- Data breach risks from unencrypted sensitive information")
-        
-        # Backup & Recovery
-        if findings.get("Backup Strategy") or findings.get("Backup Testing"):
-            risks.append("- Business continuity risks from inadequate backup processes")
-        
-        # Security Awareness
-        if findings.get("Security Training") or findings.get("Phishing Simulations"):
-            risks.append("- Social engineering risks from untrained staff")
-        
-        return risks if risks else ["- No major risks identified at this time. Maintain current efforts."]
-
-    def _build_action_plan(self, findings):
-        immediate = []
-        short_term = []
-        medium_term = []
-
-        # Critical IAM fixes
-        if findings.get("Multi-Factor Authentication"):
-            immediate.append("Implement MFA enforcement for all critical systems")
-        if findings.get("Password Policy"):
-            immediate.append("Enforce strong password policies with 12+ character requirements")
-        
-        # Access management
-        if findings.get("Access Control"):
-            short_term.append("Implement quarterly access reviews for privileged accounts")
-        
-        # Patching urgency
-        if findings.get("Patch Management"):
-            medium_term.append("Establish automated patch management system")
-        
-        # Data protection
-        if findings.get("Data Encryption"):
-            short_term.append("Implement full-disk encryption for sensitive data stores")
-        
-        # Backup improvements
-        if findings.get("Backup Strategy"):
-            immediate.append("Implement 3-2-1 backup strategy with offsite storage")
-        
-        # Training needs
-        if findings.get("Security Training"):
-            medium_term.append("Launch quarterly security awareness training program")
-        
-        return immediate, short_term, medium_term
 
     def _determine_urgency_tone(self, total_score):
         if total_score < 20:
@@ -128,9 +66,14 @@ class OrganizationFeedbackGenerator:
 
         strengths_text = "\n".join(f"- {s}" for s in strengths) if strengths else "- No specific strengths identified yet."
 
-        risks = self._extract_risks(findings)
-        immediate, short_term, medium_term = self._build_action_plan(findings)
         tone = self._determine_urgency_tone(total_score)
+
+        print(f"Findings: {findings}")
+        print(f"Strengths: {strengths}")
+        print(f"Total Score: {total_score}")
+        print(f"Findings Text: {findings_text}")
+        print(f"Strengths Text: {strengths_text}")
+        print(f"Tone: {tone}")
 
         prompt = f"""
         You are a cybersecurity advisor helping small and medium-sized enterprises (SMEs) improve their security posture.
@@ -157,26 +100,19 @@ class OrganizationFeedbackGenerator:
         {findings_text}
 
         ## Potential Risks and Risk Scenarios
-        Describe the potential threats based on weaknesses. Write short, scenario-based risk statements (e.g., “Without MFA, an attacker could take over email accounts.”)
-
-        {chr(10).join(risks)}
+        Based on the findings above, identify potential risks and describe them in short, scenario-based statements (e.g., “Without MFA, an attacker could take over email accounts.”).
 
         ## Action Plan
-
-        Provide a prioritized and **concrete cybersecurity action plan** for the organization. Break actions into timeframes based on effort and urgency. Ensure **each timeframe has at least 4–6 specific, actionable tasks** the organization can execute. Where helpful, briefly suggest how to get started with each step (e.g., what tools, resources, or internal processes to explore).
+        Provide a prioritized and **concrete cybersecurity action plan** for the organization based on the findings above. Break actions into timeframes based on effort and urgency. Ensure **each timeframe has at least 4–6 specific, actionable tasks** the organization can execute. Where helpful, briefly suggest how to get started with each step (e.g., what tools, resources, or internal processes to explore).
 
         ### Immediate (0–30 Days)
-        These should be quick wins or critical issues. Phrase them as direct, clear steps:
-        {chr(10).join(f"- {item}" for item in immediate)}
+        These should be quick wins or critical issues. Phrase them as direct, clear steps.
 
         ### Short-Term (60–90 Days)
-        Mid-term improvements requiring some planning:
-        {chr(10).join(f"- {item}" for item in short_term)}
+        Mid-term improvements requiring some planning.
 
         ### Medium-Term (3–6 Months)
-        Strategic actions for sustained cybersecurity maturity:
-        {chr(10).join(f"- {item}" for item in medium_term)}
-
+        Strategic actions for sustained cybersecurity maturity.
 
         ## Conclusion
         Encourage the organization to continue improving its cybersecurity posture. Recommend reassessing in 6–12 months. Reinforce that even small steps can significantly reduce risk.
